@@ -136,3 +136,7 @@ Thumbs.db
 
 # TypeScript
 *.tsbuildinfo
+
+# Ondokai
+.prompts/
+.logs/

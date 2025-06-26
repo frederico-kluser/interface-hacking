@@ -1,0 +1,18 @@
+{
+  "processing": {
+    "fileTimeout": 100000,
+    "maxFileRetries": 3,
+    "retryBackoffMultiplier": 1.5,
+    "concurrentFiles": 10,
+    "skipLargeFiles": true,
+    "largeFileThreshold": 5242880,
+    "enableCheckpoint": true,
+    "incrementalCache": {
+      "enabled": true,
+      "flushIntervalMs": 1000,
+      "maxSizeMb": 50,
+      "cleanupOnFinish": true
+    },
+    "projectLanguage": "js"
+  }
+}

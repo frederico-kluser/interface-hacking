@@ -1,0 +1,489 @@
+{
+  "project_metadata": {
+    "name": "DOM Element Hierarchical Finder",
+    "domain": [
+      "Web Development",
+      "DOM Manipulation",
+      "UI Automation",
+      "UI Testing",
+      "Front-end Web Development",
+      "Static Code Analysis",
+      "Web Scraping",
+      "HTML/XML Parsing",
+      "Markup Language Processing",
+      "Code Quality"
+    ],
+    "current_phase": [
+      "Production",
+      "Stable",
+      "MVP",
+      "Development",
+      "Prototyping"
+    ],
+    "critical_business_rules": [
+      "Manter integridade do repositório ignorando arquivos temporários e dependências",
+      "Manter consistência de estilo para facilitar manutenção e colaboração",
+      "Busca precisa e hierárquica de elementos DOM",
+      "Respeito a timeout em buscas assíncronas",
+      "Manutenção da tipagem estrita",
+      "Garantir código limpo e sem erros de tipagem",
+      "Prevenir uso de variáveis não utilizadas",
+      "Manter formatação consistente",
+      "Garantir versões fixas das dependências para evitar inconsistências no ambiente de desenvolvimento",
+      "Compatibilidade com Node.js >=24",
+      "Manter integridade da hierarquia DOM durante manipulações",
+      "Suporte a regex para atributos",
+      "Retorno do primeiro elemento válido",
+      "Manter precisão na correspondência hierárquica",
+      "Não retornar elementos fora da hierarquia especificada",
+      "Consistent UI rendering",
+      "Correct CSS class application",
+      "Attributes must be accurately typed",
+      "Regex flags must be correctly handled",
+      "Timeouts must be respected to avoid blocking UI",
+      "Element hierarchy must be strictly matched",
+      "Garantir código estritamente tipado e sem erros de compilação"
+    ]
+  },
+  "technical_stack": {
+    "primary_language": [
+      "TypeScript",
+      "JavaScript (Node.js)",
+      "JavaScript ES6+"
+    ],
+    "frameworks": [
+      "Node.js 24+",
+      "ES Modules",
+      "ESLint",
+      "Prettier",
+      "esbuild"
+    ],
+    "databases": [],
+    "external_services": [],
+    "package_manager": [
+      "npm",
+      "yarn"
+    ]
+  },
+  "architecture_patterns": {
+    "design_pattern": [
+      "Modular ES Modules",
+      "Functional Programming",
+      "Build Pipeline via npm scripts",
+      "Configuração centralizada para formatação de código",
+      "Configuração modular baseada em plugins",
+      "Modularização por responsabilidade única",
+      "Static Configuration",
+      "Polling with timeout",
+      "Data Modeling"
+    ],
+    "folder_structure": [
+      "node_modules - dependências",
+      "dist/ - artefatos compilados",
+      "coverage - relatórios de testes",
+      "src/ - código fonte TypeScript",
+      "tests/ - testes unitários",
+      "scripts/ - scripts de build e dev",
+      "bin para executáveis das ferramentas",
+      "src/types - definições de tipos TypeScript",
+      "src/utils - funções utilitárias",
+      "components - UI components"
+    ],
+    "naming_conventions": [
+      "camelCase para variáveis e funções",
+      "PascalCase para classes, tipos e interfaces",
+      "kebab-case para arquivos, pacotes e scripts",
+      "Uso padrão de nomes npm e versões semânticas",
+      "nomes descritivos"
+    ],
+    "module_boundaries": [
+      "Separação clara entre funções de busca, tipos e utilitários",
+      "Dependência unidirecional para evitar acoplamento",
+      "Separação clara entre código fonte e arquivos gerados",
+      "Regras aplicadas somente a arquivos .ts em src/",
+      "Separação clara entre devDependencies e optionalDependencies para diferentes plataformas",
+      "Separação clara entre código fonte e build output",
+      "Uso de ES Modules para import/export",
+      "Separação clara entre tipos e funções",
+      "Importação explícita de tipos",
+      "Módulos isolados por responsabilidade",
+      "Exportação explícita de módulos",
+      "Tipos isolados para reutilização em múltiplos módulos",
+      "Separação clara entre lógica de busca (findElementByHierarchy) e controle de espera (waitElementByHierarchy)",
+      "Exclusão de arquivos de teste do build"
+    ]
+  },
+  "code_standards": {
+    "style_guide": [
+      "Prettier",
+      "ESLint com regras TypeScript rigorosas",
+      "Airbnb TypeScript Style Guide"
+    ],
+    "linting_rules": [
+      "Configuração de Prettier para formatação automática",
+      "Regras ESLint para evitar erros comuns e manter consistência",
+      "no-unused-vars: error",
+      "no-explicit-any: warn",
+      "explicit-function-return-type: error",
+      "no-floating-promises: error",
+      "prefer-const: error",
+      "no-var: error",
+      "no-console: warn",
+      "no-debugger: error",
+      "prettier/prettier: error",
+      "ESLint com plugins @typescript-eslint",
+      "skipLibCheck: true",
+      "forceConsistentCasingInFileNames: true"
+    ],
+    "formatting": [
+      "semi: true",
+      "trailingComma: all",
+      "singleQuote: true",
+      "printWidth: 100",
+      "tabWidth: 2",
+      "useTabs: false",
+      "quoteProps: as-needed",
+      "jsxSingleQuote: true",
+      "bracketSpacing: true",
+      "bracketSameLine: false",
+      "arrowParens: always",
+      "endOfLine: lf",
+      "embeddedLanguageFormatting: auto",
+      "htmlWhitespaceSensitivity: css",
+      "insertPragma: false",
+      "proseWrap: preserve",
+      "requirePragma: false",
+      "vueIndentScriptAndStyle: false",
+      "Prettier integrado via eslint-plugin-prettier",
+      "Configuração para erro em divergências",
+      "newLine: lf",
+      "pretty: true"
+    ],
+    "documentation_style": [
+      "JSDoc para funções e tipos",
+      "Comentários JSDoc para funções e tipos"
+    ],
+    "type_checking": [
+      "Strict TypeScript com todas verificações ativadas",
+      "TypeScript com type checking ativado via parserOptions.project",
+      "Strict TypeScript com versões >=5.6",
+      "NoImplicitAny ativado",
+      "strict: true",
+      "noImplicitAny: true",
+      "noImplicitReturns: true",
+      "noImplicitThis: true",
+      "exactOptionalPropertyTypes: true"
+    ]
+  },
+  "testing_strategy": {
+    "test_framework": [
+      "Jest 29"
+    ],
+    "test_structure": [
+      "coverage - relatórios de cobertura",
+      "Testes localizados em __tests__ próximos ao código",
+      "tests/utils - testes unitários para utilitários",
+      "Exclusão de arquivos *.test.ts e *.spec.ts do build"
+    ],
+    "coverage_requirements": [
+      "Cobertura mínima de 80%",
+      ">= 80% coverage"
+    ],
+    "test_patterns": [
+      "Given-When-Then",
+      "Testes unitários e de integração",
+      "AAA (Arrange-Act-assert)"
+    ],
+    "mocking_approach": [
+      "Mocks para DOM e elementos HTML",
+      "Mocks para DOM e atributos",
+      "mock de DOM e funções auxiliares"
+    ]
+  },
+  "development_workflow": {
+    "branch_strategy": [
+      "GitHub Flow",
+      "git Flow"
+    ],
+    "commit_conventions": [
+      "Conventional Commits"
+    ],
+    "pr_requirements": [
+      "Revisão obrigatória",
+      "Checks automáticos via CI",
+      "Checks de lint e testes",
+      "Revisão obrigatória e testes aprovados",
+      "Code review obrigatório",
+      "Testes automatizados passando"
+    ],
+    "ci_cd_pipeline": [
+      "Build, lint, test e deploy automatizados",
+      "Integração possível com pipelines para aplicação automática do Prettier",
+      "CI/CD pipelines"
+    ]
+  },
+  "commands": {
+    "setup": [
+      "npm install",
+      "yarn install",
+      "npm install prettier --save-dev"
+    ],
+    "install": [
+      "npm install",
+      "yarn install"
+    ],
+    "dev": [
+      "npm run dev",
+      "yarn dev",
+      "node arquivo.js"
+    ],
+    "test": [
+      "npm test",
+      "yarn test"
+    ],
+    "build": [
+      "npm run build",
+      "yarn build",
+      "tsc"
+    ],
+    "lint": [
+      "npm run lint",
+      "yarn lint",
+      "npx prettier --check .",
+      "eslint . --ext .ts,.tsx",
+      "eslint ."
+    ],
+    "format": [
+      "npm run format",
+      "yarn format",
+      "npx prettier --write .",
+      "prettier --write ."
+    ]
+  },
+  "security_constraints": {
+    "authentication_method": [],
+    "authorization_rules": [],
+    "sensitive_data": [],
+    "security_headers": [],
+    "encryption_requirements": []
+  },
+  "performance_requirements": {
+    "response_time_limits": [
+      "Timeout padrão 10000ms para espera de elementos",
+      "Timeout configurável, padrão 10 segundos",
+      "Busca deve ser eficiente para DOMs de tamanho médio",
+      "Instantâneo"
+    ],
+    "optimization_priorities": [
+      "Reduzir tamanho do repositório e melhorar performance do git",
+      "Velocidade de formatação otimizada para uso em editores e CI",
+      "Equilíbrio entre velocidade de busca e flexibilidade com regex",
+      "Build rápido e eficiente via esbuild",
+      "Performance na manipulação DOM",
+      "Bundle size otimizado via esbuild",
+      "Equilíbrio entre velocidade e precisão",
+      "Minimizar latência na detecção do elemento",
+      "Evitar uso excessivo de CPU pelo polling"
+    ],
+    "caching_strategy": [
+      "Não implementado, possível melhoria futura"
+    ],
+    "scalability_considerations": [
+      "Evitar crescimento desnecessário do repositório",
+      "Escalável para grandes bases de código",
+      "Suporte a buscas em grandes árvores DOM com hierarquias complexas",
+      "Suporte multiplataforma via optionalDependencies",
+      "Compatibilidade com Node.js >=24 para melhor performance",
+      "Pode degradar em DOMs muito grandes"
+    ]
+  },
+  "error_handling": {
+    "error_format": [
+      "Mensagens de erro padrão do Prettier",
+      "Erro lançado em caso de timeout na espera de elementos",
+      "Logs no console para regex inválido",
+      "Erro padrão com mensagem 'Timeout waiting for element'"
+    ],
+    "logging_strategy": [
+      "Logs gerados pelo Prettier em caso de falhas",
+      "Console.error para erros de regex",
+      "Uso básico de console.log para saída",
+      "Logs no console para tentativas e timeout"
+    ],
+    "monitoring_tools": [],
+    "error_recovery": [
+      "Correção automática via comando de formatação",
+      "Tratamento de erros via try/catch em operações assíncronas",
+      "Continua busca ignorando regex inválido",
+      "Ignora elementos com regex inválida, continua processamento",
+      "Rejeição da promise para permitir tratamento externo"
+    ]
+  },
+  "dependencies_context": {
+    "critical_dependencies": [
+      "Prettier",
+      "Node.js 24+",
+      "TypeScript 5.6+",
+      "ES Modules",
+      "@typescript-eslint/eslint-plugin",
+      "@typescript-eslint/parser",
+      "eslint-config-prettier",
+      "eslint-plugin-prettier",
+      "typescript",
+      "eslint",
+      "prettier",
+      "esbuild",
+      "dts-bundle-generator",
+      "./types",
+      "findElementByHierarchy",
+      "TypeScript Compiler",
+      "Node.js"
+    ],
+    "deprecated_packages": [
+      "Nenhum identificado"
+    ],
+    "version_constraints": [
+      "package-lock.json e yarn.lock para controle de versões",
+      "Compatibilidade com versões recentes do Prettier",
+      "Node.js >= 24.0.0",
+      "TypeScript >= 5.6.0",
+      "ecmaVersion: 2024",
+      "TypeScript parser com tsconfig.json",
+      "TypeScript >=5.6 <5.9",
+      "ESLint >=9.0.0",
+      "typescript ^5.6.0",
+      "eslint ^9.0.0",
+      "TypeScript >=4.0",
+      "TypeScript >=5.0"
+    ],
+    "internal_packages": [
+      "./types",
+      "./findElementByHierarchy",
+      "types"
+    ]
+  },
+  "current_challenges": {
+    "technical_debt": [
+      "Manter .gitignore atualizado para evitar inclusão indevida de arquivos",
+      "Manter alinhamento com regras de linting e outras ferramentas",
+      "Ausência de testes automatizados",
+      "Ausência de caching para buscas repetidas",
+      "Polling pode ser substituído por MutationObserver para maior eficiência"
+    ],
+    "known_issues": [
+      "Possível exclusão acidental de arquivos importantes se regras forem mal configuradas",
+      "Possíveis conflitos com ESLint se regras não estiverem sincronizadas",
+      "Performance em DOMs muito grandes",
+      "Regex inválido interrompe busca naquele nível",
+      "Performance pode ser impactada em DOMs muito grandes",
+      "Possível alto consumo de CPU em polling intenso"
+    ],
+    "performance_bottlenecks": [
+      "Repositórios grandes podem sofrer lentidão sem .gitignore adequado",
+      "Possível lentidão em buscas com regex complexas e hierarquias profundas",
+      "Potencial impacto na manipulação intensiva do DOM",
+      "Busca exaustiva em getElementsByTagName",
+      "Múltiplas chamadas getElementsByTagName em loops aninhados",
+      "Polling a cada 10ms pode impactar performance em dispositivos limitados"
+    ],
+    "migration_status": [
+      "Configuração atualizada para Prettier 2.x+",
+      "Estável, sem migrações em andamento"
+    ]
+  },
+  "team_preferences": {
+    "code_review_focus": [
+      "Verificar regras do .gitignore para evitar inclusão de arquivos desnecessários",
+      "Consistência de estilo e aderência às regras de formatação",
+      "Consistência de tipagem",
+      "Cobertura de testes",
+      "Qualidade do código e documentação",
+      "Conformidade com regras ESLint",
+      "Uso correto de tipos TypeScript",
+      "Formatação consistente",
+      "Qualidade do código",
+      "Consistência de estilo",
+      "Uso correto de tipagem",
+      "Clareza na lógica de filtragem",
+      "Tratamento de erros",
+      "Performance",
+      "Padronização de nomenclatura",
+      "Tratamento correto de timers",
+      "Clareza na tipagem e documentação"
+    ],
+    "documentation_requirements": [
+      "Documentar padrões de arquivos ignorados",
+      "Documentação mínima para configuração Prettier",
+      "Documentação clara via JSDoc para APIs públicas",
+      "Documentação inline via JSDoc",
+      "Documentação clara de parâmetros e retorno",
+      "JSDoc para tipos e componentes",
+      "Documentar parâmetros e comportamento assíncrono"
+    ],
+    "communication_style": [
+      "Comentários claros sobre regras específicas no .gitignore",
+      "Comentários claros e objetivos sobre regras de formatação",
+      "Comentários objetivos e claros",
+      "Uso de PRs para discussões",
+      "Comentários objetivos e técnicos",
+      "Comentários objetivos e em português"
+    ],
+    "decision_log": [
+      "Decisão de ignorar node_modules, builds e arquivos temporários para manter repositório limpo",
+      "Adoção do Prettier para padronização de código",
+      "Adoção de Node.js 24+ para suporte nativo a TypeScript e ESM",
+      "Adoção de ESLint com plugins TypeScript e Prettier para padronização",
+      "Uso de esbuild para bundling",
+      "Node.js >=24 como engine mínima",
+      "Uso de regex para flexibilidade",
+      "Retorno do primeiro elemento válido",
+      "Uso de tipos para garantir integridade dos dados UI",
+      "Uso de polling para compatibilidade ampla"
+    ]
+  },
+  "api_specifications": {
+    "api_style": [
+      "Função utilitária exportada como módulo ES",
+      "Funções utilitárias para manipulação DOM, não expõe api REST"
+    ],
+    "versioning_strategy": [
+      "Sem versionamento explícito de api"
+    ],
+    "response_formats": [
+      "Retorno de HTMLElement ou arrays, ou promise para espera assíncrona",
+      "HTMLElement | null",
+      "array de HTMLElements"
+    ],
+    "rate_limiting": []
+  },
+  "deployment_context": {
+    "environments": [
+      "Desenvolvimento local",
+      "Produção via npm package",
+      "Produção em navegador",
+      "Desenvolvimento local e produção web",
+      "development",
+      "staging",
+      "production"
+    ],
+    "deployment_method": [
+      "Distribuição via npm",
+      "Execução em Node.js 24+ ou browsers compatíveis",
+      "Node.js runtime",
+      "npm scripts para build e deploy",
+      "Distribuído como parte de pacote npm",
+      "Deploy via bundlers front-end (Webpack, Vite)",
+      "Docker",
+      "CI/CD pipelines"
+    ],
+    "environment_variables": [
+      "LIMIT_TIME (timeout configurável)"
+    ],
+    "infrastructure_constraints": [
+      "Necessita ambiente com DOM disponível (browser ou simulado)",
+      "Requer Node.js >=24",
+      "Execução em ambiente browser com DOM disponível"
+    ]
+  },
+  "lastCommitHash": "c92884fc4f64336c1562cea39f39ec0fa0adb390"
+}
