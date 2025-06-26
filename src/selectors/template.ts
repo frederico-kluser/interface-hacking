@@ -1,4 +1,4 @@
-import { TagWithAttributes } from '../findElementByHierarchy';
+import { TagWithAttributes } from '../types';
 
 const TemplateButtons: TagWithAttributes[] = [
 	{
