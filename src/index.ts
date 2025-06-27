@@ -3,6 +3,26 @@
  * @module CopilotAutomation
  * @description Sistema de automação para interagir com o editor do GitHub Copilot no VS Code
  */
+
+// Imports das funções hierárquicas
+import findElementByHierarchy from './findElementByHierarchy.js';
+import findElementsByHierarchy from './findElementsByHierarchy.js';
+
+// Imports dos seletores
+import {
+  allTextareasSelector,
+  editableTextareaSelector,
+  interactiveViewLineSelector,
+  monacoDefaultButtonSelector,
+  monacoEditorsSelector,
+  sendButtonAriaSelector,
+  sendIconButtonSelector,
+  submitButtonAriaSelector,
+  submitButtonSelector,
+  viewLineSelector,
+  viewLinesSelector,
+} from './selectors/index.js';
+
 export {};
 
 /* eslint-disable no-console */
@@ -60,17 +80,36 @@ declare let navigator: Navigator;
    * @returns {MonacoEditor | null} Objeto com elementos do editor ou null se não encontrado
    */
   const findCopilotEditor = (): MonacoEditor | null => {
-    const editors = document.querySelectorAll<HTMLElement>('.monaco-editor');
+    const editors = findElementsByHierarchy(monacoEditorsSelector, document.body);
 
-    for (const editor of Array.from(editors)) {
-      if (
-        editor.closest('.interactive-input-part') ||
-        editor.closest('.interactive-input-editor')
-      ) {
+    for (const editor of editors) {
+      // Verifica se o editor está dentro de interactive-input-part ou interactive-input-editor
+      let parent = editor.parentElement;
+      let inputPart: HTMLElement | null = null;
+
+      // Busca por parent com as classes necessárias
+      while (parent && parent !== document.body) {
+        if (parent.classList.contains('interactive-input-part')) {
+          inputPart = parent;
+          break;
+        }
+        if (parent.classList.contains('interactive-input-editor')) {
+          // Pode haver um interactive-input-part acima
+          const part = parent.closest('.interactive-input-part');
+          if (part instanceof HTMLElement) {
+            inputPart = part;
+          }
+          break;
+        }
+        parent = parent.parentElement;
+      }
+
+      if (inputPart || parent?.classList.contains('interactive-input-editor')) {
+        const viewLines = findElementByHierarchy(viewLinesSelector, editor);
         return {
           container: editor,
-          viewLines: editor.querySelector<HTMLElement>('.view-lines'),
-          inputPart: editor.closest<HTMLElement>('.interactive-input-part'),
+          viewLines,
+          inputPart,
         };
       }
     }
@@ -93,7 +132,7 @@ declare let navigator: Navigator;
       editor.inputPart,
       editor.container,
       editor.viewLines,
-      editor.viewLines?.querySelector<HTMLElement>('.view-line'),
+      editor.viewLines ? findElementByHierarchy(viewLineSelector, editor.viewLines) : null,
     ].filter((element): element is HTMLElement => element !== null);
 
     for (const element of elementsToClick) {
@@ -129,10 +168,14 @@ declare let navigator: Navigator;
     }
 
     // Método B: Procura por textarea visível no contexto
-    const allTextareas = document.querySelectorAll<HTMLTextAreaElement>('textarea');
-    for (const textarea of Array.from(allTextareas)) {
+    const allTextareas = findElementsByHierarchy(
+      allTextareasSelector,
+      document.body,
+    ) as HTMLTextAreaElement[];
+    for (const textarea of allTextareas) {
       const rect = textarea.getBoundingClientRect();
       const isVisible = rect.width > 0 && rect.height > 0;
+      // Verifica se o textarea está dentro de interactive-input-part
       const isInCopilot = Boolean(textarea.closest('.interactive-input-part'));
 
       if (isVisible && isInCopilot && !textarea.readOnly) {
@@ -160,7 +203,7 @@ declare let navigator: Navigator;
     }
 
     // Método D: ContentEditable
-    const viewLine = document.querySelector<HTMLElement>('.interactive-input-part .view-line');
+    const viewLine = findElementByHierarchy(interactiveViewLineSelector, document.body);
     if (viewLine) {
       viewLine.contentEditable = 'true';
       viewLine.focus();
@@ -182,21 +225,59 @@ declare let navigator: Navigator;
   const sendMessage = (): Promise<boolean> => {
     console.log('📤 Enviando mensagem...');
 
-    const buttonSelectors = [
-      'button[aria-label*="Send"]',
-      'button[aria-label*="Submit"]',
-      '.interactive-input-part button.codicon-send',
-      '.interactive-input-part button[type="submit"]',
-      'button.monaco-button.default',
-    ];
+    // Tentativa 1: Botão Send com aria-label
+    const sendButton = findElementByHierarchy(
+      sendButtonAriaSelector,
+      document.body,
+    ) as HTMLButtonElement;
+    if (sendButton && !sendButton.disabled) {
+      sendButton.click();
+      console.log('✅ Mensagem enviada!');
+      return Promise.resolve(true);
+    }
 
-    for (const selector of buttonSelectors) {
-      const button = document.querySelector<HTMLButtonElement>(selector);
-      if (button && !button.disabled) {
-        button.click();
-        console.log('✅ Mensagem enviada!');
-        return Promise.resolve(true);
-      }
+    // Tentativa 2: Botão Submit com aria-label
+    const submitButton = findElementByHierarchy(
+      submitButtonAriaSelector,
+      document.body,
+    ) as HTMLButtonElement;
+    if (submitButton && !submitButton.disabled) {
+      submitButton.click();
+      console.log('✅ Mensagem enviada!');
+      return Promise.resolve(true);
+    }
+
+    // Tentativa 3: Botão com ícone send
+    const sendIconButton = findElementByHierarchy(
+      sendIconButtonSelector,
+      document.body,
+    ) as HTMLButtonElement;
+    if (sendIconButton && !sendIconButton.disabled) {
+      sendIconButton.click();
+      console.log('✅ Mensagem enviada!');
+      return Promise.resolve(true);
+    }
+
+    // Tentativa 4: Botão submit dentro de interactive-input-part
+    const submitTypeButton = findElementByHierarchy(
+      submitButtonSelector,
+      document.body,
+    ) as HTMLButtonElement;
+    if (submitTypeButton && !submitTypeButton.disabled) {
+      submitTypeButton.click();
+      console.log('✅ Mensagem enviada!');
+      return Promise.resolve(true);
+    }
+
+    // Tentativa 5: Botão Monaco padrão
+    const monacoButton = findElementByHierarchy(
+      monacoDefaultButtonSelector,
+      document.body,
+    ) as HTMLButtonElement;
+    if (monacoButton && !monacoButton.disabled) {
+      monacoButton.click();
+      console.log('✅ Mensagem enviada!');
+      return Promise.resolve(true);
     }
 
     // Fallback: Tenta Enter
@@ -241,7 +322,10 @@ declare let navigator: Navigator;
       value: (activeElement as HTMLInputElement)?.value,
     });
 
-    const textareas = document.querySelectorAll<HTMLTextAreaElement>('textarea');
+    const textareas = findElementsByHierarchy(
+      allTextareasSelector,
+      document.body,
+    ) as HTMLTextAreaElement[];
     console.log(`\nTextareas encontrados: ${textareas.length}`);
     textareas.forEach((ta, i) => {
       const rect = ta.getBoundingClientRect();
@@ -254,7 +338,8 @@ declare let navigator: Navigator;
     });
 
     if (editor && editor.viewLines) {
-      const content = editor.viewLines.querySelector<HTMLElement>('.view-line')?.textContent;
+      const viewLine = findElementByHierarchy(viewLineSelector, editor.viewLines);
+      const content = viewLine?.textContent;
       console.log('\nConteúdo atual:', content || '(vazio)');
     }
   };
@@ -272,7 +357,11 @@ declare let navigator: Navigator;
     await wait(500);
 
     console.log('\n2. Testando textarea direto...');
-    const textarea = document.querySelector<HTMLTextAreaElement>('textarea:not([readonly])');
+    const textareas = findElementsByHierarchy(
+      editableTextareaSelector,
+      document.body,
+    ) as HTMLTextAreaElement[];
+    const textarea = textareas.find((ta) => !ta.readOnly);
     if (textarea) {
       textarea.focus();
       textarea.value = text;
