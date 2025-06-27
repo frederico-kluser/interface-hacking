@@ -3,6 +3,7 @@
  * @module CopilotAutomation
  * @description Sistema de automação para interagir com o editor do GitHub Copilot no VS Code
  */
+export {};
 
 /* eslint-disable no-console */
 
@@ -38,9 +39,13 @@ declare global {
   interface Window {
     copilot: CopilotAPI;
   }
+  // Add navigator to the global scope for TypeScript
+  var navigator: Navigator;
 }
 
-(() => {
+declare let navigator: Navigator;
+
+((): void => {
   console.log('🚀 Iniciando automação Copilot (versão funcional)...');
 
   /**
@@ -174,7 +179,7 @@ declare global {
    * Envia a mensagem atual no editor do Copilot
    * @returns {Promise<boolean>} True se a mensagem foi enviada com sucesso
    */
-  const sendMessage = async (): Promise<boolean> => {
+  const sendMessage = (): Promise<boolean> => {
     console.log('📤 Enviando mensagem...');
 
     const buttonSelectors = [
@@ -190,7 +195,7 @@ declare global {
       if (button && !button.disabled) {
         button.click();
         console.log('✅ Mensagem enviada!');
-        return true;
+        return Promise.resolve(true);
       }
     }
 
@@ -206,7 +211,7 @@ declare global {
       );
     }
 
-    return false;
+    return Promise.resolve(false);
   };
 
   /**
