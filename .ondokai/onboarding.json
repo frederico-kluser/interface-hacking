@@ -1,29 +1,29 @@
 {
   "project_metadata": {
-    "name": "DOM Element Hierarchical Finder",
+    "name": "DOM Element Hierarchical Finder – Biblioteca TypeScript para busca e manipulação avançada de elementos HTML via hierarquias",
     "domain": [
       "Web Development",
       "DOM Manipulation",
       "UI Automation",
+      "Frontend Development",
+      "Developer Tools",
       "UI Testing",
-      "Front-end Web Development",
-      "Static Code Analysis",
-      "Web Scraping",
-      "HTML/XML Parsing",
-      "Markup Language Processing",
-      "Code Quality"
+      "Editor Automation",
+      "VS Code Extensions"
     ],
     "current_phase": [
-      "Production",
-      "Stable",
+      "Produção",
+      "Configuração e padronização do ambiente de desenvolvimento",
       "MVP",
-      "Development",
-      "Prototyping"
+      "Preparação para produção",
+      "Estável",
+      "Versão funcional estável",
+      "Manutenção"
     ],
     "critical_business_rules": [
       "Manter integridade do repositório ignorando arquivos temporários e dependências",
       "Manter consistência de estilo para facilitar manutenção e colaboração",
-      "Busca precisa e hierárquica de elementos DOM",
+      "Busca precisa e segura de elementos DOM",
       "Respeito a timeout em buscas assíncronas",
       "Manutenção da tipagem estrita",
       "Garantir código limpo e sem erros de tipagem",
@@ -32,50 +32,70 @@
       "Garantir versões fixas das dependências para evitar inconsistências no ambiente de desenvolvimento",
       "Compatibilidade com Node.js >=24",
       "Manter integridade da hierarquia DOM durante manipulações",
+      "Busca precisa e hierárquica de elementos",
       "Suporte a regex para atributos",
       "Retorno do primeiro elemento válido",
       "Manter precisão na correspondência hierárquica",
       "Não retornar elementos fora da hierarquia especificada",
-      "Consistent UI rendering",
-      "Correct CSS class application",
+      "Inserção precisa de texto no editor",
+      "Envio correto de comandos",
+      "Manutenção do foco no editor",
+      "Compatibilidade com múltiplos métodos de input",
+      "Consistência visual dos botões",
+      "Tipagem correta dos elementos",
       "Attributes must be accurately typed",
       "Regex flags must be correctly handled",
       "Timeouts must be respected to avoid blocking UI",
       "Element hierarchy must be strictly matched",
-      "Garantir código estritamente tipado e sem erros de compilação"
+      "Garantir código estritamente tipado e sem erros de compilação",
+      "Não versionar dependências instaladas",
+      "Não versionar arquivos de configuração local e sensíveis",
+      "Ignorar caches e arquivos temporários para garantir repositório limpo"
     ]
   },
   "technical_stack": {
     "primary_language": [
       "TypeScript",
-      "JavaScript (Node.js)",
-      "JavaScript ES6+"
+      "JavaScript (Node.js)"
     ],
     "frameworks": [
       "Node.js 24+",
       "ES Modules",
       "ESLint",
       "Prettier",
-      "esbuild"
+      "esbuild",
+      "None (Vanilla TypeScript)",
+      "Next.js",
+      "Nuxt.js",
+      "Gatsby",
+      "Storybook"
     ],
     "databases": [],
-    "external_services": [],
+    "external_services": [
+      "GitHub Copilot API (via DOM)",
+      "Clipboard API do navegador"
+    ],
     "package_manager": [
       "npm",
-      "yarn"
+      "yarn",
+      "pnpm"
     ]
   },
   "architecture_patterns": {
     "design_pattern": [
       "Modular ES Modules",
       "Functional Programming",
-      "Build Pipeline via npm scripts",
       "Configuração centralizada para formatação de código",
       "Configuração modular baseada em plugins",
-      "Modularização por responsabilidade única",
-      "Static Configuration",
+      "Build Pipeline via npm scripts",
+      "Functional Utility Module",
+      "Module Pattern (IIFE)",
+      "Facade Pattern",
+      "Declarative UI Configuration",
+      "Data Modeling",
+      "Promise-based asynchronous pattern",
       "Polling with timeout",
-      "Data Modeling"
+      "Separation of Concerns"
     ],
     "folder_structure": [
       "node_modules - dependências",
@@ -84,16 +104,24 @@
       "src/ - código fonte TypeScript",
       "tests/ - testes unitários",
       "scripts/ - scripts de build e dev",
-      "bin para executáveis das ferramentas",
+      "bin - executáveis das ferramentas",
       "src/types - definições de tipos TypeScript",
       "src/utils - funções utilitárias",
-      "components - UI components"
+      "src/components - Componentes UI",
+      "build/, dist/ - outputs de build",
+      ".cache/, .parcel-cache/ - caches",
+      ".next/, .nuxt/ - outputs de frameworks",
+      "logs/ - arquivos de log",
+      "tmp/, temp/ - arquivos temporários",
+      ".vscode/, .idea/ - configurações IDE"
     ],
     "naming_conventions": [
       "camelCase para variáveis e funções",
       "PascalCase para classes, tipos e interfaces",
-      "kebab-case para arquivos, pacotes e scripts",
+      "kebab-case para arquivos e pacotes",
       "Uso padrão de nomes npm e versões semânticas",
+      "Arquivos e pastas padrão de ferramentas e frameworks",
+      "Prefixos com ponto para arquivos ocultos e de configuração",
       "nomes descritivos"
     ],
     "module_boundaries": [
@@ -102,21 +130,20 @@
       "Separação clara entre código fonte e arquivos gerados",
       "Regras aplicadas somente a arquivos .ts em src/",
       "Separação clara entre devDependencies e optionalDependencies para diferentes plataformas",
-      "Separação clara entre código fonte e build output",
       "Uso de ES Modules para import/export",
       "Separação clara entre tipos e funções",
       "Importação explícita de tipos",
       "Módulos isolados por responsabilidade",
-      "Exportação explícita de módulos",
-      "Tipos isolados para reutilização em múltiplos módulos",
+      "Encapsulamento via IIFE, exposição controlada via window.copilot",
       "Separação clara entre lógica de busca (findElementByHierarchy) e controle de espera (waitElementByHierarchy)",
       "Exclusão de arquivos de teste do build"
     ]
   },
   "code_standards": {
     "style_guide": [
-      "Prettier",
+      "Prettier default com customizações específicas",
       "ESLint com regras TypeScript rigorosas",
+      "TypeScript ESLint recommended",
       "Airbnb TypeScript Style Guide"
     ],
     "linting_rules": [
@@ -132,6 +159,8 @@
       "no-debugger: error",
       "prettier/prettier: error",
       "ESLint com plugins @typescript-eslint",
+      "Proibição de any implícito",
+      "Desabilitado 'no-console' para permitir logs",
       "skipLibCheck: true",
       "forceConsistentCasingInFileNames: true"
     ],
@@ -160,8 +189,8 @@
       "pretty: true"
     ],
     "documentation_style": [
-      "JSDoc para funções e tipos",
-      "Comentários JSDoc para funções e tipos"
+      "JSDoc para funções e interfaces",
+      "JSDoc para tipagem e documentação inline"
     ],
     "type_checking": [
       "Strict TypeScript com todas verificações ativadas",
@@ -181,7 +210,7 @@
     ],
     "test_structure": [
       "coverage - relatórios de cobertura",
-      "Testes localizados em __tests__ próximos ao código",
+      "Testes localizados em __tests__ ao lado dos arquivos de código",
       "tests/utils - testes unitários para utilitários",
       "Exclusão de arquivos *.test.ts e *.spec.ts do build"
     ],
@@ -192,6 +221,7 @@
     "test_patterns": [
       "Given-When-Then",
       "Testes unitários e de integração",
+      "Testes funcionais sequenciais com delays (wait)",
       "AAA (Arrange-Act-assert)"
     ],
     "mocking_approach": [
@@ -217,9 +247,11 @@
       "Testes automatizados passando"
     ],
     "ci_cd_pipeline": [
-      "Build, lint, test e deploy automatizados",
-      "Integração possível com pipelines para aplicação automática do Prettier",
-      "CI/CD pipelines"
+      "Build",
+      "Lint",
+      "test",
+      "Deploy",
+      "Build, lint, test e deploy automatizados"
     ]
   },
   "commands": {
@@ -230,16 +262,17 @@
     ],
     "install": [
       "npm install",
-      "yarn install"
+      "yarn install",
+      "pnpm install"
     ],
     "dev": [
       "npm run dev",
-      "yarn dev",
-      "node arquivo.js"
+      "yarn dev"
     ],
     "test": [
       "npm test",
-      "yarn test"
+      "yarn test",
+      "window.copilot.testAllMethods()"
     ],
     "build": [
       "npm run build",
@@ -251,7 +284,8 @@
       "yarn lint",
       "npx prettier --check .",
       "eslint . --ext .ts,.tsx",
-      "eslint ."
+      "eslint .",
+      "eslint --fix"
     ],
     "format": [
       "npm run format",
@@ -263,16 +297,19 @@
   "security_constraints": {
     "authentication_method": [],
     "authorization_rules": [],
-    "sensitive_data": [],
+    "sensitive_data": [
+      "Não manipula dados sensíveis diretamente",
+      ".env files"
+    ],
     "security_headers": [],
     "encryption_requirements": []
   },
   "performance_requirements": {
     "response_time_limits": [
       "Timeout padrão 10000ms para espera de elementos",
-      "Timeout configurável, padrão 10 segundos",
       "Busca deve ser eficiente para DOMs de tamanho médio",
-      "Instantâneo"
+      "Operações assíncronas com delays mínimos (50-500ms) para garantir estabilidade",
+      "Timeout configurável, padrão 10 segundos"
     ],
     "optimization_priorities": [
       "Reduzir tamanho do repositório e melhorar performance do git",
@@ -282,11 +319,13 @@
       "Performance na manipulação DOM",
       "Bundle size otimizado via esbuild",
       "Equilíbrio entre velocidade e precisão",
+      "Robustez e confiabilidade sobre velocidade extrema",
       "Minimizar latência na detecção do elemento",
       "Evitar uso excessivo de CPU pelo polling"
     ],
     "caching_strategy": [
-      "Não implementado, possível melhoria futura"
+      "Não implementado, possível melhoria futura",
+      "Ignorar caches locais para evitar versionamento"
     ],
     "scalability_considerations": [
       "Evitar crescimento desnecessário do repositório",
@@ -302,20 +341,22 @@
       "Mensagens de erro padrão do Prettier",
       "Erro lançado em caso de timeout na espera de elementos",
       "Logs no console para regex inválido",
+      "Logs no console com mensagens claras, sem tratamento estruturado",
       "Erro padrão com mensagem 'Timeout waiting for element'"
     ],
     "logging_strategy": [
       "Logs gerados pelo Prettier em caso de falhas",
       "Console.error para erros de regex",
-      "Uso básico de console.log para saída",
-      "Logs no console para tentativas e timeout"
+      "Console.log para informações e console.error para falhas",
+      "Logs no console para tentativas e timeout",
+      "Ignorar arquivos de log para evitar poluição do repositório"
     ],
     "monitoring_tools": [],
     "error_recovery": [
       "Correção automática via comando de formatação",
       "Tratamento de erros via try/catch em operações assíncronas",
-      "Continua busca ignorando regex inválido",
-      "Ignora elementos com regex inválida, continua processamento",
+      "Continua busca ignorando regex inválido, continua processamento",
+      "Fallbacks múltiplos para inserção de texto, mas sem retry automático",
       "Rejeição da promise para permitir tratamento externo"
     ]
   },
@@ -334,13 +375,15 @@
       "prettier",
       "esbuild",
       "dts-bundle-generator",
-      "./types",
+      "./types para definição de tipos",
+      "Estrutura DOM do GitHub Copilot",
+      "Clipboard API do navegador",
       "findElementByHierarchy",
-      "TypeScript Compiler",
-      "Node.js"
+      "TypeScript Compiler"
     ],
     "deprecated_packages": [
-      "Nenhum identificado"
+      "Uso de execCommand, que é obsoleto",
+      "Bower"
     ],
     "version_constraints": [
       "package-lock.json e yarn.lock para controle de versões",
@@ -354,12 +397,12 @@
       "typescript ^5.6.0",
       "eslint ^9.0.0",
       "TypeScript >=4.0",
+      "Compatibilidade presumida com navegadores modernos e VS Code atual",
       "TypeScript >=5.0"
     ],
     "internal_packages": [
       "./types",
-      "./findElementByHierarchy",
-      "types"
+      "./findElementByHierarchy"
     ]
   },
   "current_challenges": {
@@ -368,6 +411,7 @@
       "Manter alinhamento com regras de linting e outras ferramentas",
       "Ausência de testes automatizados",
       "Ausência de caching para buscas repetidas",
+      "Dependência de execCommand e seletores estáticos",
       "Polling pode ser substituído por MutationObserver para maior eficiência"
     ],
     "known_issues": [
@@ -375,7 +419,8 @@
       "Possíveis conflitos com ESLint se regras não estiverem sincronizadas",
       "Performance em DOMs muito grandes",
       "Regex inválido interrompe busca naquele nível",
-      "Performance pode ser impactada em DOMs muito grandes",
+      "Possível falha se DOM do Copilot mudar",
+      "Clipboard API pode falhar em contextos restritos",
       "Possível alto consumo de CPU em polling intenso"
     ],
     "performance_bottlenecks": [
@@ -384,6 +429,7 @@
       "Potencial impacto na manipulação intensiva do DOM",
       "Busca exaustiva em getElementsByTagName",
       "Múltiplas chamadas getElementsByTagName em loops aninhados",
+      "Delays para garantir foco e eventos podem impactar velocidade",
       "Polling a cada 10ms pode impactar performance em dispositivos limitados"
     ],
     "migration_status": [
@@ -401,13 +447,13 @@
       "Conformidade com regras ESLint",
       "Uso correto de tipos TypeScript",
       "Formatação consistente",
-      "Qualidade do código",
-      "Consistência de estilo",
-      "Uso correto de tipagem",
       "Clareza na lógica de filtragem",
       "Tratamento de erros",
       "Performance",
-      "Padronização de nomenclatura",
+      "Clareza nos logs",
+      "Robustez na manipulação do DOM",
+      "Uso correto de async/await",
+      "Clareza na definição de componentes",
       "Tratamento correto de timers",
       "Clareza na tipagem e documentação"
     ],
@@ -417,7 +463,8 @@
       "Documentação clara via JSDoc para APIs públicas",
       "Documentação inline via JSDoc",
       "Documentação clara de parâmetros e retorno",
-      "JSDoc para tipos e componentes",
+      "JSDoc para funções e interfaces",
+      "Comentários JSDoc para tipos e props",
       "Documentar parâmetros e comportamento assíncrono"
     ],
     "communication_style": [
@@ -426,7 +473,9 @@
       "Comentários objetivos e claros",
       "Uso de PRs para discussões",
       "Comentários objetivos e técnicos",
-      "Comentários objetivos e em português"
+      "Comentários objetivos e em português",
+      "Comentários claros e uso de emojis para logs",
+      "Objetivo e direto, foco em comportamento"
     ],
     "decision_log": [
       "Decisão de ignorar node_modules, builds e arquivos temporários para manter repositório limpo",
@@ -437,14 +486,16 @@
       "Node.js >=24 como engine mínima",
       "Uso de regex para flexibilidade",
       "Retorno do primeiro elemento válido",
+      "Exposição via window.copilot para fácil acesso global",
       "Uso de tipos para garantir integridade dos dados UI",
       "Uso de polling para compatibilidade ampla"
     ]
   },
   "api_specifications": {
     "api_style": [
+      "Funções utilitárias para manipulação DOM, não expõe api REST",
       "Função utilitária exportada como módulo ES",
-      "Funções utilitárias para manipulação DOM, não expõe api REST"
+      "api global JavaScript exposta no objeto window"
     ],
     "versioning_strategy": [
       "Sem versionamento explícito de api"
@@ -452,9 +503,12 @@
     "response_formats": [
       "Retorno de HTMLElement ou arrays, ou promise para espera assíncrona",
       "HTMLElement | null",
-      "array de HTMLElements"
+      "array de HTMLElements",
+      "Promises booleanas para sucesso/falha"
     ],
-    "rate_limiting": []
+    "rate_limiting": [
+      "Não implementado"
+    ]
   },
   "deployment_context": {
     "environments": [
@@ -462,6 +516,7 @@
       "Produção via npm package",
       "Produção em navegador",
       "Desenvolvimento local e produção web",
+      "Execução em ambiente browser com VS Code e GitHub Copilot",
       "development",
       "staging",
       "production"
@@ -473,17 +528,20 @@
       "npm scripts para build e deploy",
       "Distribuído como parte de pacote npm",
       "Deploy via bundlers front-end (Webpack, Vite)",
+      "Script injetado ou carregado via extensão ou console",
       "Docker",
       "CI/CD pipelines"
     ],
     "environment_variables": [
-      "LIMIT_TIME (timeout configurável)"
+      "LIMIT_TIME (timeout configurável)",
+      ".env files"
     ],
     "infrastructure_constraints": [
       "Necessita ambiente com DOM disponível (browser ou simulado)",
       "Requer Node.js >=24",
-      "Execução em ambiente browser com DOM disponível"
+      "Execução em ambiente browser com DOM disponível",
+      "Dependência do ambiente VS Code e GitHub Copilot"
     ]
   },
-  "lastCommitHash": "c92884fc4f64336c1562cea39f39ec0fa0adb390"
+  "lastCommitHash": "367e0c48dbc6ad5eda154a897c37af4db176501f"
 }

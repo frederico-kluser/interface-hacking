@@ -3667,164 +3667,168 @@
     ]
   },
   "src/index.ts": {
-    "summary": "Este arquivo de código possui um propósito funcional extremamente simples e direto: exibir uma mensagem estática no console. A principal capacidade funcional é a execução de um comando de logging que imprime a string 'Hello, world!' no ambiente de execução, sem manipulação de dados ou interação com outros componentes. Não há transformações de dados, efeitos colaterais complexos ou integração com sistemas externos, caracterizando um comportamento básico e isolado, geralmente utilizado para testes iniciais ou demonstrações simples de funcionamento do ambiente de execução.",
+    "summary": "Este arquivo implementa um sistema de automação para interação programática com o editor do GitHub Copilot no Visual Studio Code, facilitando a inserção, envio e manipulação de texto dentro do editor. Através de múltiplos métodos de input, incluindo manipulação direta de textarea, eventos de clipboard e comandos execCommand, o código assegura robustez na inserção de texto. Além disso, oferece funcionalidades para foco no editor, limpeza do conteúdo, envio de mensagens e exibição de informações de debug, expondo uma API global no objeto window.copilot para integração e controle externo. O sistema é projetado para melhorar a automação e testes de interações com o Copilot, suportando fluxos completos de digitação e envio de comandos, com atenção a estados do DOM e eventos do navegador.",
     "properties": [
       {
         "property": "project_metadata",
         "subProperty": "name",
         "value": [
-          "Hello World Demo",
-          "Exemplo básico para demonstração de output no console"
+          "CopilotAutomation",
+          "Automação para GitHub Copilot no VS Code"
         ]
       },
       {
         "property": "project_metadata",
         "subProperty": "domain",
         "value": [
-          "Educação",
-          "Demonstração de código",
-          "Ambiente de desenvolvimento"
+          "Developer Tools",
+          "Editor Automation",
+          "VS Code Extensions"
         ]
       },
       {
         "property": "project_metadata",
         "subProperty": "current_phase",
         "value": [
-          "Prototipagem",
-          "Teste inicial"
+          "Produção",
+          "Versão funcional estável"
         ]
       },
       {
         "property": "project_metadata",
         "subProperty": "critical_business_rules",
         "value": [
-          "Nenhuma regra de negócio aplicável"
+          "Inserção precisa de texto no editor",
+          "Envio correto de comandos",
+          "Manutenção do foco no editor",
+          "Compatibilidade com múltiplos métodos de input"
         ]
       },
       {
         "property": "technical_stack",
         "subProperty": "primary_language",
         "value": [
-          "JavaScript ES6+"
+          "TypeScript 4.x"
         ]
       },
       {
         "property": "technical_stack",
         "subProperty": "frameworks",
         "value": [
-          "Nenhum"
+          "Nenhum framework específico, código vanilla para browser"
         ]
       },
       {
         "property": "technical_stack",
         "subProperty": "databases",
-        "value": [
-          "Nenhum"
-        ]
+        "value": []
       },
       {
         "property": "technical_stack",
         "subProperty": "external_services",
         "value": [
-          "Nenhum"
+          "GitHub Copilot API (via DOM)",
+          "Clipboard API do navegador"
         ]
       },
       {
         "property": "technical_stack",
         "subProperty": "package_manager",
         "value": [
-          "Nenhum"
+          "npm (implícito para TypeScript)"
         ]
       },
       {
         "property": "architecture_patterns",
         "subProperty": "design_pattern",
         "value": [
-          "Nenhum"
+          "Module Pattern (IIFE)",
+          "Facade Pattern"
         ]
       },
       {
         "property": "architecture_patterns",
         "subProperty": "folder_structure",
         "value": [
-          "Não aplicável"
+          "Único arquivo script para automação, sem estrutura de pastas explícita"
         ]
       },
       {
         "property": "architecture_patterns",
         "subProperty": "naming_conventions",
         "value": [
-          "Não aplicável"
+          "CamelCase para funções e variáveis",
+          "Interfaces prefixadas com 'I' omitido, mas nomeadas com PascalCase"
         ]
       },
       {
         "property": "architecture_patterns",
         "subProperty": "module_boundaries",
         "value": [
-          "Não aplicável"
+          "Encapsulamento via IIFE, exposição controlada via window.copilot"
         ]
       },
       {
         "property": "code_standards",
         "subProperty": "style_guide",
         "value": [
-          "Não definido"
+          "ESLint (configuração padrão, regras não detalhadas)"
         ]
       },
       {
         "property": "code_standards",
         "subProperty": "linting_rules",
         "value": [
-          "Não definido"
+          "Desabilitado 'no-console' para permitir logs"
         ]
       },
       {
         "property": "code_standards",
         "subProperty": "formatting",
         "value": [
-          "Não definido"
+          "Não especificado, presumivelmente Prettier ou padrão VS Code"
         ]
       },
       {
         "property": "code_standards",
         "subProperty": "documentation_style",
         "value": [
-          "Não definido"
+          "JSDoc para funções e interfaces"
         ]
       },
       {
         "property": "code_standards",
         "subProperty": "type_checking",
         "value": [
-          "Não aplicável"
+          "TypeScript com tipagem explícita, mas permissiva em alguns pontos"
         ]
       },
       {
         "property": "testing_strategy",
         "subProperty": "test_framework",
         "value": [
-          "Não aplicável"
+          "Não aplicável, testes manuais via método testAllMethods"
         ]
       },
       {
         "property": "testing_strategy",
         "subProperty": "test_structure",
         "value": [
-          "Não aplicável"
+          "Testes integrados no próprio script, sem estrutura externa"
         ]
       },
       {
         "property": "testing_strategy",
         "subProperty": "coverage_requirements",
         "value": [
-          "Não aplicável"
+          "Não especificado"
         ]
       },
       {
         "property": "testing_strategy",
         "subProperty": "test_patterns",
         "value": [
-          "Não aplicável"
+          "Testes funcionais sequenciais com delays (wait)"
         ]
       },
       {
@@ -3838,35 +3842,35 @@
         "property": "development_workflow",
         "subProperty": "branch_strategy",
         "value": [
-          "Não definido"
+          "Não especificado"
         ]
       },
       {
         "property": "development_workflow",
         "subProperty": "commit_conventions",
         "value": [
-          "Não definido"
+          "Não especificado"
         ]
       },
       {
         "property": "development_workflow",
         "subProperty": "pr_requirements",
         "value": [
-          "Não definido"
+          "Não especificado"
         ]
       },
       {
         "property": "development_workflow",
         "subProperty": "ci_cd_pipeline",
         "value": [
-          "Não definido"
+          "Não especificado"
         ]
       },
       {
         "property": "commands",
         "subProperty": "setup",
         "value": [
-          "Não aplicável"
+          "Não aplicável - script para execução direta no browser"
         ]
       },
       {
@@ -3880,14 +3884,14 @@
         "property": "commands",
         "subProperty": "dev",
         "value": [
-          "node arquivo.js"
+          "Não aplicável"
         ]
       },
       {
         "property": "commands",
         "subProperty": "test",
         "value": [
-          "Não aplicável"
+          "window.copilot.testAllMethods()"
         ]
       },
       {
@@ -3901,14 +3905,14 @@
         "property": "commands",
         "subProperty": "lint",
         "value": [
-          "Não aplicável"
+          "eslint --fix (presumido)"
         ]
       },
       {
         "property": "commands",
         "subProperty": "format",
         "value": [
-          "Não aplicável"
+          "Prettier (presumido)"
         ]
       },
       {
@@ -3929,7 +3933,7 @@
         "property": "security_constraints",
         "subProperty": "sensitive_data",
         "value": [
-          "Nenhum"
+          "Não manipula dados sensíveis diretamente"
         ]
       },
       {
@@ -3950,14 +3954,14 @@
         "property": "performance_requirements",
         "subProperty": "response_time_limits",
         "value": [
-          "Instantâneo"
+          "Operações assíncronas com delays mínimos (50-500ms) para garantir estabilidade"
         ]
       },
       {
         "property": "performance_requirements",
         "subProperty": "optimization_priorities",
         "value": [
-          "Não aplicável"
+          "Robustez e confiabilidade sobre velocidade extrema"
         ]
       },
       {
@@ -3978,14 +3982,14 @@
         "property": "error_handling",
         "subProperty": "error_format",
         "value": [
-          "Não aplicável"
+          "Logs no console com mensagens claras, sem tratamento estruturado"
         ]
       },
       {
         "property": "error_handling",
         "subProperty": "logging_strategy",
         "value": [
-          "Uso básico de console.log para saída"
+          "Console.log para informações e console.error para falhas"
         ]
       },
       {
@@ -3999,28 +4003,29 @@
         "property": "error_handling",
         "subProperty": "error_recovery",
         "value": [
-          "Não aplicável"
+          "Fallbacks múltiplos para inserção de texto, mas sem retry automático"
         ]
       },
       {
         "property": "dependencies_context",
         "subProperty": "critical_dependencies",
         "value": [
-          "Nenhuma"
+          "Estrutura DOM do GitHub Copilot",
+          "Clipboard API do navegador"
         ]
       },
       {
         "property": "dependencies_context",
         "subProperty": "deprecated_packages",
         "value": [
-          "Nenhum"
+          "Uso de execCommand, que é obsoleto"
         ]
       },
       {
         "property": "dependencies_context",
         "subProperty": "version_constraints",
         "value": [
-          "Nenhuma"
+          "Compatibilidade presumida com navegadores modernos e VS Code atual"
         ]
       },
       {
@@ -4034,63 +4039,66 @@
         "property": "current_challenges",
         "subProperty": "technical_debt",
         "value": [
-          "Nenhum"
+          "Dependência de execCommand e seletores estáticos"
         ]
       },
       {
         "property": "current_challenges",
         "subProperty": "known_issues",
         "value": [
-          "Nenhum"
+          "Possível falha se DOM do Copilot mudar",
+          "Clipboard API pode falhar em contextos restritos"
         ]
       },
       {
         "property": "current_challenges",
         "subProperty": "performance_bottlenecks",
         "value": [
-          "Nenhum"
+          "Delays para garantir foco e eventos podem impactar velocidade"
         ]
       },
       {
         "property": "current_challenges",
         "subProperty": "migration_status",
         "value": [
-          "Não aplicável"
+          "Nenhuma migração em andamento"
         ]
       },
       {
         "property": "team_preferences",
         "subProperty": "code_review_focus",
         "value": [
-          "Não aplicável"
+          "Clareza nos logs",
+          "Robustez na manipulação do DOM",
+          "Uso correto de async/await"
         ]
       },
       {
         "property": "team_preferences",
         "subProperty": "documentation_requirements",
         "value": [
-          "Não aplicável"
+          "JSDoc para funções e interfaces"
         ]
       },
       {
         "property": "team_preferences",
         "subProperty": "communication_style",
         "value": [
-          "Não aplicável"
+          "Comentários claros e uso de emojis para logs"
         ]
       },
       {
         "property": "team_preferences",
         "subProperty": "decision_log",
         "value": [
-          "Nenhuma decisão arquitetural relevante"
+          "Exposição via window.copilot para fácil acesso global"
         ]
       },
       {
         "property": "api_specifications",
         "subProperty": "api_style",
         "value": [
-          "Não aplicável"
+          "API global JavaScript exposta no objeto window"
         ]
       },
       {
@@ -4104,80 +4112,79 @@
         "property": "api_specifications",
         "subProperty": "response_formats",
         "value": [
-          "Não aplicável"
+          "Promises booleanas para sucesso/falha"
         ]
       },
       {
         "property": "api_specifications",
         "subProperty": "rate_limiting",
         "value": [
-          "Não aplicável"
+          "Não implementado"
         ]
       },
       {
         "property": "deployment_context",
         "subProperty": "environments",
         "value": [
-          "Não aplicável"
+          "Execução em ambiente browser com VS Code e GitHub Copilot"
         ]
       },
       {
         "property": "deployment_context",
         "subProperty": "deployment_method",
         "value": [
-          "Não aplicável"
+          "Script injetado ou carregado via extensão ou console"
         ]
       },
       {
         "property": "deployment_context",
         "subProperty": "environment_variables",
         "value": [
-          "Nenhum"
+          "Não aplicável"
         ]
       },
       {
         "property": "deployment_context",
         "subProperty": "infrastructure_constraints",
         "value": [
-          "Nenhuma"
+          "Dependência do ambiente VS Code e GitHub Copilot"
         ]
       }
     ]
   },
   "src/selectors/template.ts": {
-    "summary": "Este arquivo define um array estático de objetos do tipo TagWithAttributes, representando elementos HTML com atributos específicos para uso em templates de interface. O código exporta um conjunto fixo de botões estilizados, neste caso um único elemento 'span' com uma classe CSS associada, que provavelmente serve para renderizar ícones ou componentes visuais relacionados a controles de gamepad. A funcionalidade principal é fornecer uma estrutura reutilizável e tipada para composição de elementos UI, facilitando a manutenção e padronização da interface em um sistema maior, sem realizar transformações dinâmicas ou efeitos colaterais.",
+    "summary": "Este arquivo define um array estático chamado TemplateButtons que contém objetos do tipo TagWithAttributes, representando elementos HTML com atributos específicos. O código tem como objetivo principal fornecer uma configuração reutilizável para renderização de botões ou ícones no front-end, encapsulando a tag 'span' com uma classe CSS específica para estilização visual. Funcionalmente, ele atua como um componente de dados que pode ser importado e utilizado em outras partes do sistema para garantir consistência na apresentação de elementos UI relacionados a gamepad ou controles, sem realizar transformações dinâmicas ou efeitos colaterais.",
     "properties": [
       {
         "property": "project_metadata",
         "subProperty": "name",
         "value": [
           "TemplateButtons",
-          "UI component for button templates"
+          "Configuração de botões para UI"
         ]
       },
       {
         "property": "project_metadata",
         "subProperty": "domain",
         "value": [
-          "Frontend Development",
-          "UI/UX",
-          "Gamepad Interface"
+          "Front-end",
+          "UI Components",
+          "Gamepad Controls"
         ]
       },
       {
         "property": "project_metadata",
         "subProperty": "current_phase",
         "value": [
-          "Production",
-          "Stable UI component"
+          "Produção"
         ]
       },
       {
         "property": "project_metadata",
         "subProperty": "critical_business_rules",
         "value": [
-          "Consistent UI rendering",
-          "Correct CSS class application"
+          "Consistência visual dos botões",
+          "Tipagem correta dos elementos"
         ]
       },
       {
@@ -4214,15 +4221,15 @@
         "subProperty": "design_pattern",
         "value": [
           "Modular ES6",
-          "Static Configuration"
+          "Declarative UI Configuration"
         ]
       },
       {
         "property": "architecture_patterns",
         "subProperty": "folder_structure",
         "value": [
-          "types - definição de tipos",
-          "components - UI components"
+          "src/types - Tipos TypeScript",
+          "src/components - Componentes UI"
         ]
       },
       {
@@ -4230,29 +4237,29 @@
         "subProperty": "naming_conventions",
         "value": [
           "PascalCase para tipos e componentes",
-          "camelCase para variáveis"
+          "camelCase para variáveis e arrays"
         ]
       },
       {
         "property": "architecture_patterns",
         "subProperty": "module_boundaries",
         "value": [
-          "Separação clara entre tipos e dados",
-          "Exportação explícita de módulos"
+          "Separação clara entre tipos e implementações",
+          "Importação explícita de tipos"
         ]
       },
       {
         "property": "code_standards",
         "subProperty": "style_guide",
         "value": [
-          "Airbnb JavaScript Style Guide"
+          "Airbnb JavaScript Style Guide adaptado para TypeScript"
         ]
       },
       {
         "property": "code_standards",
         "subProperty": "linting_rules",
         "value": [
-          "ESLint com regras padrão Airbnb"
+          "ESLint com regras para TypeScript"
         ]
       },
       {
@@ -4266,7 +4273,7 @@
         "property": "code_standards",
         "subProperty": "documentation_style",
         "value": [
-          "JSDoc"
+          "JSDoc para tipagem e comentários"
         ]
       },
       {
@@ -4329,9 +4336,7 @@
       {
         "property": "commands",
         "subProperty": "install",
-        "value": [
-          "npm install"
-        ]
+        "value": []
       },
       {
         "property": "commands",
@@ -4351,16 +4356,12 @@
       {
         "property": "commands",
         "subProperty": "lint",
-        "value": [
-          "npm run lint"
-        ]
+        "value": []
       },
       {
         "property": "commands",
         "subProperty": "format",
-        "value": [
-          "npm run format"
-        ]
+        "value": []
       },
       {
         "property": "security_constraints",
@@ -4448,7 +4449,7 @@
         "property": "dependencies_context",
         "subProperty": "internal_packages",
         "value": [
-          "types"
+          "../types"
         ]
       },
       {
@@ -4476,21 +4477,21 @@
         "subProperty": "code_review_focus",
         "value": [
           "Consistência de tipagem",
-          "Padronização de nomenclatura"
+          "Clareza na definição de componentes"
         ]
       },
       {
         "property": "team_preferences",
         "subProperty": "documentation_requirements",
         "value": [
-          "JSDoc para tipos e componentes"
+          "Comentários JSDoc para tipos e props"
         ]
       },
       {
         "property": "team_preferences",
         "subProperty": "communication_style",
         "value": [
-          "Comentários objetivos e técnicos"
+          "Objetivo e direto, foco em comportamento"
         ]
       },
       {
@@ -5784,6 +5785,408 @@
         "property": "deployment_context",
         "subProperty": "environment_variables",
         "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "infrastructure_constraints",
+        "value": []
+      }
+    ]
+  },
+  ".gitignore": {
+    "summary": "Este arquivo é um template de .gitignore amplamente utilizado em projetos Node.js e JavaScript modernos, contendo uma lista detalhada de arquivos e diretórios que devem ser ignorados pelo sistema de controle de versão Git. Ele cobre dependências de pacotes, caches de build, arquivos temporários, logs, dados de runtime, outputs de frameworks populares como Next.js, Nuxt.js, Gatsby e Storybook, além de configurações específicas de IDEs e sistemas operacionais. O objetivo principal é evitar o versionamento de arquivos gerados automaticamente, caches e dados sensíveis, garantindo um repositório limpo, eficiente e seguro, facilitando a colaboração e a manutenção do projeto.",
+    "properties": [
+      {
+        "property": "project_metadata",
+        "subProperty": "name",
+        "value": [
+          "Projeto Node.js/JavaScript com foco em desenvolvimento web"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "domain",
+        "value": [
+          "Desenvolvimento web",
+          "JavaScript",
+          "Node.js",
+          "Frontend e Backend"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "current_phase",
+        "value": [
+          "Produção",
+          "Manutenção"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "critical_business_rules",
+        "value": [
+          "Não versionar dependências instaladas",
+          "Não versionar arquivos de configuração local e sensíveis",
+          "Ignorar caches e arquivos temporários para garantir repositório limpo"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "primary_language",
+        "value": [
+          "JavaScript",
+          "TypeScript"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "frameworks",
+        "value": [
+          "Next.js",
+          "Nuxt.js",
+          "Gatsby",
+          "Storybook"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "databases",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "external_services",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "package_manager",
+        "value": [
+          "npm",
+          "yarn",
+          "pnpm"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "design_pattern",
+        "value": [
+          "Modular",
+          "Separation of Concerns"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "folder_structure",
+        "value": [
+          "node_modules/ - dependências",
+          "build/, dist/ - outputs de build",
+          ".cache/, .parcel-cache/ - caches",
+          ".next/, .nuxt/, .cache/ - outputs de frameworks",
+          "logs/ - arquivos de log",
+          "tmp/, temp/ - arquivos temporários",
+          ".vscode/, .idea/ - configurações IDE"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "naming_conventions",
+        "value": [
+          "Arquivos e pastas padrão de ferramentas e frameworks",
+          "Prefixos com ponto para arquivos ocultos e de configuração"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "module_boundaries",
+        "value": [
+          "Separação clara entre código fonte e arquivos gerados/temporários"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "style_guide",
+        "value": []
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "linting_rules",
+        "value": []
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "formatting",
+        "value": []
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "documentation_style",
+        "value": []
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "type_checking",
+        "value": [
+          "TypeScript support"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_framework",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_structure",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "coverage_requirements",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_patterns",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "mocking_approach",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "branch_strategy",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "commit_conventions",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "pr_requirements",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "ci_cd_pipeline",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "setup",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "install",
+        "value": [
+          "npm install",
+          "yarn install",
+          "pnpm install"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "dev",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "test",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "build",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "lint",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "format",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authentication_method",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authorization_rules",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "sensitive_data",
+        "value": [
+          ".env files"
+        ]
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "security_headers",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "encryption_requirements",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "response_time_limits",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "optimization_priorities",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "caching_strategy",
+        "value": [
+          "Ignorar caches locais para evitar versionamento"
+        ]
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "scalability_considerations",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_format",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "logging_strategy",
+        "value": [
+          "Ignorar arquivos de log para evitar poluição do repositório"
+        ]
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "monitoring_tools",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_recovery",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "critical_dependencies",
+        "value": [
+          "node_modules",
+          "bower_components",
+          "jspm_packages"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "deprecated_packages",
+        "value": [
+          "Bower"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "version_constraints",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "internal_packages",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "technical_debt",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "known_issues",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "performance_bottlenecks",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "migration_status",
+        "value": []
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "code_review_focus",
+        "value": []
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "documentation_requirements",
+        "value": []
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "communication_style",
+        "value": []
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "decision_log",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "api_style",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "versioning_strategy",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "response_formats",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "rate_limiting",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environments",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "deployment_method",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environment_variables",
+        "value": [
+          ".env files"
+        ]
       },
       {
         "property": "deployment_context",
