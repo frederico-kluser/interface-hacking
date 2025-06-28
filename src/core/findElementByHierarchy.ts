@@ -1,9 +1,9 @@
-import TagWithAttributes from './types/TagWithAttributes';
+import TagWithAttributes from '../types/TagWithAttributes';
 
-const findElementsByHierarchy = (
+const findElementByHierarchy = (
   hierarchy: TagWithAttributes[],
   from: HTMLElement | Element = document.body,
-): HTMLElement[] => {
+): HTMLElement | null => {
   let currentElements: HTMLElement[] = [from as HTMLElement];
 
   for (const { tag, attributes } of hierarchy) {
@@ -59,14 +59,14 @@ const findElementsByHierarchy = (
     }
 
     if (matchingElements.length === 0) {
-      return []; // Não encontrou nenhum elemento correspondente neste nível
+      return null; // Não encontrou nenhum elemento correspondente neste nível
     }
 
     currentElements = matchingElements; // Avança para o próximo nível com os elementos filtrados
   }
 
-  // Retorna todos os elementos encontrados no último nível
-  return currentElements;
+  // Retorna o primeiro elemento encontrado no último nível
+  return currentElements.length > 0 ? currentElements[0]! : null;
 };
 
-export default findElementsByHierarchy;
+export default findElementByHierarchy;

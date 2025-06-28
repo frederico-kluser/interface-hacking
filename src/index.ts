@@ -5,8 +5,8 @@
  */
 
 // Imports das funções hierárquicas
-import findElementByHierarchy from './findElementByHierarchy.js';
-import findElementsByHierarchy from './findElementsByHierarchy.js';
+import findElementByHierarchy from './core/findElementByHierarchy.js';
+import findElementsByHierarchy from './core/findElementsByHierarchy.js';
 import allTextareasSelector from './selectors/all-textareas.js';
 import editableTextareaSelector from './selectors/editable-textarea.js';
 import interactiveViewLineSelector from './selectors/interactive-view-line.js';
