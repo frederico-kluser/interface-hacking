@@ -264,7 +264,7 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
     // eslint-disable-next-line no-console
     console.log(`🎯 Acionando dropdown: ${targetDropdown.type} - "${targetDropdown.label}"`);
 
-    // Verifica se já está aberto
+    // Verificação simples se já está aberto
     const isExpanded = targetDropdown.button.getAttribute('aria-expanded') === 'true';
     if (isExpanded) {
       // eslint-disable-next-line no-console
@@ -272,22 +272,24 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
       return true;
     }
 
-    // Método 1: Click direto no botão
+    // MÉTODO 1: Click direto simples (que funcionava antes)
+    // eslint-disable-next-line no-console
+    console.log('🔄 Tentando click direto...');
+
     targetDropdown.button.focus();
     await wait(100);
-
     targetDropdown.button.click();
-    await wait(150);
+    await wait(200);
 
     // Verifica se abriu
-    const newState = targetDropdown.button.getAttribute('aria-expanded');
+    let newState = targetDropdown.button.getAttribute('aria-expanded');
     if (newState === 'true') {
       // eslint-disable-next-line no-console
-      console.log('✅ Dropdown aberto com sucesso via click');
+      console.log('✅ Dropdown aberto com sucesso via click direto');
       return true;
     }
 
-    // Método 2: Simular eventos de mouse completos
+    // MÉTODO 2: Mouse events (que também funcionava)
     // eslint-disable-next-line no-console
     console.log('🔄 Tentando com eventos de mouse...');
 
@@ -314,24 +316,23 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
     targetDropdown.button.dispatchEvent(clickEvent);
     await wait(50);
     targetDropdown.button.dispatchEvent(mouseUpEvent);
-    await wait(150);
+    await wait(200);
 
     // Verifica novamente
-    const finalState = targetDropdown.button.getAttribute('aria-expanded');
-    if (finalState === 'true') {
+    newState = targetDropdown.button.getAttribute('aria-expanded');
+    if (newState === 'true') {
       // eslint-disable-next-line no-console
       console.log('✅ Dropdown aberto com sucesso via eventos de mouse');
       return true;
     }
 
-    // Método 3: Simular keyboard (Enter/Space) - Melhorado baseado na pesquisa
+    // MÉTODO 3: Keyboard Enter
     // eslint-disable-next-line no-console
-    console.log('🔄 Tentando com eventos de teclado...');
+    console.log('🔄 Tentando com Enter...');
 
     targetDropdown.button.focus();
     await wait(100);
 
-    // Tenta Enter primeiro
     const enterEvent = new KeyboardEvent('keydown', {
       key: 'Enter',
       code: 'Enter',
@@ -340,41 +341,18 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
     });
 
     targetDropdown.button.dispatchEvent(enterEvent);
-    await wait(150);
+    await wait(200);
 
-    // Verificação intermediária
-    let keyboardState = targetDropdown.button.getAttribute('aria-expanded');
-    if (keyboardState === 'true') {
+    newState = targetDropdown.button.getAttribute('aria-expanded');
+    if (newState === 'true') {
       // eslint-disable-next-line no-console
-      console.log('✅ Dropdown aberto com sucesso via teclado (Enter)');
+      console.log('✅ Dropdown aberto com sucesso via Enter');
       return true;
     }
 
-    // Tenta Space como fallback
+    // MÉTODO 4: Métodos avançados como último recurso
     // eslint-disable-next-line no-console
-    console.log('🔄 Tentando com tecla Space...');
-
-    const spaceEvent = new KeyboardEvent('keydown', {
-      key: ' ',
-      code: 'Space',
-      bubbles: true,
-      cancelable: true,
-    });
-
-    targetDropdown.button.dispatchEvent(spaceEvent);
-    await wait(150);
-
-    // Verificação final do teclado
-    keyboardState = targetDropdown.button.getAttribute('aria-expanded');
-    if (keyboardState === 'true') {
-      // eslint-disable-next-line no-console
-      console.log('✅ Dropdown aberto com sucesso via teclado (Space)');
-      return true;
-    }
-
-    // Método final: Métodos avançados baseados na pesquisa web
-    // eslint-disable-next-line no-console
-    console.log('🔄 Tentando métodos avançados como último recurso...');
+    console.log('🔄 Tentando métodos avançados...');
 
     const advancedSuccess = await tryAdvancedTriggerMethods(targetDropdown);
     if (advancedSuccess) {
@@ -382,11 +360,114 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
     }
 
     // eslint-disable-next-line no-console
-    console.error('❌ Todos os métodos (básicos + avançados) falharam para abrir o dropdown');
+    console.error('❌ Todos os métodos falharam para abrir o dropdown');
     return false;
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('❌ Erro ao acionar dropdown:', error);
+    return false;
+  }
+};
+
+/**
+ * Fecha um dropdown específico se estiver aberto
+ * @param {DropdownType} type - Tipo do dropdown a ser fechado ('agent', 'model', 'any')
+ * @returns {Promise<boolean>} True se o dropdown foi fechado com sucesso
+ */
+export const closeMonacoDropdown = async (type: DropdownType = 'any'): Promise<boolean> => {
+  // eslint-disable-next-line no-console
+  console.log(`🔒 Fechando dropdown do tipo: "${type}"`);
+
+  try {
+    const dropdowns = findMonacoDropdowns();
+
+    if (dropdowns.length === 0) {
+      // eslint-disable-next-line no-console
+      console.log('ℹ️ Nenhum dropdown encontrado');
+      return false;
+    }
+
+    // Encontra o dropdown do tipo especificado
+    let targetDropdown: DropdownElement | undefined;
+
+    if (type === 'any') {
+      // Encontra qualquer dropdown que esteja aberto
+      targetDropdown = dropdowns.find((d) => d.button.getAttribute('aria-expanded') === 'true');
+    } else {
+      targetDropdown = dropdowns.find((d) => d.type === type);
+    }
+
+    if (!targetDropdown) {
+      // eslint-disable-next-line no-console
+      console.log(`ℹ️ Dropdown do tipo "${type}" não encontrado ou já fechado`);
+      return false;
+    }
+
+    // Verifica se realmente está aberto
+    const isExpanded = targetDropdown.button.getAttribute('aria-expanded') === 'true';
+    if (!isExpanded) {
+      // eslint-disable-next-line no-console
+      console.log('ℹ️ Dropdown já está fechado');
+      return true;
+    }
+
+    // eslint-disable-next-line no-console
+    console.log(`🔒 Fechando dropdown: ${targetDropdown.type} - "${targetDropdown.label}"`);
+
+    // Método 1: Escape key para fechar
+    const escapeEvent = new KeyboardEvent('keydown', {
+      key: 'Escape',
+      code: 'Escape',
+      bubbles: true,
+      cancelable: true,
+    });
+
+    targetDropdown.button.dispatchEvent(escapeEvent);
+    await wait(200);
+
+    // Verifica se fechou
+    let newState = targetDropdown.button.getAttribute('aria-expanded');
+    if (newState === 'false' || newState === null) {
+      // eslint-disable-next-line no-console
+      console.log('✅ Dropdown fechado com sucesso via Escape');
+      return true;
+    }
+
+    // Método 2: Click novamente para toggle
+    targetDropdown.button.click();
+    await wait(200);
+
+    newState = targetDropdown.button.getAttribute('aria-expanded');
+    if (newState === 'false' || newState === null) {
+      // eslint-disable-next-line no-console
+      console.log('✅ Dropdown fechado com sucesso via click toggle');
+      return true;
+    }
+
+    // Método 3: Click fora do dropdown
+    const body = document.body;
+    const outsideClick = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window,
+    });
+
+    body.dispatchEvent(outsideClick);
+    await wait(200);
+
+    newState = targetDropdown.button.getAttribute('aria-expanded');
+    if (newState === 'false' || newState === null) {
+      // eslint-disable-next-line no-console
+      console.log('✅ Dropdown fechado com sucesso via click externo');
+      return true;
+    }
+
+    // eslint-disable-next-line no-console
+    console.warn('⚠️ Não foi possível fechar o dropdown');
+    return false;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('❌ Erro ao fechar dropdown:', error);
     return false;
   }
 };
@@ -540,4 +621,74 @@ export const findDropdownsDirectly = (): DirectDropdownElement[] => {
   });
 
   return foundDropdowns;
+};
+
+/**
+ * Debug específico para testar os dropdowns encontrados
+ * @returns {void}
+ */
+export const testDropdownTrigger = async (): Promise<void> => {
+  // eslint-disable-next-line no-console
+  console.log('🧪 TESTE: Executando debug específico de trigger...');
+
+  try {
+    const dropdowns = findMonacoDropdowns();
+
+    // eslint-disable-next-line no-console
+    console.log(`📊 Total de dropdowns encontrados: ${dropdowns.length}`);
+
+    for (let i = 0; i < dropdowns.length; i += 1) {
+      const dropdown = dropdowns[i];
+      // eslint-disable-next-line no-console
+      console.log(`\n🔍 Testando dropdown ${i + 1}:`);
+      // eslint-disable-next-line no-console
+      console.log(`  Tipo: ${dropdown.type}`);
+      // eslint-disable-next-line no-console
+      console.log(`  Label: "${dropdown.label}"`);
+      // eslint-disable-next-line no-console
+      console.log(`  Button aria-label: "${dropdown.button.getAttribute('aria-label')}"`);
+      // eslint-disable-next-line no-console
+      console.log(`  Button tag: ${dropdown.button.tagName}`);
+      // eslint-disable-next-line no-console
+      console.log(`  Button classes: ${dropdown.button.className}`);
+      // eslint-disable-next-line no-console
+      console.log(`  Container classes: ${dropdown.container.className}`);
+      // eslint-disable-next-line no-console
+      console.log(`  Aria-expanded atual: ${dropdown.button.getAttribute('aria-expanded')}`);
+
+      // Teste de click direto
+      // eslint-disable-next-line no-console
+      console.log(`  🔬 Testando click direto...`);
+      dropdown.button.click();
+
+      await wait(500); // Tempo maior para debug
+
+      const newState = dropdown.button.getAttribute('aria-expanded');
+      // eslint-disable-next-line no-console
+      console.log(`  📊 Estado após click: ${newState}`);
+
+      // Verifica se há menu visível
+      const menus = document.querySelectorAll(
+        '.monaco-dropdown-menu, .dropdown-menu, [class*="dropdown-menu"]',
+      );
+      // eslint-disable-next-line no-console
+      console.log(`  📋 Menus encontrados no DOM: ${menus.length}`);
+
+      for (let j = 0; j < menus.length; j += 1) {
+        const menu = menus[j] as HTMLElement;
+        const isVisible =
+          menu.style.display !== 'none' &&
+          !menu.hasAttribute('hidden') &&
+          menu.offsetParent !== null;
+        // eslint-disable-next-line no-console
+        console.log(`    Menu ${j + 1}: ${menu.className} - Visível: ${isVisible}`);
+      }
+    }
+
+    // eslint-disable-next-line no-console
+    console.log('🧪 Teste completo!');
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('❌ Erro no teste:', error);
+  }
 };

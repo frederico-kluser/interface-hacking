@@ -7,19 +7,23 @@
 // Imports das funções helper
 import { insertTextInCopilot } from './helpers/insertTextInCopilot.js';
 import {
+  closeMonacoDropdown,
   debugFindPossibleDropdowns,
   findDropdownsDirectly,
   listMonacoDropdowns,
+  testDropdownTrigger,
   triggerMonacoDropdown,
   type DropdownElement,
 } from './helpers/triggerMonacoDropdown.js';
 
 // Exportações públicas da biblioteca
 export {
+  closeMonacoDropdown,
   debugFindPossibleDropdowns,
   findDropdownsDirectly,
   insertTextInCopilot,
   listMonacoDropdowns,
+  testDropdownTrigger,
   triggerMonacoDropdown,
   type DropdownElement,
 };
@@ -32,10 +36,14 @@ type CopilotAPI = (text: string) => Promise<boolean>;
 interface DropdownAPI {
   /** Aciona dropdown do Monaco (agent, model, any) */
   trigger: (type?: 'agent' | 'model' | 'any') => Promise<boolean>;
+  /** Fecha dropdown do Monaco (agent, model, any) */
+  close: (type?: 'agent' | 'model' | 'any') => Promise<boolean>;
   /** Lista dropdowns disponíveis */
   list: () => DropdownElement[];
   /** Debug: analisa estrutura DOM para encontrar dropdowns */
   debug: () => void;
+  /** Teste: executa debug específico de trigger */
+  test: () => Promise<void>;
 }
 
 declare global {
@@ -82,6 +90,10 @@ declare global {
       console.log('🔽 Executando comando dropdown...');
       return triggerMonacoDropdown(type);
     },
+    close: async (type = 'any'): Promise<boolean> => {
+      console.log('🔒 Executando comando fechar dropdown...');
+      return closeMonacoDropdown(type);
+    },
     list: (): DropdownElement[] => {
       console.log('📋 Listando dropdowns...');
       return listMonacoDropdowns();
@@ -91,14 +103,21 @@ declare global {
       debugFindPossibleDropdowns();
       findDropdownsDirectly();
     },
+    test: async (): Promise<void> => {
+      console.log('🧪 TESTE: Executando debug de trigger...');
+      await testDropdownTrigger();
+    },
   };
 
   console.log('\n✅ Sistema pronto!');
   console.log('  copilot("quanto é 1 + 1 ?") - Insere texto e funciona na primeira tentativa');
   console.log('  dropdown.trigger("agent") - Abre dropdown de agente');
   console.log('  dropdown.trigger("model") - Abre dropdown de modelo');
+  console.log('  dropdown.close("agent") - Fecha dropdown de agente');
+  console.log('  dropdown.close("model") - Fecha dropdown de modelo');
   console.log('  dropdown.list() - Lista dropdowns disponíveis');
   console.log('  dropdown.debug() - Análise DEBUG de dropdowns');
+  console.log('  dropdown.test() - Teste específico de trigger (NOVO!)');
   console.log('  debugDropdowns() - Função de debug independente');
   console.log('  📋 Métodos disponíveis:');
   console.log('    1. Monaco Editor API (direto)');
