@@ -2,7 +2,7 @@
  * @fileoverview Seletor template para botões com gamepad
  * @module selectors/template
  */
-import type { TagWithAttributes } from '../types/index.js';
+import TagWithAttributes from '../types/TagWithAttributes';
 
 /**
  * Seletor template para botões com gamepad

@@ -2,7 +2,7 @@
  * @fileoverview Seletor para todos os editores Monaco
  * @module selectors/monaco-editors
  */
-import type { TagWithAttributes } from '../types/index.js';
+import TagWithAttributes from '../types/TagWithAttributes';
 
 /**
  * Seletor para todos os editores Monaco

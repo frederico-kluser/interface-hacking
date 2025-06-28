@@ -7,24 +7,19 @@
 // Imports das funções hierárquicas
 import findElementByHierarchy from './findElementByHierarchy.js';
 import findElementsByHierarchy from './findElementsByHierarchy.js';
-
-// Imports dos seletores
-import {
-  allTextareasSelector,
-  editableTextareaSelector,
-  interactiveViewLineSelector,
-  monacoDefaultButtonSelector,
-  monacoEditorsSelector,
-  sendButtonAriaSelector,
-  sendIconButtonSelector,
-  submitButtonAriaSelector,
-  submitButtonSelector,
-  viewLineSelector,
-  viewLinesSelector,
-} from './selectors/index.js';
+import allTextareasSelector from './selectors/all-textareas.js';
+import editableTextareaSelector from './selectors/editable-textarea.js';
+import interactiveViewLineSelector from './selectors/interactive-view-line.js';
+import monacoDefaultButtonSelector from './selectors/monaco-default-button.js';
+import monacoEditorsSelector from './selectors/monaco-editors.js';
+import sendButtonAriaSelector from './selectors/send-button-aria.js';
+import sendIconButtonSelector from './selectors/send-icon-button.js';
+import submitButtonAriaSelector from './selectors/submit-button-aria.js';
+import submitButtonSelector from './selectors/submit-button.js';
+import viewLineSelector from './selectors/view-line.js';
+import viewLinesSelector from './selectors/view-lines.js';
 
 export {};
-
 /* eslint-disable no-console */
 
 /** Tipo para elementos do editor Monaco */

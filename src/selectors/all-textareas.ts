@@ -2,7 +2,8 @@
  * @fileoverview Seletor para todos os textareas
  * @module selectors/all-textareas
  */
-import type { TagWithAttributes } from '../types/index.js';
+
+import TagWithAttributes from '../types/TagWithAttributes';
 
 /**
  * Seletor para todos os textareas

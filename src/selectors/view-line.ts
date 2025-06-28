@@ -2,7 +2,7 @@
  * @fileoverview Seletor para uma única linha de visualização
  * @module selectors/view-line
  */
-import type { TagWithAttributes } from '../types/index.js';
+import TagWithAttributes from '../types/TagWithAttributes';
 
 /**
  * Seletor para uma única linha de visualização

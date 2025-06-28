@@ -2,7 +2,7 @@
  * @fileoverview Seletor para botão com ícone de envio
  * @module selectors/send-icon-button
  */
-import type { TagWithAttributes } from '../types/index.js';
+import TagWithAttributes from '../types/TagWithAttributes';
 
 /**
  * Seletor para botão com ícone de envio

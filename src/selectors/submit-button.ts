@@ -2,7 +2,7 @@
  * @fileoverview Seletor para botão submit dentro de interactive-input-part
  * @module selectors/submit-button
  */
-import type { TagWithAttributes } from '../types/index.js';
+import TagWithAttributes from '../types/TagWithAttributes';
 
 /**
  * Seletor para botão submit dentro de interactive-input-part

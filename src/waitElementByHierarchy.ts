@@ -1,5 +1,5 @@
 import findElementByHierarchy from './findElementByHierarchy';
-import { TagWithAttributes } from './types';
+import TagWithAttributes from './types/TagWithAttributes';
 
 interface WaitConfig {
   limitTime: number;

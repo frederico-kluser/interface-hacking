@@ -2,7 +2,7 @@
  * @fileoverview Seletor para botão Monaco padrão
  * @module selectors/monaco-default-button
  */
-import type { TagWithAttributes } from '../types/index.js';
+import TagWithAttributes from '../types/TagWithAttributes';
 
 /**
  * Seletor para botão Monaco padrão

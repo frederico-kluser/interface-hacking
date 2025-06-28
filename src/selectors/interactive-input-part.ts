@@ -2,7 +2,8 @@
  * @fileoverview Seletor para a parte de entrada interativa
  * @module selectors/interactive-input-part
  */
-import type { TagWithAttributes } from '../types/index.js';
+
+import TagWithAttributes from '../types/TagWithAttributes';
 
 /**
  * Seletor para a parte de entrada interativa

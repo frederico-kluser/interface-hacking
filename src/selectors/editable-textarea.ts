@@ -2,7 +2,8 @@
  * @fileoverview Seletor para textareas não readonly
  * @module selectors/editable-textarea
  */
-import type { TagWithAttributes } from '../types/index.js';
+
+import TagWithAttributes from '../types/TagWithAttributes';
 
 /**
  * Seletor para textareas não readonly

@@ -2,7 +2,7 @@
  * @fileoverview Seletor para botão de envio com aria-label "Send"
  * @module selectors/send-button-aria
  */
-import type { TagWithAttributes } from '../types/index.js';
+import TagWithAttributes from '../types/TagWithAttributes';
 
 /**
  * Seletor para botão de envio com aria-label "Send"

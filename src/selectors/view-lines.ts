@@ -2,7 +2,7 @@
  * @fileoverview Seletor para view-lines dentro do editor
  * @module selectors/view-lines
  */
-import type { TagWithAttributes } from '../types/index.js';
+import TagWithAttributes from '../types/TagWithAttributes';
 
 /**
  * Seletor para view-lines dentro do editor

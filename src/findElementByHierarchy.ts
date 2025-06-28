@@ -1,4 +1,4 @@
-import { TagWithAttributes } from './types';
+import TagWithAttributes from './types/TagWithAttributes';
 
 const findElementByHierarchy = (
   hierarchy: TagWithAttributes[],

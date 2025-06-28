@@ -2,7 +2,8 @@
  * @fileoverview Seletor para view-line dentro da parte interativa
  * @module selectors/interactive-view-line
  */
-import type { TagWithAttributes } from '../types/index.js';
+
+import TagWithAttributes from '../types/TagWithAttributes';
 
 /**
  * Seletor para view-line dentro da parte interativa

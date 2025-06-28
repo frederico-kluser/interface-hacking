@@ -2,7 +2,7 @@
  * @fileoverview Seletor para botão de envio com aria-label "Submit"
  * @module selectors/submit-button-aria
  */
-import type { TagWithAttributes } from '../types/index.js';
+import TagWithAttributes from '../types/TagWithAttributes';
 
 /**
  * Seletor para botão de envio com aria-label "Submit"
