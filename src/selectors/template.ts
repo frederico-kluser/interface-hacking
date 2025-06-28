@@ -1,6 +1,14 @@
-import { TagWithAttributes } from '../types/index.js';
+/**
+ * @fileoverview Seletor template para botões com gamepad
+ * @module selectors/template
+ */
+import type { TagWithAttributes } from '../types/index.js';
 
-export const TemplateButtons: TagWithAttributes[] = [
+/**
+ * Seletor template para botões com gamepad
+ * @description Busca elementos span com classe gamepad-2nd-icon-wrapper
+ */
+const templateButtons: TagWithAttributes[] = [
   {
     tag: 'span',
     attributes: [
@@ -12,3 +20,5 @@ export const TemplateButtons: TagWithAttributes[] = [
     ],
   },
 ];
+
+export default templateButtons;
