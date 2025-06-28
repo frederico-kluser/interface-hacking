@@ -2,7 +2,7 @@
 
 🤖 **Sistema de automação para GitHub Copilot no VS Code**
 
-Uma biblioteca otimizada para interagir programaticamente com o editor do GitHub Copilot, resolvendo problemas comuns de inserção de texto em editores Monaco.
+Uma biblioteca otimizada para interagir programaticamente com o editor do GitHub Copilot, resolvendo problemas comuns de inserção de texto em editores Monaco e agora com **controle total de dropdowns da toolbar**.
 
 ## ✨ O Problema Resolvido
 
@@ -12,6 +12,31 @@ Ao interagir com o GitHub Copilot via DevTools, era comum precisar chamar a fun�
 - **2ª chamada**: Texto era inserido corretamente
 
 Este projeto resolve esse problema implementando múltiplos métodos de inserção de texto que funcionam **na primeira tentativa**.
+
+## 🆕 NOVA FUNCIONALIDADE: Controle de Dropdowns
+
+Agora você pode controlar programaticamente os dropdowns da toolbar do Monaco:
+
+- **🎯 Dropdown de Agente/Modo**: Alternar entre diferentes modos do Copilot
+- **🔽 Dropdown de Modelo**: Trocar entre modelos de IA (Claude, GPT-4, etc.)
+- **📋 Listagem Automática**: Descobrir dropdowns disponíveis
+- **🔄 Múltiplos Métodos**: Fallback robusto para garantir funcionamento
+
+### Uso Rápido:
+
+```javascript
+// Listar dropdowns disponíveis
+dropdown.list();
+
+// Abrir dropdown de modelo
+await dropdown.trigger('model');
+
+// Abrir dropdown de agente
+await dropdown.trigger('agent');
+
+// Abrir qualquer dropdown
+await dropdown.trigger();
+```
 
 ## 🔧 Métodos de Inserção Implementados
 
@@ -52,19 +77,35 @@ Este projeto resolve esse problema implementando múltiplos métodos de inserç�
 
 ## 🚀 Como Usar
 
-### No DevTools do VS Code:
+### No DevTools do VS Code
 
 ```javascript
 // Carregar o script (uma vez)
 // Cole o código compilado no console
 
-// Usar a API global
+// === APIs GLOBAIS DISPONÍVEIS ===
+
+// 1. Inserção de texto (funcionalidade original)
 await copilot('Como criar uma função assíncrona em TypeScript?');
 
-// Resultado: texto inserido na primeira tentativa ✅
+// 2. Controle de dropdowns (NOVO!)
+dropdown.list(); // Lista dropdowns disponíveis
+await dropdown.trigger('model'); // Abre dropdown de modelo
+await dropdown.trigger('agent'); // Abre dropdown de agente
+await dropdown.trigger(); // Abre qualquer dropdown
+
+// === WORKFLOW COMPLETO ===
+// 1. Trocar modelo
+await dropdown.trigger('model');
+// (selecionar modelo desejado manualmente)
+
+// 2. Inserir pergunta
+await copilot('Explique como funciona machine learning');
+
+// Resultado: automação completa! ✅
 ```
 
-### Desenvolvimento:
+### Desenvolvimento
 
 ```bash
 # Instalar dependências
@@ -80,23 +121,26 @@ npm run build
 
 ```
 src/
-├── index.ts                     # Ponto de entrada e API global
-├── core/                        # Funções principais de busca DOM
+├── index.ts                         # Ponto de entrada e APIs globais
+├── core/                            # Funções principais de busca DOM
 │   ├── findElementByHierarchy.ts
 │   ├── findElementsByHierarchy.ts
 │   └── waitElementByHierarchy.ts
-├── helpers/                     # Funções auxiliares
-│   ├── findCopilotEditor.ts    # Localiza o editor do Copilot
-│   ├── focusCopilotEditor.ts   # Estabelece foco correto
-│   ├── insertTextInCopilot.ts  # Função principal de inserção
-│   ├── syncMonacoState.ts      # Sincronização do Monaco Editor
-│   └── wait.ts                 # Utilitário de delay
-├── selectors/                  # Seletores DOM hierárquicos
+├── helpers/                         # Funções auxiliares
+│   ├── findCopilotEditor.ts        # Localiza o editor do Copilot
+│   ├── focusCopilotEditor.ts       # Estabelece foco correto
+│   ├── insertTextInCopilot.ts      # Função principal de inserção
+│   ├── syncMonacoState.ts          # Sincronização do Monaco Editor
+│   ├── triggerMonacoDropdown.ts    # 🆕 Controle de dropdowns
+│   └── wait.ts                     # Utilitário de delay
+├── selectors/                      # Seletores DOM hierárquicos
 │   ├── monaco-editors.ts
 │   ├── native-edit-context.ts
 │   ├── interactive-view-line.ts
+│   ├── monaco-dropdown.ts          # 🆕 Seletor para dropdowns
+│   ├── monaco-dropdown-button.ts   # 🆕 Seletor para botões
 │   └── all-textareas.ts
-└── types/                      # Definições TypeScript
+└── types/                          # Definições TypeScript
     ├── MonacoEditor.ts         # Interfaces do Monaco Editor
     ├── TagAttribute.ts
     └── TagWithAttributes.ts

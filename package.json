@@ -11,7 +11,7 @@
   "scripts": {
     "build": "npm run clean && npm run build:js && npm run build:types",
     "build:js": "esbuild src/index.ts --bundle --platform=node --format=esm --outfile=dist/index.js",
-    "build:types": "dts-bundle-generator -o dist/index.d.ts src/index.ts",
+    "build:types": "tsc --declaration --emitDeclarationOnly --outDir dist src/index.ts",
     "dev": "npm run build:js -- --watch",
     "clean": "rm -rf dist",
     "lint": "eslint src/**/*.ts",
