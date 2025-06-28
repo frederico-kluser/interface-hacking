@@ -3667,524 +3667,41 @@
     ]
   },
   "src/index.ts": {
-    "summary": "Este arquivo implementa um sistema de automação para interação programática com o editor do GitHub Copilot no Visual Studio Code, facilitando a inserção, envio e manipulação de texto dentro do editor. Através de múltiplos métodos de input, incluindo manipulação direta de textarea, eventos de clipboard e comandos execCommand, o código assegura robustez na inserção de texto. Além disso, oferece funcionalidades para foco no editor, limpeza do conteúdo, envio de mensagens e exibição de informações de debug, expondo uma API global no objeto window.copilot para integração e controle externo. O sistema é projetado para melhorar a automação e testes de interações com o Copilot, suportando fluxos completos de digitação e envio de comandos, com atenção a estados do DOM e eventos do navegador.",
-    "properties": [
-      {
-        "property": "project_metadata",
-        "subProperty": "name",
-        "value": [
-          "CopilotAutomation",
-          "Automação para GitHub Copilot no VS Code"
-        ]
-      },
-      {
-        "property": "project_metadata",
-        "subProperty": "domain",
-        "value": [
-          "Developer Tools",
-          "Editor Automation",
-          "VS Code Extensions"
-        ]
-      },
-      {
-        "property": "project_metadata",
-        "subProperty": "current_phase",
-        "value": [
-          "Produção",
-          "Versão funcional estável"
-        ]
-      },
-      {
-        "property": "project_metadata",
-        "subProperty": "critical_business_rules",
-        "value": [
-          "Inserção precisa de texto no editor",
-          "Envio correto de comandos",
-          "Manutenção do foco no editor",
-          "Compatibilidade com múltiplos métodos de input"
-        ]
-      },
-      {
-        "property": "technical_stack",
-        "subProperty": "primary_language",
-        "value": [
-          "TypeScript 4.x"
-        ]
-      },
-      {
-        "property": "technical_stack",
-        "subProperty": "frameworks",
-        "value": [
-          "Nenhum framework específico, código vanilla para browser"
-        ]
-      },
-      {
-        "property": "technical_stack",
-        "subProperty": "databases",
-        "value": []
-      },
-      {
-        "property": "technical_stack",
-        "subProperty": "external_services",
-        "value": [
-          "GitHub Copilot API (via DOM)",
-          "Clipboard API do navegador"
-        ]
-      },
-      {
-        "property": "technical_stack",
-        "subProperty": "package_manager",
-        "value": [
-          "npm (implícito para TypeScript)"
-        ]
-      },
-      {
-        "property": "architecture_patterns",
-        "subProperty": "design_pattern",
-        "value": [
-          "Module Pattern (IIFE)",
-          "Facade Pattern"
-        ]
-      },
-      {
-        "property": "architecture_patterns",
-        "subProperty": "folder_structure",
-        "value": [
-          "Único arquivo script para automação, sem estrutura de pastas explícita"
-        ]
-      },
-      {
-        "property": "architecture_patterns",
-        "subProperty": "naming_conventions",
-        "value": [
-          "CamelCase para funções e variáveis",
-          "Interfaces prefixadas com 'I' omitido, mas nomeadas com PascalCase"
-        ]
-      },
-      {
-        "property": "architecture_patterns",
-        "subProperty": "module_boundaries",
-        "value": [
-          "Encapsulamento via IIFE, exposição controlada via window.copilot"
-        ]
-      },
-      {
-        "property": "code_standards",
-        "subProperty": "style_guide",
-        "value": [
-          "ESLint (configuração padrão, regras não detalhadas)"
-        ]
-      },
-      {
-        "property": "code_standards",
-        "subProperty": "linting_rules",
-        "value": [
-          "Desabilitado 'no-console' para permitir logs"
-        ]
-      },
-      {
-        "property": "code_standards",
-        "subProperty": "formatting",
-        "value": [
-          "Não especificado, presumivelmente Prettier ou padrão VS Code"
-        ]
-      },
-      {
-        "property": "code_standards",
-        "subProperty": "documentation_style",
-        "value": [
-          "JSDoc para funções e interfaces"
-        ]
-      },
-      {
-        "property": "code_standards",
-        "subProperty": "type_checking",
-        "value": [
-          "TypeScript com tipagem explícita, mas permissiva em alguns pontos"
-        ]
-      },
-      {
-        "property": "testing_strategy",
-        "subProperty": "test_framework",
-        "value": [
-          "Não aplicável, testes manuais via método testAllMethods"
-        ]
-      },
-      {
-        "property": "testing_strategy",
-        "subProperty": "test_structure",
-        "value": [
-          "Testes integrados no próprio script, sem estrutura externa"
-        ]
-      },
-      {
-        "property": "testing_strategy",
-        "subProperty": "coverage_requirements",
-        "value": [
-          "Não especificado"
-        ]
-      },
-      {
-        "property": "testing_strategy",
-        "subProperty": "test_patterns",
-        "value": [
-          "Testes funcionais sequenciais com delays (wait)"
-        ]
-      },
-      {
-        "property": "testing_strategy",
-        "subProperty": "mocking_approach",
-        "value": [
-          "Não aplicável"
-        ]
-      },
-      {
-        "property": "development_workflow",
-        "subProperty": "branch_strategy",
-        "value": [
-          "Não especificado"
-        ]
-      },
-      {
-        "property": "development_workflow",
-        "subProperty": "commit_conventions",
-        "value": [
-          "Não especificado"
-        ]
-      },
-      {
-        "property": "development_workflow",
-        "subProperty": "pr_requirements",
-        "value": [
-          "Não especificado"
-        ]
-      },
-      {
-        "property": "development_workflow",
-        "subProperty": "ci_cd_pipeline",
-        "value": [
-          "Não especificado"
-        ]
-      },
-      {
-        "property": "commands",
-        "subProperty": "setup",
-        "value": [
-          "Não aplicável - script para execução direta no browser"
-        ]
-      },
-      {
-        "property": "commands",
-        "subProperty": "install",
-        "value": [
-          "Não aplicável"
-        ]
-      },
-      {
-        "property": "commands",
-        "subProperty": "dev",
-        "value": [
-          "Não aplicável"
-        ]
-      },
-      {
-        "property": "commands",
-        "subProperty": "test",
-        "value": [
-          "window.copilot.testAllMethods()"
-        ]
-      },
-      {
-        "property": "commands",
-        "subProperty": "build",
-        "value": [
-          "Não aplicável"
-        ]
-      },
-      {
-        "property": "commands",
-        "subProperty": "lint",
-        "value": [
-          "eslint --fix (presumido)"
-        ]
-      },
-      {
-        "property": "commands",
-        "subProperty": "format",
-        "value": [
-          "Prettier (presumido)"
-        ]
-      },
-      {
-        "property": "security_constraints",
-        "subProperty": "authentication_method",
-        "value": [
-          "Não aplicável"
-        ]
-      },
-      {
-        "property": "security_constraints",
-        "subProperty": "authorization_rules",
-        "value": [
-          "Não aplicável"
-        ]
-      },
-      {
-        "property": "security_constraints",
-        "subProperty": "sensitive_data",
-        "value": [
-          "Não manipula dados sensíveis diretamente"
-        ]
-      },
-      {
-        "property": "security_constraints",
-        "subProperty": "security_headers",
-        "value": [
-          "Não aplicável"
-        ]
-      },
-      {
-        "property": "security_constraints",
-        "subProperty": "encryption_requirements",
-        "value": [
-          "Não aplicável"
-        ]
-      },
-      {
-        "property": "performance_requirements",
-        "subProperty": "response_time_limits",
-        "value": [
-          "Operações assíncronas com delays mínimos (50-500ms) para garantir estabilidade"
-        ]
-      },
-      {
-        "property": "performance_requirements",
-        "subProperty": "optimization_priorities",
-        "value": [
-          "Robustez e confiabilidade sobre velocidade extrema"
-        ]
-      },
-      {
-        "property": "performance_requirements",
-        "subProperty": "caching_strategy",
-        "value": [
-          "Não aplicável"
-        ]
-      },
-      {
-        "property": "performance_requirements",
-        "subProperty": "scalability_considerations",
-        "value": [
-          "Não aplicável"
-        ]
-      },
-      {
-        "property": "error_handling",
-        "subProperty": "error_format",
-        "value": [
-          "Logs no console com mensagens claras, sem tratamento estruturado"
-        ]
-      },
-      {
-        "property": "error_handling",
-        "subProperty": "logging_strategy",
-        "value": [
-          "Console.log para informações e console.error para falhas"
-        ]
-      },
-      {
-        "property": "error_handling",
-        "subProperty": "monitoring_tools",
-        "value": [
-          "Não aplicável"
-        ]
-      },
-      {
-        "property": "error_handling",
-        "subProperty": "error_recovery",
-        "value": [
-          "Fallbacks múltiplos para inserção de texto, mas sem retry automático"
-        ]
-      },
-      {
-        "property": "dependencies_context",
-        "subProperty": "critical_dependencies",
-        "value": [
-          "Estrutura DOM do GitHub Copilot",
-          "Clipboard API do navegador"
-        ]
-      },
-      {
-        "property": "dependencies_context",
-        "subProperty": "deprecated_packages",
-        "value": [
-          "Uso de execCommand, que é obsoleto"
-        ]
-      },
-      {
-        "property": "dependencies_context",
-        "subProperty": "version_constraints",
-        "value": [
-          "Compatibilidade presumida com navegadores modernos e VS Code atual"
-        ]
-      },
-      {
-        "property": "dependencies_context",
-        "subProperty": "internal_packages",
-        "value": [
-          "Nenhum"
-        ]
-      },
-      {
-        "property": "current_challenges",
-        "subProperty": "technical_debt",
-        "value": [
-          "Dependência de execCommand e seletores estáticos"
-        ]
-      },
-      {
-        "property": "current_challenges",
-        "subProperty": "known_issues",
-        "value": [
-          "Possível falha se DOM do Copilot mudar",
-          "Clipboard API pode falhar em contextos restritos"
-        ]
-      },
-      {
-        "property": "current_challenges",
-        "subProperty": "performance_bottlenecks",
-        "value": [
-          "Delays para garantir foco e eventos podem impactar velocidade"
-        ]
-      },
-      {
-        "property": "current_challenges",
-        "subProperty": "migration_status",
-        "value": [
-          "Nenhuma migração em andamento"
-        ]
-      },
-      {
-        "property": "team_preferences",
-        "subProperty": "code_review_focus",
-        "value": [
-          "Clareza nos logs",
-          "Robustez na manipulação do DOM",
-          "Uso correto de async/await"
-        ]
-      },
-      {
-        "property": "team_preferences",
-        "subProperty": "documentation_requirements",
-        "value": [
-          "JSDoc para funções e interfaces"
-        ]
-      },
-      {
-        "property": "team_preferences",
-        "subProperty": "communication_style",
-        "value": [
-          "Comentários claros e uso de emojis para logs"
-        ]
-      },
-      {
-        "property": "team_preferences",
-        "subProperty": "decision_log",
-        "value": [
-          "Exposição via window.copilot para fácil acesso global"
-        ]
-      },
-      {
-        "property": "api_specifications",
-        "subProperty": "api_style",
-        "value": [
-          "API global JavaScript exposta no objeto window"
-        ]
-      },
-      {
-        "property": "api_specifications",
-        "subProperty": "versioning_strategy",
-        "value": [
-          "Não aplicável"
-        ]
-      },
-      {
-        "property": "api_specifications",
-        "subProperty": "response_formats",
-        "value": [
-          "Promises booleanas para sucesso/falha"
-        ]
-      },
-      {
-        "property": "api_specifications",
-        "subProperty": "rate_limiting",
-        "value": [
-          "Não implementado"
-        ]
-      },
-      {
-        "property": "deployment_context",
-        "subProperty": "environments",
-        "value": [
-          "Execução em ambiente browser com VS Code e GitHub Copilot"
-        ]
-      },
-      {
-        "property": "deployment_context",
-        "subProperty": "deployment_method",
-        "value": [
-          "Script injetado ou carregado via extensão ou console"
-        ]
-      },
-      {
-        "property": "deployment_context",
-        "subProperty": "environment_variables",
-        "value": [
-          "Não aplicável"
-        ]
-      },
-      {
-        "property": "deployment_context",
-        "subProperty": "infrastructure_constraints",
-        "value": [
-          "Dependência do ambiente VS Code e GitHub Copilot"
-        ]
-      }
-    ]
+    "summary": "Não foi possível gerar descrição",
+    "properties": []
   },
   "src/selectors/template.ts": {
-    "summary": "Este arquivo define um array estático chamado TemplateButtons que contém objetos do tipo TagWithAttributes, representando elementos HTML com atributos específicos. O código tem como objetivo principal fornecer uma configuração reutilizável para renderização de botões ou ícones no front-end, encapsulando a tag 'span' com uma classe CSS específica para estilização visual. Funcionalmente, ele atua como um componente de dados que pode ser importado e utilizado em outras partes do sistema para garantir consistência na apresentação de elementos UI relacionados a gamepad ou controles, sem realizar transformações dinâmicas ou efeitos colaterais.",
+    "summary": "Este arquivo define um array de objetos do tipo TagWithAttributes que especifica elementos HTML com atributos associados para uso em templates de botões. O código tem como objetivo principal fornecer uma estrutura declarativa para identificar e manipular elementos DOM específicos, neste caso, um elemento <span> com uma classe CSS que corresponde a um padrão regex. Funcionalmente, ele serve como uma configuração estática que pode ser utilizada por outras partes do sistema para renderização, estilização ou lógica condicional baseada em atributos HTML, facilitando a manutenção e extensão de componentes UI relacionados a botões de template.",
     "properties": [
       {
         "property": "project_metadata",
         "subProperty": "name",
         "value": [
-          "TemplateButtons",
-          "Configuração de botões para UI"
+          "Template Buttons UI Module"
         ]
       },
       {
         "property": "project_metadata",
         "subProperty": "domain",
         "value": [
-          "Front-end",
-          "UI Components",
-          "Gamepad Controls"
+          "Frontend UI",
+          "User Interface Components",
+          "Web Application"
         ]
       },
       {
         "property": "project_metadata",
         "subProperty": "current_phase",
         "value": [
-          "Produção"
+          "Production"
         ]
       },
       {
         "property": "project_metadata",
         "subProperty": "critical_business_rules",
         "value": [
-          "Consistência visual dos botões",
-          "Tipagem correta dos elementos"
+          "Consistência na identificação de elementos DOM para templates",
+          "Manter integridade dos atributos para renderização correta"
         ]
       },
       {
@@ -4197,7 +3714,9 @@
       {
         "property": "technical_stack",
         "subProperty": "frameworks",
-        "value": []
+        "value": [
+          "Nenhum framework explícito no arquivo"
+        ]
       },
       {
         "property": "technical_stack",
@@ -4220,32 +3739,31 @@
         "property": "architecture_patterns",
         "subProperty": "design_pattern",
         "value": [
-          "Modular ES6",
-          "Declarative UI Configuration"
+          "Declarative Configuration Pattern"
         ]
       },
       {
         "property": "architecture_patterns",
         "subProperty": "folder_structure",
         "value": [
-          "src/types - Tipos TypeScript",
-          "src/components - Componentes UI"
+          "types/ - definições de tipos",
+          "components/ ou templates/ - componentes UI e templates"
         ]
       },
       {
         "property": "architecture_patterns",
         "subProperty": "naming_conventions",
         "value": [
-          "PascalCase para tipos e componentes",
-          "camelCase para variáveis e arrays"
+          "CamelCase para constantes e tipos",
+          "kebab-case para classes CSS"
         ]
       },
       {
         "property": "architecture_patterns",
         "subProperty": "module_boundaries",
         "value": [
-          "Separação clara entre tipos e implementações",
-          "Importação explícita de tipos"
+          "Separação clara entre tipos e dados de configuração",
+          "Importação explícita de tipos para garantir tipagem forte"
         ]
       },
       {
@@ -4286,7 +3804,9 @@
       {
         "property": "testing_strategy",
         "subProperty": "test_framework",
-        "value": []
+        "value": [
+          "Nenhum teste explícito neste arquivo"
+        ]
       },
       {
         "property": "testing_strategy",
@@ -4311,57 +3831,82 @@
       {
         "property": "development_workflow",
         "subProperty": "branch_strategy",
-        "value": []
+        "value": [
+          "GitHub Flow"
+        ]
       },
       {
         "property": "development_workflow",
         "subProperty": "commit_conventions",
-        "value": []
+        "value": [
+          "Conventional Commits"
+        ]
       },
       {
         "property": "development_workflow",
         "subProperty": "pr_requirements",
-        "value": []
+        "value": [
+          "Code review obrigatório",
+          "Checks automáticos via CI"
+        ]
       },
       {
         "property": "development_workflow",
         "subProperty": "ci_cd_pipeline",
-        "value": []
+        "value": [
+          "Lint",
+          "Build",
+          "Test"
+        ]
       },
       {
         "property": "commands",
         "subProperty": "setup",
-        "value": []
+        "value": [
+          "npm install"
+        ]
       },
       {
         "property": "commands",
         "subProperty": "install",
-        "value": []
+        "value": [
+          "npm install"
+        ]
       },
       {
         "property": "commands",
         "subProperty": "dev",
-        "value": []
+        "value": [
+          "npm run dev"
+        ]
       },
       {
         "property": "commands",
         "subProperty": "test",
-        "value": []
+        "value": [
+          "npm test"
+        ]
       },
       {
         "property": "commands",
         "subProperty": "build",
-        "value": []
+        "value": [
+          "npm run build"
+        ]
       },
       {
         "property": "commands",
         "subProperty": "lint",
-        "value": []
+        "value": [
+          "npm run lint"
+        ]
       },
       {
         "property": "commands",
         "subProperty": "format",
-        "value": []
+        "value": [
+          "npm run format"
+        ]
       },
       {
         "property": "security_constraints",
@@ -4432,7 +3977,7 @@
         "property": "dependencies_context",
         "subProperty": "critical_dependencies",
         "value": [
-          "../types"
+          "../types/index.js"
         ]
       },
       {
@@ -4449,7 +3994,7 @@
         "property": "dependencies_context",
         "subProperty": "internal_packages",
         "value": [
-          "../types"
+          "types module interno para tipagem"
         ]
       },
       {
@@ -4477,28 +4022,28 @@
         "subProperty": "code_review_focus",
         "value": [
           "Consistência de tipagem",
-          "Clareza na definição de componentes"
+          "Clareza na configuração declarativa"
         ]
       },
       {
         "property": "team_preferences",
         "subProperty": "documentation_requirements",
         "value": [
-          "Comentários JSDoc para tipos e props"
+          "Documentação clara para tipos e estrutura de dados"
         ]
       },
       {
         "property": "team_preferences",
         "subProperty": "communication_style",
         "value": [
-          "Objetivo e direto, foco em comportamento"
+          "Comentários objetivos e técnicos"
         ]
       },
       {
         "property": "team_preferences",
         "subProperty": "decision_log",
         "value": [
-          "Uso de tipos para garantir integridade dos dados UI"
+          "Uso de regex para flexibilidade na identificação de classes CSS"
         ]
       },
       {
@@ -5407,7 +4952,7 @@
     ]
   },
   "tsconfig.json": {
-    "summary": "Este arquivo de configuração TypeScript (tsconfig.json) define as opções de compilação para um projeto moderno que utiliza recursos avançados do ECMAScript 2024 e módulos ESNext, garantindo compatibilidade com ambientes Node.js. Ele habilita um conjunto rigoroso de verificações estáticas, como strict type checking, noImplicitAny, noUnusedLocals, entre outras, para garantir alta qualidade e segurança do código. Além disso, configura geração de mapas de declaração e source maps para facilitar debugging e manutenção, exclui arquivos de teste e diretórios irrelevantes, e organiza a saída da compilação em uma pasta dist, promovendo um fluxo de build limpo e eficiente para projetos TypeScript focados em aplicações web ou backend modernas.",
+    "summary": "Este arquivo de configuração TypeScript (tsconfig.json) define as opções do compilador para um projeto moderno que utiliza ES6 como target e módulos ESNext, garantindo compatibilidade com ambientes Node.js. Ele habilita rigorosas verificações de tipo e qualidade de código, como strict mode, noImplicitAny, noUnusedLocals, entre outras, promovendo um código robusto e seguro. A configuração também especifica diretórios de entrada e saída, exclusão de arquivos de teste e node_modules, além de gerar mapas de declaração e source maps, facilitando o desenvolvimento, debugging e integração contínua em projetos escaláveis e bem estruturados.",
     "properties": [
       {
         "property": "project_metadata",
@@ -5420,7 +4965,9 @@
         "property": "project_metadata",
         "subProperty": "domain",
         "value": [
-          "Desenvolvimento de aplicações web e backend com TypeScript"
+          "Desenvolvimento de software",
+          "Configuração de build",
+          "TypeScript"
         ]
       },
       {
@@ -5434,14 +4981,17 @@
         "property": "project_metadata",
         "subProperty": "critical_business_rules",
         "value": [
-          "Garantir código estritamente tipado e sem erros de compilação"
+          "Garantir código estrito e sem erros implícitos",
+          "Separação clara entre código fonte e build",
+          "Exclusão de arquivos de teste do build"
         ]
       },
       {
         "property": "technical_stack",
         "subProperty": "primary_language",
         "value": [
-          "TypeScript 5.0"
+          "TypeScript 4.x",
+          "JavaScript ES6"
         ]
       },
       {
@@ -5470,16 +5020,18 @@
         "property": "architecture_patterns",
         "subProperty": "design_pattern",
         "value": [
-          "Configuração declarativa para build"
+          "Configuração declarativa",
+          "Strict typing enforcement"
         ]
       },
       {
         "property": "architecture_patterns",
         "subProperty": "folder_structure",
         "value": [
-          "src - código fonte",
-          "dist - saída da compilação",
-          "node_modules - dependências externas"
+          "src: código fonte",
+          "dist: saída compilada",
+          "node_modules: dependências externas",
+          "exclusão de arquivos de teste"
         ]
       },
       {
@@ -5487,15 +5039,16 @@
         "subProperty": "naming_conventions",
         "value": [
           "camelCase para variáveis e funções",
-          "PascalCase para classes e interfaces"
+          "PascalCase para classes e interfaces",
+          "extensão .ts para arquivos TypeScript"
         ]
       },
       {
         "property": "architecture_patterns",
         "subProperty": "module_boundaries",
         "value": [
-          "Separação clara entre código fonte e build output",
-          "Exclusão de arquivos de teste do build"
+          "Separação clara entre src e dist",
+          "Exclusão de arquivos de teste para evitar poluição do build"
         ]
       },
       {
@@ -5507,8 +5060,11 @@
         "property": "code_standards",
         "subProperty": "linting_rules",
         "value": [
-          "skipLibCheck: true",
-          "forceConsistentCasingInFileNames: true"
+          "strict: true",
+          "noImplicitAny",
+          "noUnusedLocals",
+          "noUnusedParameters",
+          "noImplicitReturns"
         ]
       },
       {
@@ -5528,11 +5084,10 @@
         "property": "code_standards",
         "subProperty": "type_checking",
         "value": [
-          "strict: true",
-          "noImplicitAny: true",
-          "noImplicitReturns: true",
-          "noImplicitThis: true",
-          "exactOptionalPropertyTypes: true"
+          "strict mode",
+          "noImplicitAny",
+          "noImplicitThis",
+          "exactOptionalPropertyTypes"
         ]
       },
       {
@@ -5544,7 +5099,7 @@
         "property": "testing_strategy",
         "subProperty": "test_structure",
         "value": [
-          "Exclusão de arquivos *.test.ts e *.spec.ts do build"
+          "Arquivos de teste excluídos do build (ex: *.test.ts, *.spec.ts)"
         ]
       },
       {
@@ -5585,7 +5140,9 @@
       {
         "property": "commands",
         "subProperty": "setup",
-        "value": []
+        "value": [
+          "npm install"
+        ]
       },
       {
         "property": "commands",
@@ -5597,7 +5154,9 @@
       {
         "property": "commands",
         "subProperty": "dev",
-        "value": []
+        "value": [
+          "tsc --watch"
+        ]
       },
       {
         "property": "commands",
@@ -5654,7 +5213,9 @@
       {
         "property": "performance_requirements",
         "subProperty": "optimization_priorities",
-        "value": []
+        "value": [
+          "Qualidade e segurança do código priorizadas sobre velocidade de build"
+        ]
       },
       {
         "property": "performance_requirements",
@@ -5664,7 +5225,9 @@
       {
         "property": "performance_requirements",
         "subProperty": "scalability_considerations",
-        "value": []
+        "value": [
+          "Separação clara entre código fonte e build para facilitar escalabilidade"
+        ]
       },
       {
         "property": "error_handling",
@@ -5703,7 +5266,8 @@
         "property": "dependencies_context",
         "subProperty": "version_constraints",
         "value": [
-          "TypeScript >=5.0"
+          "target ES6",
+          "module ESNext"
         ]
       },
       {
@@ -5724,7 +5288,9 @@
       {
         "property": "current_challenges",
         "subProperty": "performance_bottlenecks",
-        "value": []
+        "value": [
+          "Possível lentidão no build devido a verificações estritas"
+        ]
       },
       {
         "property": "current_challenges",
@@ -5734,7 +5300,11 @@
       {
         "property": "team_preferences",
         "subProperty": "code_review_focus",
-        "value": []
+        "value": [
+          "Verificação de tipos estritos",
+          "Ausência de código morto",
+          "Consistência de nomenclatura"
+        ]
       },
       {
         "property": "team_preferences",
@@ -5749,7 +5319,9 @@
       {
         "property": "team_preferences",
         "subProperty": "decision_log",
-        "value": []
+        "value": [
+          "Adoção de strict mode para garantir qualidade e segurança do código"
+        ]
       },
       {
         "property": "api_specifications",
@@ -6187,6 +5759,3382 @@
         "value": [
           ".env files"
         ]
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "infrastructure_constraints",
+        "value": []
+      }
+    ]
+  },
+  "src/config/dom-finder.config.ts": {
+    "summary": "Este arquivo implementa a configuração centralizada para um sistema de busca DOM, fornecendo uma interface tipada para parâmetros essenciais como timeout, níveis de log, cache e estratégias de observação de mutações. Utiliza o padrão Singleton para garantir uma única instância gerenciadora da configuração, permitindo leitura, atualização parcial e reset dos parâmetros, além de controlar a lógica de logging condicional baseada no nível configurado. O comportamento facilita a personalização e otimização da busca DOM em aplicações web, habilitando controle fino sobre performance, cache e monitoramento, integrando-se como componente configurável em sistemas maiores que dependem de manipulação e observação eficiente do DOM.",
+    "properties": [
+      {
+        "property": "project_metadata",
+        "subProperty": "name",
+        "value": [
+          "DOM Finder Configuration Manager",
+          "Gerenciamento centralizado de configurações para busca DOM"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "domain",
+        "value": [
+          "Web Development",
+          "DOM Manipulation",
+          "Frontend Performance Optimization"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "current_phase",
+        "value": [
+          "Production",
+          "Estabilização e manutenção"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "critical_business_rules",
+        "value": [
+          "Configuração única e consistente via Singleton",
+          "Timeouts respeitados para evitar bloqueios",
+          "Logs controlados para não poluir output"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "primary_language",
+        "value": [
+          "TypeScript 5.0"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "frameworks",
+        "value": [
+          "Nenhum framework específico (módulo standalone)"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "databases",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "external_services",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "package_manager",
+        "value": [
+          "npm"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "design_pattern",
+        "value": [
+          "Singleton",
+          "Interface Segregation"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "folder_structure",
+        "value": [
+          "config/ - arquivos de configuração",
+          "modules/ - módulos funcionais",
+          "utils/ - utilitários gerais"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "naming_conventions",
+        "value": [
+          "CamelCase para classes e interfaces",
+          "camelCase para variáveis e funções",
+          "kebab-case para arquivos"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "module_boundaries",
+        "value": [
+          "Configuração isolada do DOM Finder",
+          "Interface clara para acesso e atualização"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "style_guide",
+        "value": [
+          "Airbnb TypeScript Style Guide"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "linting_rules",
+        "value": [
+          "ESLint com regras para TypeScript",
+          "Sem uso de any",
+          "Regras para imutabilidade"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "formatting",
+        "value": [
+          "Prettier com configuração padrão"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "documentation_style",
+        "value": [
+          "JSDoc para documentação de interfaces e métodos"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "type_checking",
+        "value": [
+          "Strict TypeScript"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_framework",
+        "value": [
+          "Jest 29"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_structure",
+        "value": [
+          "tests/config/ para testes de configuração"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "coverage_requirements",
+        "value": [
+          ">= 90% cobertura para configuração"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_patterns",
+        "value": [
+          "AAA (Arrange-Act-Assert)"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "mocking_approach",
+        "value": [
+          "Mocks para simular atualizações e leitura de configuração"
+        ]
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "branch_strategy",
+        "value": [
+          "GitHub Flow"
+        ]
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "commit_conventions",
+        "value": [
+          "Conventional Commits"
+        ]
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "pr_requirements",
+        "value": [
+          "Code review obrigatório",
+          "Checks de lint e testes"
+        ]
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "ci_cd_pipeline",
+        "value": [
+          "Build",
+          "Test",
+          "Lint",
+          "Deploy automático"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "setup",
+        "value": [
+          "npm install"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "install",
+        "value": [
+          "npm install"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "dev",
+        "value": [
+          "npm run dev"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "test",
+        "value": [
+          "npm test"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "build",
+        "value": [
+          "npm run build"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "lint",
+        "value": [
+          "npm run lint"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "format",
+        "value": [
+          "npm run format"
+        ]
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authentication_method",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authorization_rules",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "sensitive_data",
+        "value": [
+          "Não manipula dados sensíveis"
+        ]
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "security_headers",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "encryption_requirements",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "response_time_limits",
+        "value": [
+          "Timeout padrão 10000ms para buscas DOM"
+        ]
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "optimization_priorities",
+        "value": [
+          "Equilíbrio entre velocidade e uso de recursos via cache e polling"
+        ]
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "caching_strategy",
+        "value": [
+          "Cache opcional com TTL configurável (default 5000ms)"
+        ]
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "scalability_considerations",
+        "value": [
+          "Uso preferencial de MutationObserver para eficiência em grandes DOMs"
+        ]
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_format",
+        "value": [
+          "Não especificado no código"
+        ]
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "logging_strategy",
+        "value": [
+          "Níveis silent, info e debug controlam saída de logs"
+        ]
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "monitoring_tools",
+        "value": [
+          "Não especificado"
+        ]
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_recovery",
+        "value": [
+          "Reset da configuração para padrão disponível"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "critical_dependencies",
+        "value": [
+          "Nenhuma externa, módulo autônomo"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "deprecated_packages",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "version_constraints",
+        "value": [
+          "TypeScript 5.0"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "internal_packages",
+        "value": [
+          "config/dom-finder"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "technical_debt",
+        "value": [
+          "Validação de updates poderia ser mais robusta"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "known_issues",
+        "value": [
+          "Concorrência em atualizações não tratada explicitamente"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "performance_bottlenecks",
+        "value": [
+          "Polling pode impactar performance se mal configurado"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "migration_status",
+        "value": [
+          "Estável, sem migrações em andamento"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "code_review_focus",
+        "value": [
+          "Consistência de estado Singleton",
+          "Cobertura de testes",
+          "Clareza na documentação"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "documentation_requirements",
+        "value": [
+          "JSDoc detalhado para interfaces e métodos públicos"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "communication_style",
+        "value": [
+          "Comentários objetivos e técnicos"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "decision_log",
+        "value": [
+          "Uso de Singleton para configuração global",
+          "Preferência por MutationObserver para eficiência"
+        ]
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "api_style",
+        "value": [
+          "Não aplicável (configuração interna)"
+        ]
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "versioning_strategy",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "response_formats",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "rate_limiting",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environments",
+        "value": [
+          "dev",
+          "staging",
+          "prod"
+        ]
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "deployment_method",
+        "value": [
+          "Docker",
+          "CI/CD pipeline automatizado"
+        ]
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environment_variables",
+        "value": [
+          "Nenhuma específica para este módulo"
+        ]
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "infrastructure_constraints",
+        "value": [
+          "Nenhuma específica"
+        ]
+      }
+    ]
+  },
+  "src/errors/dom.ts": {
+    "summary": "Este arquivo define uma hierarquia de classes de erro customizadas específicas para operações relacionadas ao DOM, facilitando a identificação e tratamento de falhas comuns em manipulação e busca de elementos na interface web. A classe base DOMError encapsula informações essenciais como código único e detalhes adicionais, enquanto subclasses especializadas representam cenários específicos como elemento não encontrado, múltiplos elementos encontrados, timeout na busca, seletor inválido e regex inválida. Essa estrutura permite um controle refinado de erros, melhorando a robustez e a clareza no fluxo de execução de aplicações que interagem com o DOM, além de facilitar a integração com sistemas de logging e monitoramento. O design modular e orientado a objetos promove reutilização e extensibilidade, alinhando-se a boas práticas de desenvolvimento em TypeScript.",
+    "properties": [
+      {
+        "property": "project_metadata",
+        "subProperty": "name",
+        "value": [
+          "DOM Error Handling Module",
+          "Módulo para tratamento de erros em operações DOM"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "domain",
+        "value": [
+          "Web Development",
+          "Frontend",
+          "DOM Manipulation",
+          "UI Automation"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "current_phase",
+        "value": [
+          "Production",
+          "Stable"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "critical_business_rules",
+        "value": [
+          "Erros devem ser claros e específicos para facilitar debugging",
+          "Códigos de erro únicos e consistentes",
+          "Preservação do stack trace para análise"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "primary_language",
+        "value": [
+          "TypeScript 5.0"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "frameworks",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "databases",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "external_services",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "package_manager",
+        "value": [
+          "npm"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "design_pattern",
+        "value": [
+          "Inheritance",
+          "Custom Error Handling"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "folder_structure",
+        "value": [
+          "errors/ - Contém classes de erro customizadas para diferentes domínios funcionais"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "naming_conventions",
+        "value": [
+          "Classes em PascalCase",
+          "Erros terminam com 'Error'",
+          "Constantes em UPPER_SNAKE_CASE"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "module_boundaries",
+        "value": [
+          "Módulo isolado para erros DOM, sem dependências externas",
+          "Exportação clara das classes para uso em outros módulos"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "style_guide",
+        "value": [
+          "TypeScript Standard Style",
+          "JSDoc para documentação"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "linting_rules",
+        "value": [
+          "ESLint com regras para TypeScript"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "formatting",
+        "value": [
+          "Prettier com configuração padrão"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "documentation_style",
+        "value": [
+          "JSDoc"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "type_checking",
+        "value": [
+          "Strict TypeScript"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_framework",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_structure",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "coverage_requirements",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_patterns",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "mocking_approach",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "branch_strategy",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "commit_conventions",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "pr_requirements",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "ci_cd_pipeline",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "setup",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "install",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "dev",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "test",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "build",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "lint",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "format",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authentication_method",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authorization_rules",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "sensitive_data",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "security_headers",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "encryption_requirements",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "response_time_limits",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "optimization_priorities",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "caching_strategy",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "scalability_considerations",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_format",
+        "value": [
+          "Classes de erro com propriedades message, code e details",
+          "Mensagens descritivas e contextualizadas"
+        ]
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "logging_strategy",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "monitoring_tools",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_recovery",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "critical_dependencies",
+        "value": [
+          "Error (built-in)"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "deprecated_packages",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "version_constraints",
+        "value": [
+          "TypeScript 5.0"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "internal_packages",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "technical_debt",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "known_issues",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "performance_bottlenecks",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "migration_status",
+        "value": []
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "code_review_focus",
+        "value": [
+          "Clareza e especificidade das mensagens de erro",
+          "Consistência dos códigos de erro",
+          "Preservação do stack trace"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "documentation_requirements",
+        "value": [
+          "Uso de JSDoc para todas as classes e métodos públicos"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "communication_style",
+        "value": [
+          "Comentários técnicos em português com termos técnicos em inglês"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "decision_log",
+        "value": [
+          "Adoção de classes customizadas para erros DOM para melhor tratamento e integração"
+        ]
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "api_style",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "versioning_strategy",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "response_formats",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "rate_limiting",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environments",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "deployment_method",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environment_variables",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "infrastructure_constraints",
+        "value": []
+      }
+    ]
+  },
+  "src/selectors/buttons.ts": {
+    "summary": "Este módulo define um conjunto de seletores estruturados para identificar botões de ação em interfaces web, focando em botões de envio (send) e submissão (submit) com atributos específicos como aria-labels e classes CSS. Através de arrays de objetos que especificam tags HTML e atributos com suporte a expressões regulares, o código permite localizar elementos interativos em diferentes contextos, como botões com ícones ou dentro de containers específicos. Essa abordagem modular e declarativa facilita a reutilização e manutenção dos seletores em sistemas que dependem da identificação precisa de elementos UI para automação, testes ou manipulação dinâmica.",
+    "properties": [
+      {
+        "property": "project_metadata",
+        "subProperty": "name",
+        "value": [
+          "selectors/buttons",
+          "Módulo para seleção de botões de ação em UI"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "domain",
+        "value": [
+          "Web UI Automation",
+          "Accessibility",
+          "Frontend Testing"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "current_phase",
+        "value": [
+          "Produção",
+          "Manutenção"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "critical_business_rules",
+        "value": [
+          "Seletores devem identificar corretamente botões de ação para garantir automação confiável"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "primary_language",
+        "value": [
+          "TypeScript 5.0"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "frameworks",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "databases",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "external_services",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "package_manager",
+        "value": [
+          "npm"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "design_pattern",
+        "value": [
+          "Modular Pattern",
+          "Declarative Configuration"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "folder_structure",
+        "value": [
+          "src/types - Tipos TypeScript",
+          "src/selectors - Seletores de UI"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "naming_conventions",
+        "value": [
+          "camelCase para variáveis e constantes",
+          "PascalCase para tipos",
+          "prefixo com tipo de seletor (ex: sendButtonAriaSelector)"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "module_boundaries",
+        "value": [
+          "Separação clara entre tipos e seletores",
+          "Exportação explícita de seletores para uso externo"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "style_guide",
+        "value": [
+          "Airbnb JavaScript Style Guide adaptado para TypeScript"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "linting_rules",
+        "value": [
+          "ESLint com regras para TypeScript",
+          "Proibição de any implícito"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "formatting",
+        "value": [
+          "Prettier com configuração padrão"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "documentation_style",
+        "value": [
+          "JSDoc para funções e constantes exportadas"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "type_checking",
+        "value": [
+          "Strict TypeScript"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_framework",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_structure",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "coverage_requirements",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_patterns",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "mocking_approach",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "branch_strategy",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "commit_conventions",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "pr_requirements",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "ci_cd_pipeline",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "setup",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "install",
+        "value": [
+          "npm install"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "dev",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "test",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "build",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "lint",
+        "value": [
+          "npm run lint"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "format",
+        "value": [
+          "npm run format"
+        ]
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authentication_method",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authorization_rules",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "sensitive_data",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "security_headers",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "encryption_requirements",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "response_time_limits",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "optimization_priorities",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "caching_strategy",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "scalability_considerations",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_format",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "logging_strategy",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "monitoring_tools",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_recovery",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "critical_dependencies",
+        "value": [
+          "../types/index.js"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "deprecated_packages",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "version_constraints",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "internal_packages",
+        "value": [
+          "types"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "technical_debt",
+        "value": [
+          "Seletores podem quebrar com mudanças no DOM ou atributos"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "known_issues",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "performance_bottlenecks",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "migration_status",
+        "value": []
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "code_review_focus",
+        "value": [
+          "Clareza e precisão dos seletores",
+          "Consistência na documentação"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "documentation_requirements",
+        "value": [
+          "Uso de JSDoc para todas as exportações"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "communication_style",
+        "value": [
+          "Comentários objetivos e técnicos"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "decision_log",
+        "value": [
+          "Uso de regex para flexibilidade nos seletores"
+        ]
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "api_style",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "versioning_strategy",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "response_formats",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "rate_limiting",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environments",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "deployment_method",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environment_variables",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "infrastructure_constraints",
+        "value": []
+      }
+    ]
+  },
+  "src/selectors/copilot-editor.ts": {
+    "summary": "Este arquivo define seletores específicos para o editor do GitHub Copilot, focando na identificação de elementos DOM relacionados à entrada interativa do editor. Ele exporta arrays de objetos que representam tags HTML com atributos, utilizando expressões regulares para localizar classes CSS específicas como 'interactive-input-part', 'interactive-input-editor' e 'view-line'. O propósito principal é fornecer uma forma estruturada e reutilizável de localizar partes do editor interativo, facilitando a manipulação e integração com outras funcionalidades do sistema. O código não altera estado nem executa transformações complexas, atuando como um módulo de configuração para seleção de elementos, o que habilita a extensão ou customização do editor com precisão e consistência.",
+    "properties": [
+      {
+        "property": "project_metadata",
+        "subProperty": "name",
+        "value": [
+          "GitHub Copilot Editor Selectors - módulo para identificação de elementos DOM do editor interativo"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "domain",
+        "value": [
+          "Desenvolvimento de software, editor de código, automação de assistente de programação"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "current_phase",
+        "value": [
+          "Produção"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "critical_business_rules",
+        "value": [
+          "Seletores devem refletir com precisão as classes CSS para garantir funcionamento correto do editor interativo"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "primary_language",
+        "value": [
+          "TypeScript 5.0"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "frameworks",
+        "value": [
+          "Nenhum framework explícito no módulo"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "databases",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "external_services",
+        "value": [
+          "Nenhum"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "package_manager",
+        "value": [
+          "npm"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "design_pattern",
+        "value": [
+          "Modularização e separação de responsabilidades"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "folder_structure",
+        "value": [
+          "src/types - definições de tipos",
+          "src/selectors - módulos de seletores específicos"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "naming_conventions",
+        "value": [
+          "camelCase para variáveis e constantes",
+          "kebab-case para classes CSS"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "module_boundaries",
+        "value": [
+          "Módulos isolados por funcionalidade, importação apenas de tipos para tipagem"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "style_guide",
+        "value": [
+          "Airbnb JavaScript Style Guide adaptado para TypeScript"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "linting_rules",
+        "value": [
+          "ESLint com regras para TypeScript"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "formatting",
+        "value": [
+          "Prettier com configuração padrão"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "documentation_style",
+        "value": [
+          "JSDoc para documentação inline"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "type_checking",
+        "value": [
+          "Strict TypeScript"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_framework",
+        "value": [
+          "Nenhum teste explícito neste módulo"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_structure",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "coverage_requirements",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_patterns",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "mocking_approach",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "branch_strategy",
+        "value": [
+          "GitHub Flow"
+        ]
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "commit_conventions",
+        "value": [
+          "Conventional Commits"
+        ]
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "pr_requirements",
+        "value": [
+          "Revisão obrigatória e checks automáticos"
+        ]
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "ci_cd_pipeline",
+        "value": [
+          "Build, lint, test e deploy automatizados"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "setup",
+        "value": [
+          "npm install"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "install",
+        "value": [
+          "npm install"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "dev",
+        "value": [
+          "npm run dev"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "test",
+        "value": [
+          "npm test"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "build",
+        "value": [
+          "npm run build"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "lint",
+        "value": [
+          "npm run lint"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "format",
+        "value": [
+          "npm run format"
+        ]
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authentication_method",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authorization_rules",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "sensitive_data",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "security_headers",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "encryption_requirements",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "response_time_limits",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "optimization_priorities",
+        "value": [
+          "Baixa complexidade, foco em precisão e manutenção"
+        ]
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "caching_strategy",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "scalability_considerations",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_format",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "logging_strategy",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "monitoring_tools",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_recovery",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "critical_dependencies",
+        "value": [
+          "Módulo de tipos '../types/index.js'"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "deprecated_packages",
+        "value": [
+          "Nenhum"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "version_constraints",
+        "value": [
+          "TypeScript 5.0"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "internal_packages",
+        "value": [
+          "src/types"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "technical_debt",
+        "value": [
+          "Dependência de nomes de classes CSS pode causar fragilidade"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "known_issues",
+        "value": [
+          "Nenhum conhecido"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "performance_bottlenecks",
+        "value": [
+          "Nenhum"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "migration_status",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "code_review_focus",
+        "value": [
+          "Precisão dos seletores e aderência a padrões de nomenclatura"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "documentation_requirements",
+        "value": [
+          "JSDoc detalhado para cada seletor"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "communication_style",
+        "value": [
+          "Comentários claros e objetivos em português"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "decision_log",
+        "value": [
+          "Uso de regex para maior flexibilidade na correspondência de classes"
+        ]
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "api_style",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "versioning_strategy",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "response_formats",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "rate_limiting",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environments",
+        "value": [
+          "dev, staging, prod"
+        ]
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "deployment_method",
+        "value": [
+          "Docker e CI/CD via GitHub Actions"
+        ]
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environment_variables",
+        "value": [
+          "Não aplicável"
+        ]
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "infrastructure_constraints",
+        "value": [
+          "Nenhuma específica para este módulo"
+        ]
+      }
+    ]
+  },
+  "src/selectors/form-elements.ts": {
+    "summary": "Este arquivo define seletores específicos para elementos de formulário HTML, focando principalmente em textareas. Ele oferece uma abstração para identificar todos os textareas presentes na página, bem como uma variante que visa textareas editáveis, ou seja, que não possuem o atributo readonly. O código é parte de um módulo de seletores, facilitando a reutilização e manutenção ao centralizar a lógica de seleção de elementos DOM para formulários. A abordagem mantém termos técnicos em inglês para garantir precisão e interoperabilidade com outras partes do sistema, enquanto a documentação em português contextualiza o uso e limitações, como a necessidade de filtragem adicional para textareas editáveis devido a restrições da função findElementByHierarchy.",
+    "properties": [
+      {
+        "property": "project_metadata",
+        "subProperty": "name",
+        "value": [
+          "Form Elements Selector Module",
+          "Módulo para seleção de elementos de formulário HTML"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "domain",
+        "value": [
+          "Web Development",
+          "Front-end",
+          "Form Handling",
+          "UI Automation"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "current_phase",
+        "value": [
+          "Production",
+          "Maintenance"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "critical_business_rules",
+        "value": [
+          "Seletores devem identificar corretamente textareas editáveis para evitar manipulação incorreta",
+          "Não alterar atributos dos seletores sem validação"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "primary_language",
+        "value": [
+          "TypeScript 5.0"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "frameworks",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "databases",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "external_services",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "package_manager",
+        "value": [
+          "npm"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "design_pattern",
+        "value": [
+          "Modularization",
+          "Separation of Concerns"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "folder_structure",
+        "value": [
+          "src/types - Tipos TypeScript",
+          "src/selectors - Seletores de elementos DOM"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "naming_conventions",
+        "value": [
+          "camelCase para variáveis e constantes",
+          "PascalCase para tipos e interfaces",
+          "prefixo 'all' para seletores gerais",
+          "prefixo 'editable' para seletores filtrados"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "module_boundaries",
+        "value": [
+          "Módulos isolados por responsabilidade",
+          "Tipos importados para garantir consistência"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "style_guide",
+        "value": [
+          "Airbnb JavaScript Style Guide adaptado para TypeScript"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "linting_rules",
+        "value": [
+          "ESLint com regras para TypeScript"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "formatting",
+        "value": [
+          "Prettier com configuração padrão"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "documentation_style",
+        "value": [
+          "JSDoc"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "type_checking",
+        "value": [
+          "Strict TypeScript"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_framework",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_structure",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "coverage_requirements",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_patterns",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "mocking_approach",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "branch_strategy",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "commit_conventions",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "pr_requirements",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "ci_cd_pipeline",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "setup",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "install",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "dev",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "test",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "build",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "lint",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "format",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authentication_method",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authorization_rules",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "sensitive_data",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "security_headers",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "encryption_requirements",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "response_time_limits",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "optimization_priorities",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "caching_strategy",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "scalability_considerations",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_format",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "logging_strategy",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "monitoring_tools",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_recovery",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "critical_dependencies",
+        "value": [
+          "../types/index.js",
+          "findElementByHierarchy (externa)"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "deprecated_packages",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "version_constraints",
+        "value": [
+          "TypeScript >=5.0"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "internal_packages",
+        "value": [
+          "src/types",
+          "src/selectors"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "technical_debt",
+        "value": [
+          "Filtro de textareas readonly deve ser implementado externamente, o que pode gerar inconsistências"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "known_issues",
+        "value": [
+          "findElementByHierarchy não suporta isAbsent, exigindo filtragem manual"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "performance_bottlenecks",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "migration_status",
+        "value": []
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "code_review_focus",
+        "value": [
+          "Consistência de tipos",
+          "Clareza na documentação",
+          "Modularidade"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "documentation_requirements",
+        "value": [
+          "Uso de JSDoc para todos os seletores"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "communication_style",
+        "value": [
+          "Comentários claros em português com termos técnicos em inglês"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "decision_log",
+        "value": [
+          "Separação entre seletores gerais e filtrados para facilitar manutenção"
+        ]
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "api_style",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "versioning_strategy",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "response_formats",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "rate_limiting",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environments",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "deployment_method",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environment_variables",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "infrastructure_constraints",
+        "value": []
+      }
+    ]
+  },
+  "src/selectors/index.ts": {
+    "summary": "Este arquivo atua como um barrel export que centraliza e organiza a exportação de seletores (selectors) utilizados em diferentes partes da aplicação, como editores Monaco e Copilot, elementos de formulário e botões. Seu propósito funcional é facilitar o acesso e a manutenção dos seletores, agrupando-os por categoria e promovendo uma interface única para importação, o que melhora a modularidade e a escalabilidade do código. Além disso, reexporta tipos TypeScript relacionados a seletores, garantindo tipagem consistente e reutilizável em todo o sistema, sem alterar estado ou realizar transformações de dados, funcionando como um ponto de integração entre módulos.",
+    "properties": [
+      {
+        "property": "project_metadata",
+        "subProperty": "name",
+        "value": [
+          "Projeto Front-end de Seletores para Editor e UI"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "domain",
+        "value": [
+          "Desenvolvimento Front-end",
+          "Editor de Código",
+          "UI Components"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "current_phase",
+        "value": [
+          "Produção"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "critical_business_rules",
+        "value": [
+          "Consistência e tipagem correta dos seletores",
+          "Modularidade e organização clara dos exports"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "primary_language",
+        "value": [
+          "TypeScript 5.0"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "frameworks",
+        "value": [
+          "Nenhum framework explícito neste arquivo"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "databases",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "external_services",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "package_manager",
+        "value": [
+          "npm"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "design_pattern",
+        "value": [
+          "Barrel Export",
+          "Modularização"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "folder_structure",
+        "value": [
+          "src/selectors - Contém seletores organizados por categoria",
+          "src/types - Tipos TypeScript compartilhados"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "naming_conventions",
+        "value": [
+          "CamelCase para seletores e tipos",
+          "Arquivos com nomes kebab-case"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "module_boundaries",
+        "value": [
+          "Cada módulo exporta seletores específicos de sua área",
+          "Este arquivo atua como ponto único de exportação para facilitar importações"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "style_guide",
+        "value": [
+          "Airbnb JavaScript Style Guide adaptado para TypeScript"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "linting_rules",
+        "value": [
+          "ESLint com regras para TypeScript"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "formatting",
+        "value": [
+          "Prettier com configuração padrão"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "documentation_style",
+        "value": [
+          "JSDoc para comentários e documentação"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "type_checking",
+        "value": [
+          "Strict TypeScript"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_framework",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_structure",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "coverage_requirements",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_patterns",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "mocking_approach",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "branch_strategy",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "commit_conventions",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "pr_requirements",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "ci_cd_pipeline",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "setup",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "install",
+        "value": [
+          "npm install"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "dev",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "test",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "build",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "lint",
+        "value": [
+          "npm run lint"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "format",
+        "value": [
+          "npm run format"
+        ]
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authentication_method",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authorization_rules",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "sensitive_data",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "security_headers",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "encryption_requirements",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "response_time_limits",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "optimization_priorities",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "caching_strategy",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "scalability_considerations",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_format",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "logging_strategy",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "monitoring_tools",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_recovery",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "critical_dependencies",
+        "value": [
+          "Módulos locais de seletores e tipos",
+          "TypeScript para tipagem estática"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "deprecated_packages",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "version_constraints",
+        "value": [
+          "TypeScript >=5.0"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "internal_packages",
+        "value": [
+          "src/selectors",
+          "src/types"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "technical_debt",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "known_issues",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "performance_bottlenecks",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "migration_status",
+        "value": []
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "code_review_focus",
+        "value": [
+          "Consistência de exportações",
+          "Manutenção da tipagem correta"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "documentation_requirements",
+        "value": [
+          "Uso de JSDoc para documentação de módulos e funções"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "communication_style",
+        "value": [
+          "Comentários claros e objetivos"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "decision_log",
+        "value": [
+          "Adoção do padrão Barrel Export para organização de seletores"
+        ]
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "api_style",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "versioning_strategy",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "response_formats",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "rate_limiting",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environments",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "deployment_method",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environment_variables",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "infrastructure_constraints",
+        "value": []
+      }
+    ]
+  },
+  "src/selectors/monaco-editor.ts": {
+    "summary": "Este arquivo define seletores específicos para identificar elementos DOM relacionados ao Monaco Editor, uma biblioteca popular para edição de código em navegadores. O código exporta arrays de objetos que representam tags HTML com atributos, utilizando expressões regulares para capturar classes CSS específicas como 'monaco-editor', 'view-lines' e 'view-line'. Esses seletores são usados para localizar e manipular programaticamente componentes do editor, facilitando integrações, customizações ou testes automatizados. A abordagem modular e tipada garante precisão e reutilização em sistemas que interagem com a interface do Monaco Editor, habilitando funcionalidades como análise, estilização ou extração de conteúdo de forma confiável e eficiente.",
+    "properties": [
+      {
+        "property": "project_metadata",
+        "subProperty": "name",
+        "value": [
+          "Monaco Editor Integration",
+          "Seletores para manipulação de componentes do editor"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "domain",
+        "value": [
+          "Frontend Development",
+          "Code Editor Customization",
+          "Web UI Automation"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "current_phase",
+        "value": [
+          "Produção"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "critical_business_rules",
+        "value": [
+          "Seletores devem refletir com precisão a estrutura DOM do Monaco Editor",
+          "Manter compatibilidade com versões do editor"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "primary_language",
+        "value": [
+          "TypeScript 5.0"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "frameworks",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "databases",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "external_services",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "package_manager",
+        "value": [
+          "npm"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "design_pattern",
+        "value": [
+          "Modular Pattern",
+          "Typed Interface Definition"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "folder_structure",
+        "value": [
+          "selectors/: Contém seletores para componentes UI",
+          "types/: Definições de tipos TypeScript"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "naming_conventions",
+        "value": [
+          "camelCase para variáveis e constantes",
+          "PascalCase para tipos e interfaces",
+          "prefixo 'Selector' para arrays de seletores"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "module_boundaries",
+        "value": [
+          "Separação clara entre tipos e seletores",
+          "Importação explícita de tipos para garantir consistência"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "style_guide",
+        "value": [
+          "Airbnb JavaScript Style Guide adaptado para TypeScript"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "linting_rules",
+        "value": [
+          "ESLint com regras para TypeScript",
+          "Proibição de any implícito"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "formatting",
+        "value": [
+          "Prettier com configuração padrão"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "documentation_style",
+        "value": [
+          "JSDoc para documentação inline"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "type_checking",
+        "value": [
+          "Strict TypeScript"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_framework",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_structure",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "coverage_requirements",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_patterns",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "mocking_approach",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "branch_strategy",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "commit_conventions",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "pr_requirements",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "ci_cd_pipeline",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "setup",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "install",
+        "value": [
+          "npm install"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "dev",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "test",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "build",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "lint",
+        "value": [
+          "npm run lint"
+        ]
+      },
+      {
+        "property": "commands",
+        "subProperty": "format",
+        "value": [
+          "npm run format"
+        ]
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authentication_method",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authorization_rules",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "sensitive_data",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "security_headers",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "encryption_requirements",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "response_time_limits",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "optimization_priorities",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "caching_strategy",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "scalability_considerations",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_format",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "logging_strategy",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "monitoring_tools",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_recovery",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "critical_dependencies",
+        "value": [
+          "../types/index.js"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "deprecated_packages",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "version_constraints",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "internal_packages",
+        "value": [
+          "types"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "technical_debt",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "known_issues",
+        "value": [
+          "Fragilidade caso classes CSS do Monaco Editor mudem"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "performance_bottlenecks",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "migration_status",
+        "value": []
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "code_review_focus",
+        "value": [
+          "Consistência de tipagem",
+          "Clareza e precisão dos seletores",
+          "Documentação JSDoc"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "documentation_requirements",
+        "value": [
+          "Documentação inline com JSDoc para cada seletor"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "communication_style",
+        "value": [
+          "Comentários objetivos e técnicos"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "decision_log",
+        "value": [
+          "Uso de regex para maior flexibilidade na captura de classes CSS"
+        ]
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "api_style",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "versioning_strategy",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "response_formats",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "rate_limiting",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environments",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "deployment_method",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environment_variables",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "infrastructure_constraints",
+        "value": []
+      }
+    ]
+  },
+  "src/types/selectors.ts": {
+    "summary": "Este arquivo define tipos TypeScript estendidos para manipulação e validação de seletores DOM, focando em metadados que enriquecem a descrição, categorização e comportamento dos seletores. Ele estrutura interfaces para representar seletores com hierarquias de tags e atributos, além de fornecer mecanismos para validação e opções de busca configuráveis, como timeout e cache. O código habilita um controle rigoroso e documentado sobre a forma como seletores são definidos, validados e utilizados, facilitando a integração com sistemas que dependem de buscas precisas e confiáveis em documentos HTML ou similares.",
+    "properties": [
+      {
+        "property": "project_metadata",
+        "subProperty": "name",
+        "value": [
+          "Selector Metadata Management System"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "domain",
+        "value": [
+          "Web Automation",
+          "UI Testing",
+          "DOM Manipulation"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "current_phase",
+        "value": [
+          "Production"
+        ]
+      },
+      {
+        "property": "project_metadata",
+        "subProperty": "critical_business_rules",
+        "value": [
+          "Selector uniqueness",
+          "Accurate multiplicity handling",
+          "Validation before search"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "primary_language",
+        "value": [
+          "TypeScript 5.0"
+        ]
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "frameworks",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "databases",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "external_services",
+        "value": []
+      },
+      {
+        "property": "technical_stack",
+        "subProperty": "package_manager",
+        "value": [
+          "npm"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "design_pattern",
+        "value": [
+          "Modular Typing",
+          "Interface Segregation"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "folder_structure",
+        "value": [
+          "types/ - definição de tipos e interfaces",
+          "modules/ - lógica funcional (não presente neste arquivo)"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "naming_conventions",
+        "value": [
+          "PascalCase para interfaces",
+          "camelCase para propriedades"
+        ]
+      },
+      {
+        "property": "architecture_patterns",
+        "subProperty": "module_boundaries",
+        "value": [
+          "Separação clara entre tipos, validação e busca"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "style_guide",
+        "value": [
+          "TypeScript ESLint Recommended"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "linting_rules",
+        "value": [
+          "@typescript-eslint/no-explicit-any",
+          "strict typing enforced"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "formatting",
+        "value": [
+          "Prettier with default config"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "documentation_style",
+        "value": [
+          "JSDoc"
+        ]
+      },
+      {
+        "property": "code_standards",
+        "subProperty": "type_checking",
+        "value": [
+          "Strict TypeScript"
+        ]
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_framework",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_structure",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "coverage_requirements",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "test_patterns",
+        "value": []
+      },
+      {
+        "property": "testing_strategy",
+        "subProperty": "mocking_approach",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "branch_strategy",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "commit_conventions",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "pr_requirements",
+        "value": []
+      },
+      {
+        "property": "development_workflow",
+        "subProperty": "ci_cd_pipeline",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "setup",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "install",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "dev",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "test",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "build",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "lint",
+        "value": []
+      },
+      {
+        "property": "commands",
+        "subProperty": "format",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authentication_method",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "authorization_rules",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "sensitive_data",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "security_headers",
+        "value": []
+      },
+      {
+        "property": "security_constraints",
+        "subProperty": "encryption_requirements",
+        "value": []
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "response_time_limits",
+        "value": [
+          "Timeout padrão de busca: 10000ms"
+        ]
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "optimization_priorities",
+        "value": [
+          "Busca eficiente com cache opcional"
+        ]
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "caching_strategy",
+        "value": [
+          "Cache habilitável via useCache boolean"
+        ]
+      },
+      {
+        "property": "performance_requirements",
+        "subProperty": "scalability_considerations",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_format",
+        "value": [
+          "Array de strings para erros e avisos"
+        ]
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "logging_strategy",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "monitoring_tools",
+        "value": []
+      },
+      {
+        "property": "error_handling",
+        "subProperty": "error_recovery",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "critical_dependencies",
+        "value": [
+          "./index.js (TagWithAttributes)"
+        ]
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "deprecated_packages",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "version_constraints",
+        "value": []
+      },
+      {
+        "property": "dependencies_context",
+        "subProperty": "internal_packages",
+        "value": [
+          "./index.js"
+        ]
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "technical_debt",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "known_issues",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "performance_bottlenecks",
+        "value": []
+      },
+      {
+        "property": "current_challenges",
+        "subProperty": "migration_status",
+        "value": []
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "code_review_focus",
+        "value": [
+          "Clareza na tipagem",
+          "Cobertura de validação",
+          "Documentação JSDoc"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "documentation_requirements",
+        "value": [
+          "JSDoc para todas as interfaces e propriedades"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "communication_style",
+        "value": [
+          "Comentários técnicos em português, termos técnicos em inglês"
+        ]
+      },
+      {
+        "property": "team_preferences",
+        "subProperty": "decision_log",
+        "value": [
+          "Separação clara entre metadados, validação e busca"
+        ]
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "api_style",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "versioning_strategy",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "response_formats",
+        "value": []
+      },
+      {
+        "property": "api_specifications",
+        "subProperty": "rate_limiting",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environments",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "deployment_method",
+        "value": []
+      },
+      {
+        "property": "deployment_context",
+        "subProperty": "environment_variables",
+        "value": []
       },
       {
         "property": "deployment_context",
