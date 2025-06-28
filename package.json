@@ -19,7 +19,10 @@
     "format": "prettier --write src/**/*.ts",
     "format:check": "prettier --check src/**/*.ts",
     "prepare": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "copilot:setup": "bash setup-copilot.sh",
+    "copilot:setup:win": "setup-copilot.bat",
+    "copilot:validate": "node -e \"console.log('🔍 Validating Copilot configuration...'); const fs = require('fs'); const paths = ['.github/copilot-instructions.md', '.vscode/settings.json', '.vscode/extensions.json']; paths.forEach(p => console.log(fs.existsSync(p) ? '✅' : '❌', p)); console.log('✅ Validation complete!');\""
   },
   "keywords": [
     "dom",
