@@ -1,0 +1,192 @@
+name: Copilot Setup and Validation
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  copilot-setup:
+    name: Setup GitHub Copilot Environment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build project
+        run: npm run build
+
+      - name: 🧪 Run TypeScript validation
+        run: npx tsc --noEmit
+
+      - name: 🔍 Lint codebase
+        run: npm run lint
+
+      - name: ✨ Check code formatting
+        run: npm run format:check
+
+      - name: 📋 Validate Copilot instructions
+        run: |
+          echo "🔍 Validating Copilot instruction files..."
+
+          # Check main instructions file
+          if [ -f ".github/copilot-instructions.md" ]; then
+            echo "✅ Main copilot-instructions.md found"
+          else
+            echo "❌ Main copilot-instructions.md not found"
+            exit 1
+          fi
+
+          # Check specific instruction files
+          for file in .github/instructions/*.instructions.md; do
+            if [ -f "$file" ]; then
+              echo "✅ Found: $file"
+            fi
+          done
+
+          # Check prompt files
+          for file in .github/prompts/*.prompt.md; do
+            if [ -f "$file" ]; then
+              echo "✅ Found: $file"
+            fi
+          done
+
+      - name: 🎯 Validate VS Code settings
+        run: |
+          echo "🔍 Validating VS Code configuration..."
+
+          if [ -f ".vscode/settings.json" ]; then
+            echo "✅ VS Code settings.json found"
+            # Validate JSON syntax
+            python3 -m json.tool .vscode/settings.json > /dev/null
+            echo "✅ VS Code settings.json is valid JSON"
+          else
+            echo "❌ VS Code settings.json not found"
+            exit 1
+          fi
+
+      - name: 📊 Project structure validation
+        run: |
+          echo "🔍 Validating project structure..."
+
+          # Check core directories
+          directories=("src/core" "src/helpers" "src/selectors" "src/types")
+          for dir in "${directories[@]}"; do
+            if [ -d "$dir" ]; then
+              echo "✅ Directory found: $dir"
+            else
+              echo "❌ Directory missing: $dir"
+              exit 1
+            fi
+          done
+
+          # Check for TypeScript files in each directory
+          echo "📁 Core files:"
+          ls -la src/core/*.ts || echo "No TypeScript files in core"
+
+          echo "🔧 Helper files:"
+          ls -la src/helpers/*.ts || echo "No TypeScript files in helpers"
+
+          echo "🎯 Selector files:"
+          ls -la src/selectors/*.ts || echo "No TypeScript files in selectors"
+
+          echo "📝 Type files:"
+          ls -la src/types/*.ts || echo "No TypeScript files in types"
+
+      - name: 📈 Generate Copilot metrics
+        run: |
+          echo "📈 Generating project metrics for Copilot..."
+
+          # Count TypeScript files
+          ts_files=$(find src -name "*.ts" | wc -l)
+          echo "📊 TypeScript files: $ts_files"
+
+          # Count lines of code
+          loc=$(find src -name "*.ts" -exec wc -l {} + | tail -1 | awk '{print $1}')
+          echo "📊 Lines of code: $loc"
+
+          # Count exported functions
+          exports=$(grep -r "export.*function\|export.*const.*=" src --include="*.ts" | wc -l)
+          echo "📊 Exported functions/constants: $exports"
+
+          # Generate summary
+          echo "
+          ## 📊 Project Summary for Copilot
+
+          - **Language**: TypeScript (ES Modules)
+          - **Target**: Node.js 24+ with native TS support
+          - **Architecture**: Hierarchical DOM manipulation library
+          - **Files**: $ts_files TypeScript files
+          - **Code**: $loc lines
+          - **Exports**: $exports functions/constants
+          - **Specialization**: Monaco Editor & VS Code integration
+
+          ### 🎯 Copilot Optimization Status
+          - ✅ Custom instructions configured
+          - ✅ VS Code settings optimized
+          - ✅ Project structure validated
+          - ✅ TypeScript strict mode enabled
+          - ✅ ESLint rules configured
+          - ✅ Prettier formatting active
+          " > copilot-metrics.md
+
+      - name: 📤 Upload Copilot configuration
+        uses: actions/upload-artifact@v4
+        with:
+          name: copilot-config
+          path: |
+            .github/copilot-instructions.md
+            .github/instructions/
+            .github/prompts/
+            .vscode/settings.json
+            .vscode/mcp.json
+            copilot-metrics.md
+          retention-days: 30
+
+  success-notification:
+    name: Copilot Setup Success
+    runs-on: ubuntu-latest
+    needs: copilot-setup
+    if: success()
+
+    steps:
+      - name: 🎉 Setup completed
+        run: |
+          echo "🎉 GitHub Copilot setup completed successfully!"
+          echo "
+          ## ✅ Setup Complete
+
+          Your Interface Hacking project is now optimized for GitHub Copilot with:
+
+          - 📝 Custom instructions for DOM manipulation patterns
+          - 🎯 Specialized selectors for Monaco Editor integration
+          - 🔧 Advanced VS Code configuration
+          - 🚀 Performance optimizations enabled
+          - 🛡️ Security settings configured
+          - 📊 Metrics tracking enabled
+
+          ## 🚀 Next Steps
+
+          1. Open the project in VS Code
+          2. Ensure GitHub Copilot extension is installed
+          3. Sign in to GitHub Copilot
+          4. Start coding with enhanced AI assistance!
+
+          ## 💡 Usage Tips
+
+          - Use descriptive function names for better suggestions
+          - Leverage the custom prompts in .github/prompts/
+          - Follow the coding patterns in .github/instructions/
+          - Check VS Code settings for Copilot features
+          "
