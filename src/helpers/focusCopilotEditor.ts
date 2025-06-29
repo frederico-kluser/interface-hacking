@@ -24,7 +24,7 @@ export const focusCopilotEditor = async (): Promise<boolean> => {
     // 3. Em seguida no viewLines
     editor.viewLines,
     // 4. Finalmente na view-line específica
-    editor.viewLines ? (findElementsByHierarchy(viewLineSelector, editor.viewLines)[0] || null) : null,
+    editor.viewLines ? (findElementsByHierarchy({ hierarchy: viewLineSelector, from: editor.viewLines })[0] || null) : null,
   ].filter((element): element is HTMLElement => element !== null);
 
   // Aplica foco em sequência com cliques e chamadas diretas de focus

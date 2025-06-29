@@ -111,10 +111,10 @@ export const findMonacoDropdowns = (): DropdownElement[] => {
     // eslint-disable-next-line no-console
     console.log('🔄 Usando método fallback...');
 
-    const dropdowns = findElementsByHierarchy(monacoDropdownSelector, document.body);
+    const dropdowns = findElementsByHierarchy({ hierarchy: monacoDropdownSelector, from: document.body });
 
     for (const dropdown of dropdowns) {
-      const buttons = findElementsByHierarchy(monacoDropdownButtonSelector, dropdown);
+      const buttons = findElementsByHierarchy({ hierarchy: monacoDropdownButtonSelector, from: dropdown });
       const button = buttons[0] || null;
 
       if (button) {

@@ -31,7 +31,7 @@ const waitElementsByHierarchy = (
 
     // Validação inicial para modo disappear
     if (waitMode === 'disappear') {
-      const initialElements = findElementsByHierarchy(hierarchy, config.from);
+      const initialElements = findElementsByHierarchy({ hierarchy, from: config.from });
       if (initialElements.length === 0) {
         reject(
           new Error(
@@ -52,7 +52,7 @@ const waitElementsByHierarchy = (
 
     const interval = setInterval(() => {
       console.log(`retry waitElementsByHierarchy (${waitMode} mode): ${JSON.stringify(hierarchy)}`);
-      const elements = findElementsByHierarchy(hierarchy, config.from);
+      const elements = findElementsByHierarchy({ hierarchy, from: config.from });
 
       if (waitMode === 'appear') {
         // Modo aparecer: resolve quando encontra elementos

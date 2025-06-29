@@ -148,7 +148,7 @@ export const insertTextInCopilot = async (text: string): Promise<boolean> => {
   }
 
   // Método 2: Busca pelo native-edit-context (elemento de entrada real do Monaco)
-  const nativeContexts = findElementsByHierarchy(nativeEditContextSelector, editor.container);
+  const nativeContexts = findElementsByHierarchy({ hierarchy: nativeEditContextSelector, from: editor.container });
   const nativeContext = nativeContexts[0] || null;
   if (nativeContext) {
     // eslint-disable-next-line no-console
@@ -188,10 +188,10 @@ export const insertTextInCopilot = async (text: string): Promise<boolean> => {
   }
 
   // Método 3: Busca pela textarea específica do Monaco
-  const textareas = findElementsByHierarchy(
-    allTextareasSelector,
-    editor.container,
-  ) as HTMLTextAreaElement[];
+  const textareas = findElementsByHierarchy({
+    hierarchy: allTextareasSelector,
+    from: editor.container,
+  }) as HTMLTextAreaElement[];
   for (const textarea of textareas) {
     if (!textarea.readOnly && textarea.classList.contains('ime-text-area')) {
       // eslint-disable-next-line no-console
@@ -215,7 +215,7 @@ export const insertTextInCopilot = async (text: string): Promise<boolean> => {
   }
 
   // Método 5: Manipulação do contentEditable com seleção adequada
-  const viewLines = findElementsByHierarchy(interactiveViewLineSelector, document.body);
+  const viewLines = findElementsByHierarchy({ hierarchy: interactiveViewLineSelector, from: document.body });
   const viewLine = viewLines[0] || null;
   if (viewLine) {
     // eslint-disable-next-line no-console

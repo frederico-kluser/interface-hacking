@@ -17,7 +17,7 @@ interface MonacoEditor {
  * @returns {MonacoEditor | null} Objeto com elementos do editor ou null se não encontrado
  */
 export const findCopilotEditor = (): MonacoEditor | null => {
-  const editors = findElementsByHierarchy(monacoEditorsSelector, document.body);
+  const editors = findElementsByHierarchy({ hierarchy: monacoEditorsSelector, from: document.body });
 
   for (const editor of editors) {
     // Verifica se o editor está dentro de interactive-input-part ou interactive-input-editor
@@ -42,7 +42,7 @@ export const findCopilotEditor = (): MonacoEditor | null => {
     }
 
     if (inputPart || parent?.classList.contains('interactive-input-editor')) {
-      const viewLinesElements = findElementsByHierarchy(viewLinesSelector, editor);
+      const viewLinesElements = findElementsByHierarchy({ hierarchy: viewLinesSelector, from: editor });
       const viewLines = viewLinesElements[0] || null;
       return {
         container: editor,

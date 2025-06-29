@@ -48,7 +48,7 @@ export const extractDropdownItemInfo = (row: HTMLElement): DropdownItem => {
  * @returns {HTMLElement[]} Array com elementos visíveis do dropdown
  */
 export const findVisibleDropdownItems = (): HTMLElement[] => {
-  const dropdownListRows = findElementsByHierarchy(monacoListElementSelector, document.body);
+  const dropdownListRows = findElementsByHierarchy({ hierarchy: monacoListElementSelector, from: document.body });
   return filterVisibleDropdownRows(dropdownListRows);
 };
 
@@ -60,7 +60,7 @@ export const listDropdownItems = (): DropdownItem[] => {
   // eslint-disable-next-line no-console
   console.log('🎯 Monaco dropdown list-row detectado! Listando itens do dropdown:');
 
-  const dropdownListRows = findElementsByHierarchy(monacoListElementSelector, document.body);
+  const dropdownListRows = findElementsByHierarchy({ hierarchy: monacoListElementSelector, from: document.body });
   const visibleRows = filterVisibleDropdownRows(dropdownListRows);
 
   // eslint-disable-next-line no-console
