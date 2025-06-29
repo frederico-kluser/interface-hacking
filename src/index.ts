@@ -7,27 +7,18 @@
 // Imports das funções helper
 import { insertTextInCopilot } from './helpers/insertTextInCopilot.js';
 import {
+  captureDropdownOptions,
+  captureDropdownOptionsFast,
   closeMonacoDropdown,
+  debugDropdownClick,
   debugFindPossibleDropdowns,
   findDropdownsDirectly,
   listMonacoDropdowns,
   testDropdownTrigger,
+  triggerDropdownWithTrustedEvents,
   triggerMonacoDropdown,
   type DropdownElement,
 } from './helpers/triggerMonacoDropdown.js';
-
-// Exportações públicas da biblioteca
-export {
-  closeMonacoDropdown,
-  debugFindPossibleDropdowns,
-  findDropdownsDirectly,
-  insertTextInCopilot,
-  listMonacoDropdowns,
-  testDropdownTrigger,
-  triggerMonacoDropdown,
-  type DropdownElement,
-};
-/* eslint-disable no-console */
 
 /** Interface para a API global do Copilot */
 type CopilotAPI = (text: string) => Promise<boolean>;
@@ -40,6 +31,14 @@ interface DropdownAPI {
   close: (type?: 'agent' | 'model' | 'any') => Promise<boolean>;
   /** Lista dropdowns disponíveis */
   list: () => DropdownElement[];
+  /** Captura HTML das opções do dropdown */
+  capture: (type?: 'agent' | 'model' | 'any') => Promise<boolean>;
+  /** Captura RÁPIDA com múltiplos timings */
+  fastCapture: (type?: 'agent' | 'model' | 'any') => Promise<boolean>;
+  /** Métodos trusted para contornar proteções */
+  trusted: (type?: 'agent' | 'model' | 'any') => Promise<boolean>;
+  /** Diagnóstico: Por que o dropdown não abre? */
+  diagnose: (type?: 'agent' | 'model' | 'any') => Promise<void>;
   /** Debug: analisa estrutura DOM para encontrar dropdowns */
   debug: () => void;
   /** Teste: executa debug específico de trigger */
@@ -97,6 +96,22 @@ declare global {
     list: (): DropdownElement[] => {
       console.log('📋 Listando dropdowns...');
       return listMonacoDropdowns();
+    },
+    capture: async (type = 'any'): Promise<boolean> => {
+      console.log('📸 Capturando opções do dropdown...');
+      return captureDropdownOptions(type);
+    },
+    fastCapture: async (type = 'any'): Promise<boolean> => {
+      console.log('⚡ Captura RÁPIDA com múltiplos timings...');
+      return captureDropdownOptionsFast(type);
+    },
+    diagnose: async (type = 'any'): Promise<void> => {
+      console.log('🔬 Diagnosticando por que o dropdown não abre...');
+      return debugDropdownClick(type);
+    },
+    trusted: async (type = 'any'): Promise<boolean> => {
+      console.log('🔓 Usando métodos trusted para contornar proteções...');
+      return triggerDropdownWithTrustedEvents(type);
     },
     debug: (): void => {
       console.log('🔧 DEBUG: Executando análise detalhada...');
