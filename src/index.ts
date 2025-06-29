@@ -7,15 +7,11 @@
 // Imports das funções helper
 import { insertTextInCopilot } from './helpers/insertTextInCopilot.js';
 import {
-  captureDropdownOptions,
-  captureDropdownOptionsFast,
   closeMonacoDropdown,
-  debugDropdownClick,
   debugFindPossibleDropdowns,
   findDropdownsDirectly,
   listMonacoDropdowns,
   testDropdownTrigger,
-  triggerDropdownWithTrustedEvents,
   triggerMonacoDropdown,
   type DropdownElement,
 } from './helpers/triggerMonacoDropdown.js';
@@ -31,14 +27,6 @@ interface DropdownAPI {
   close: (type?: 'agent' | 'model' | 'any') => Promise<boolean>;
   /** Lista dropdowns disponíveis */
   list: () => DropdownElement[];
-  /** Captura HTML das opções do dropdown */
-  capture: (type?: 'agent' | 'model' | 'any') => Promise<boolean>;
-  /** Captura RÁPIDA com múltiplos timings */
-  fastCapture: (type?: 'agent' | 'model' | 'any') => Promise<boolean>;
-  /** Métodos trusted para contornar proteções */
-  trusted: (type?: 'agent' | 'model' | 'any') => Promise<boolean>;
-  /** Diagnóstico: Por que o dropdown não abre? */
-  diagnose: (type?: 'agent' | 'model' | 'any') => Promise<void>;
   /** Debug: analisa estrutura DOM para encontrar dropdowns */
   debug: () => void;
   /** Teste: executa debug específico de trigger */
@@ -86,60 +74,67 @@ declare global {
   // API Global para controle de dropdowns
   window.dropdown = {
     trigger: async (type = 'any'): Promise<boolean> => {
+      // eslint-disable-next-line no-console
       console.log('🔽 Executando comando dropdown...');
       return triggerMonacoDropdown(type);
     },
     close: async (type = 'any'): Promise<boolean> => {
+      // eslint-disable-next-line no-console
       console.log('🔒 Executando comando fechar dropdown...');
       return closeMonacoDropdown(type);
     },
     list: (): DropdownElement[] => {
-      console.log('📋 Listando dropdowns...');
+      // eslint-disable-next-line no-console
+      console.log('� Listando dropdowns...');
       return listMonacoDropdowns();
     },
-    capture: async (type = 'any'): Promise<boolean> => {
-      console.log('📸 Capturando opções do dropdown...');
-      return captureDropdownOptions(type);
-    },
-    fastCapture: async (type = 'any'): Promise<boolean> => {
-      console.log('⚡ Captura RÁPIDA com múltiplos timings...');
-      return captureDropdownOptionsFast(type);
-    },
-    diagnose: async (type = 'any'): Promise<void> => {
-      console.log('🔬 Diagnosticando por que o dropdown não abre...');
-      return debugDropdownClick(type);
-    },
-    trusted: async (type = 'any'): Promise<boolean> => {
-      console.log('🔓 Usando métodos trusted para contornar proteções...');
-      return triggerDropdownWithTrustedEvents(type);
-    },
     debug: (): void => {
+      // eslint-disable-next-line no-console
       console.log('🔧 DEBUG: Executando análise detalhada...');
       debugFindPossibleDropdowns();
       findDropdownsDirectly();
     },
     test: async (): Promise<void> => {
+      // eslint-disable-next-line no-console
       console.log('🧪 TESTE: Executando debug de trigger...');
       await testDropdownTrigger();
     },
   };
 
+  // eslint-disable-next-line no-console
   console.log('\n✅ Sistema pronto!');
+  // eslint-disable-next-line no-console
   console.log('  copilot("quanto é 1 + 1 ?") - Insere texto e funciona na primeira tentativa');
+  // eslint-disable-next-line no-console
   console.log('  dropdown.trigger("agent") - Abre dropdown de agente');
+  // eslint-disable-next-line no-console
   console.log('  dropdown.trigger("model") - Abre dropdown de modelo');
+  // eslint-disable-next-line no-console
   console.log('  dropdown.close("agent") - Fecha dropdown de agente');
+  // eslint-disable-next-line no-console
   console.log('  dropdown.close("model") - Fecha dropdown de modelo');
+  // eslint-disable-next-line no-console
   console.log('  dropdown.list() - Lista dropdowns disponíveis');
+  // eslint-disable-next-line no-console
   console.log('  dropdown.debug() - Análise DEBUG de dropdowns');
-  console.log('  dropdown.test() - Teste específico de trigger (NOVO!)');
+  // eslint-disable-next-line no-console
+  console.log('  dropdown.test() - Teste específico de trigger');
+  // eslint-disable-next-line no-console
   console.log('  debugDropdowns() - Função de debug independente');
+  // eslint-disable-next-line no-console
   console.log('  📋 Métodos disponíveis:');
+  // eslint-disable-next-line no-console
   console.log('    1. Monaco Editor API (direto)');
+  // eslint-disable-next-line no-console
   console.log('    2. Native Edit Context');
+  // eslint-disable-next-line no-console
   console.log('    3. IME Textarea');
+  // eslint-disable-next-line no-console
   console.log('    4. Simulação de digitação');
+  // eslint-disable-next-line no-console
   console.log('    5. ContentEditable');
+  // eslint-disable-next-line no-console
   console.log('    6. Clipboard (fallback)');
-  console.log('    7. Dropdown Control (NOVO!)');
+  // eslint-disable-next-line no-console
+  console.log('    7. Dropdown Control');
 })();
