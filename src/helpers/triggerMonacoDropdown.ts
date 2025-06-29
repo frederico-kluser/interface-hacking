@@ -220,10 +220,7 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
         // eslint-disable-next-line no-console
         console.log('🎯 Monaco dropdown list-row detectado! Listando itens do dropdown:');
 
-        const dropdownListRows = findElementsByHierarchy(
-          monacoDropdownListRowSelector,
-          document.body,
-        );
+        const dropdownListRows = findElementsByHierarchy(monacoDropdownRowSelector, document.body);
 
         // Filtra apenas os elementos que estão realmente visíveis (dropdown aberto)
         const visibleRows = dropdownListRows.filter((row) => {
