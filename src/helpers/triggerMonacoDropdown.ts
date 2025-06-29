@@ -1,7 +1,9 @@
 import findElementByHierarchy from '../core/findElementByHierarchy.js';
 import findElementsByHierarchy from '../core/findElementsByHierarchy.js';
+import waitElementByHierarchy from '../core/waitElementByHierarchy.js';
 import monacoDropdownButtonSelector from '../selectors/monaco-dropdown-button.js';
 import monacoDropdownSelector from '../selectors/monaco-dropdown.js';
+import monacoListRowSelector from '../selectors/monaco-list-row.js';
 import { wait } from './wait.js';
 
 /**
@@ -183,11 +185,58 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
     targetDropdown.button.click();
     await wait(200);
 
+    // eslint-disable-next-line no-debugger
+    debugger;
+
+    // Aguarda os elementos monaco-list-row aparecerem e lista todos
+    waitElementByHierarchy(monacoListRowSelector, {
+      limitTime: 5000,
+      from: document.body,
+    })
+      .then(() => {
+        // eslint-disable-next-line no-debugger
+        debugger;
+        // eslint-disable-next-line no-console
+        console.log('🎯 Monaco-list-row detectado! Listando todos os itens do dropdown:');
+
+        const allListRows = findElementsByHierarchy(monacoListRowSelector, document.body);
+
+        allListRows.forEach((row, index) => {
+          const title = row.querySelector('.title')?.textContent?.trim() || '';
+          const description = row.querySelector('.description')?.textContent?.trim() || '';
+          const ariaLabel = row.getAttribute('aria-label') || '';
+          const isChecked = row.getAttribute('aria-checked') === 'true';
+
+          // eslint-disable-next-line no-console
+          console.log(`  📋 Item ${index + 1}:`);
+          // eslint-disable-next-line no-console
+          console.log(`    Título: "${title}"`);
+          // eslint-disable-next-line no-console
+          console.log(`    Descrição: "${description}"`);
+          // eslint-disable-next-line no-console
+          console.log(`    Aria-label: "${ariaLabel}"`);
+          // eslint-disable-next-line no-console
+          console.log(`    Selecionado: ${isChecked ? '✅' : '❌'}`);
+          // eslint-disable-next-line no-console
+          console.log(`    Elemento:`, row);
+        });
+
+        // eslint-disable-next-line no-console
+        console.log(`🎯 Total de itens encontrados no dropdown: ${allListRows.length}`);
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-debugger
+        debugger;
+        // eslint-disable-next-line no-console
+        console.warn('⚠️ Timeout aguardando monaco-list-row aparecer:', error);
+      });
+
     // Verifica se abriu
     let newState = targetDropdown.button.getAttribute('aria-expanded');
     if (newState === 'true') {
       // eslint-disable-next-line no-console
       console.log('✅ Dropdown aberto com sucesso via click direto');
+
       return true;
     }
 
@@ -225,6 +274,46 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
     if (newState === 'true') {
       // eslint-disable-next-line no-console
       console.log('✅ Dropdown aberto com sucesso via eventos de mouse');
+
+      // Aguarda os elementos monaco-list-row aparecerem e lista todos
+      waitElementByHierarchy(monacoListRowSelector, {
+        limitTime: 5000,
+        from: document.body,
+      })
+        .then(() => {
+          // eslint-disable-next-line no-console
+          console.log('🎯 Monaco-list-row detectado! Listando todos os itens do dropdown:');
+
+          const allListRows = findElementsByHierarchy(monacoListRowSelector, document.body);
+
+          allListRows.forEach((row, index) => {
+            const title = row.querySelector('.title')?.textContent?.trim() || '';
+            const description = row.querySelector('.description')?.textContent?.trim() || '';
+            const ariaLabel = row.getAttribute('aria-label') || '';
+            const isChecked = row.getAttribute('aria-checked') === 'true';
+
+            // eslint-disable-next-line no-console
+            console.log(`  📋 Item ${index + 1}:`);
+            // eslint-disable-next-line no-console
+            console.log(`    Título: "${title}"`);
+            // eslint-disable-next-line no-console
+            console.log(`    Descrição: "${description}"`);
+            // eslint-disable-next-line no-console
+            console.log(`    Aria-label: "${ariaLabel}"`);
+            // eslint-disable-next-line no-console
+            console.log(`    Selecionado: ${isChecked ? '✅' : '❌'}`);
+            // eslint-disable-next-line no-console
+            console.log(`    Elemento:`, row);
+          });
+
+          // eslint-disable-next-line no-console
+          console.log(`🎯 Total de itens encontrados no dropdown: ${allListRows.length}`);
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.warn('⚠️ Timeout aguardando monaco-list-row aparecer:', error);
+        });
+
       return true;
     }
 
@@ -249,6 +338,46 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
     if (newState === 'true') {
       // eslint-disable-next-line no-console
       console.log('✅ Dropdown aberto com sucesso via Enter');
+
+      // Aguarda os elementos monaco-list-row aparecerem e lista todos
+      waitElementByHierarchy(monacoListRowSelector, {
+        limitTime: 5000,
+        from: document.body,
+      })
+        .then(() => {
+          // eslint-disable-next-line no-console
+          console.log('🎯 Monaco-list-row detectado! Listando todos os itens do dropdown:');
+
+          const allListRows = findElementsByHierarchy(monacoListRowSelector, document.body);
+
+          allListRows.forEach((row, index) => {
+            const title = row.querySelector('.title')?.textContent?.trim() || '';
+            const description = row.querySelector('.description')?.textContent?.trim() || '';
+            const ariaLabel = row.getAttribute('aria-label') || '';
+            const isChecked = row.getAttribute('aria-checked') === 'true';
+
+            // eslint-disable-next-line no-console
+            console.log(`  📋 Item ${index + 1}:`);
+            // eslint-disable-next-line no-console
+            console.log(`    Título: "${title}"`);
+            // eslint-disable-next-line no-console
+            console.log(`    Descrição: "${description}"`);
+            // eslint-disable-next-line no-console
+            console.log(`    Aria-label: "${ariaLabel}"`);
+            // eslint-disable-next-line no-console
+            console.log(`    Selecionado: ${isChecked ? '✅' : '❌'}`);
+            // eslint-disable-next-line no-console
+            console.log(`    Elemento:`, row);
+          });
+
+          // eslint-disable-next-line no-console
+          console.log(`🎯 Total de itens encontrados no dropdown: ${allListRows.length}`);
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.warn('⚠️ Timeout aguardando monaco-list-row aparecer:', error);
+        });
+
       return true;
     }
 
