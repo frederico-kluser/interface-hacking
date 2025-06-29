@@ -2,8 +2,9 @@ import findElementByHierarchy from '../core/findElementByHierarchy.js';
 import findElementsByHierarchy from '../core/findElementsByHierarchy.js';
 import waitElementByHierarchy from '../core/waitElementByHierarchy.js';
 import monacoDropdownButtonSelector from '../selectors/monaco-dropdown-button.js';
+import monacoDropdownListRowSelector from '../selectors/monaco-dropdown-list-row.js';
+import monacoDropdownRowSelector from '../selectors/monaco-dropdown-row.js';
 import monacoDropdownSelector from '../selectors/monaco-dropdown.js';
-import monacoListRowSelector from '../selectors/monaco-list-row.js';
 import { wait } from './wait.js';
 
 /**
@@ -23,6 +24,26 @@ export interface DropdownElement {
   type: DropdownType;
   /** Label atual do dropdown */
   label: string;
+}
+
+/**
+ * Interface para representar um item do dropdown
+ */
+export interface DropdownItem {
+  /** Elemento HTML do item */
+  element: HTMLElement;
+  /** Título do item */
+  title: string;
+  /** Descrição do item */
+  description: string;
+  /** Aria-label do item */
+  ariaLabel: string;
+  /** Se o item está selecionado */
+  isSelected: boolean;
+  /** Índice do item no dropdown */
+  dataIndex: number;
+  /** Role do elemento */
+  role: string;
 }
 
 /**
@@ -189,7 +210,7 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
     debugger;
 
     // Aguarda os elementos monaco-list-row aparecerem e lista todos
-    waitElementByHierarchy(monacoListRowSelector, {
+    waitElementByHierarchy(monacoDropdownRowSelector, {
       limitTime: 5000,
       from: document.body,
     })
@@ -197,18 +218,39 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
         // eslint-disable-next-line no-debugger
         debugger;
         // eslint-disable-next-line no-console
-        console.log('🎯 Monaco-list-row detectado! Listando todos os itens do dropdown:');
+        console.log('🎯 Monaco dropdown list-row detectado! Listando itens do dropdown:');
 
-        const allListRows = findElementsByHierarchy(monacoListRowSelector, document.body);
+        const dropdownListRows = findElementsByHierarchy(
+          monacoDropdownListRowSelector,
+          document.body,
+        );
 
-        allListRows.forEach((row, index) => {
+        // Filtra apenas os elementos que estão realmente visíveis (dropdown aberto)
+        const visibleRows = dropdownListRows.filter((row) => {
+          const contextView = row.closest('.context-view');
+          return (
+            contextView &&
+            contextView instanceof HTMLElement &&
+            contextView.style.display !== 'none' &&
+            !contextView.hasAttribute('aria-hidden')
+          );
+        });
+
+        // eslint-disable-next-line no-console
+        console.log(`🔍 Total de rows encontrados: ${dropdownListRows.length}`);
+        // eslint-disable-next-line no-console
+        console.log(`👁️ Rows visíveis (dropdown aberto): ${visibleRows.length}`);
+
+        visibleRows.forEach((row, index) => {
           const title = row.querySelector('.title')?.textContent?.trim() || '';
           const description = row.querySelector('.description')?.textContent?.trim() || '';
           const ariaLabel = row.getAttribute('aria-label') || '';
           const isChecked = row.getAttribute('aria-checked') === 'true';
+          const dataIndex = row.getAttribute('data-index') || '';
+          const roleAttribute = row.getAttribute('role') || '';
 
           // eslint-disable-next-line no-console
-          console.log(`  📋 Item ${index + 1}:`);
+          console.log(`  📋 Item ${index + 1} (data-index: ${dataIndex}):`);
           // eslint-disable-next-line no-console
           console.log(`    Título: "${title}"`);
           // eslint-disable-next-line no-console
@@ -216,19 +258,23 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
           // eslint-disable-next-line no-console
           console.log(`    Aria-label: "${ariaLabel}"`);
           // eslint-disable-next-line no-console
+          console.log(`    Role: "${roleAttribute}"`);
+          // eslint-disable-next-line no-console
           console.log(`    Selecionado: ${isChecked ? '✅' : '❌'}`);
+          // eslint-disable-next-line no-console
+          console.log(`    Classes: "${row.className}"`);
           // eslint-disable-next-line no-console
           console.log(`    Elemento:`, row);
         });
 
         // eslint-disable-next-line no-console
-        console.log(`🎯 Total de itens encontrados no dropdown: ${allListRows.length}`);
+        console.log(`🎯 Total de itens do dropdown Copilot: ${visibleRows.length}`);
       })
       .catch((error) => {
         // eslint-disable-next-line no-debugger
         debugger;
         // eslint-disable-next-line no-console
-        console.warn('⚠️ Timeout aguardando monaco-list-row aparecer:', error);
+        console.warn('⚠️ Timeout aguardando monaco dropdown list-row aparecer:', error);
       });
 
     // Verifica se abriu
@@ -276,17 +322,31 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
       console.log('✅ Dropdown aberto com sucesso via eventos de mouse');
 
       // Aguarda os elementos monaco-list-row aparecerem e lista todos
-      waitElementByHierarchy(monacoListRowSelector, {
+      waitElementByHierarchy(monacoDropdownListRowSelector, {
         limitTime: 5000,
         from: document.body,
       })
         .then(() => {
           // eslint-disable-next-line no-console
-          console.log('🎯 Monaco-list-row detectado! Listando todos os itens do dropdown:');
+          console.log('🎯 Monaco dropdown list-row detectado! Listando itens do dropdown:');
 
-          const allListRows = findElementsByHierarchy(monacoListRowSelector, document.body);
+          const dropdownListRows = findElementsByHierarchy(
+            monacoDropdownListRowSelector,
+            document.body,
+          );
 
-          allListRows.forEach((row, index) => {
+          // Filtra apenas os elementos que estão realmente visíveis (dropdown aberto)
+          const visibleRows = dropdownListRows.filter((row) => {
+            const contextView = row.closest('.context-view');
+            return (
+              contextView &&
+              contextView instanceof HTMLElement &&
+              contextView.style.display !== 'none' &&
+              !contextView.hasAttribute('aria-hidden')
+            );
+          });
+
+          visibleRows.forEach((row, index) => {
             const title = row.querySelector('.title')?.textContent?.trim() || '';
             const description = row.querySelector('.description')?.textContent?.trim() || '';
             const ariaLabel = row.getAttribute('aria-label') || '';
@@ -307,7 +367,7 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
           });
 
           // eslint-disable-next-line no-console
-          console.log(`🎯 Total de itens encontrados no dropdown: ${allListRows.length}`);
+          console.log(`🎯 Total de itens do dropdown: ${visibleRows.length}`);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -340,17 +400,31 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
       console.log('✅ Dropdown aberto com sucesso via Enter');
 
       // Aguarda os elementos monaco-list-row aparecerem e lista todos
-      waitElementByHierarchy(monacoListRowSelector, {
+      waitElementByHierarchy(monacoDropdownListRowSelector, {
         limitTime: 5000,
         from: document.body,
       })
         .then(() => {
           // eslint-disable-next-line no-console
-          console.log('🎯 Monaco-list-row detectado! Listando todos os itens do dropdown:');
+          console.log('🎯 Monaco dropdown list-row detectado! Listando itens do dropdown:');
 
-          const allListRows = findElementsByHierarchy(monacoListRowSelector, document.body);
+          const dropdownListRows = findElementsByHierarchy(
+            monacoDropdownListRowSelector,
+            document.body,
+          );
 
-          allListRows.forEach((row, index) => {
+          // Filtra apenas os elementos que estão realmente visíveis (dropdown aberto)
+          const visibleRows = dropdownListRows.filter((row) => {
+            const contextView = row.closest('.context-view');
+            return (
+              contextView &&
+              contextView instanceof HTMLElement &&
+              contextView.style.display !== 'none' &&
+              !contextView.hasAttribute('aria-hidden')
+            );
+          });
+
+          visibleRows.forEach((row, index) => {
             const title = row.querySelector('.title')?.textContent?.trim() || '';
             const description = row.querySelector('.description')?.textContent?.trim() || '';
             const ariaLabel = row.getAttribute('aria-label') || '';
@@ -371,7 +445,7 @@ export const triggerMonacoDropdown = async (type: DropdownType = 'any'): Promise
           });
 
           // eslint-disable-next-line no-console
-          console.log(`🎯 Total de itens encontrados no dropdown: ${allListRows.length}`);
+          console.log(`🎯 Total de itens do dropdown: ${visibleRows.length}`);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console

@@ -35,12 +35,12 @@ import { findElementByHierarchy, type TagWithAttributes } from 'interface-hackin
 const hierarchy: TagWithAttributes[] = [
   {
     tag: 'div',
-    attributes: [{ attribute: 'class', value: 'container' }]
+    attributes: [{ attribute: 'class', value: 'container' }],
   },
   {
     tag: 'button',
-    attributes: [{ attribute: 'data-testid', value: 'submit-btn' }]
-  }
+    attributes: [{ attribute: 'data-testid', value: 'submit-btn' }],
+  },
 ];
 
 const element = findElementByHierarchy(hierarchy);
@@ -55,7 +55,7 @@ if (element) {
 import { findElementsByHierarchy } from 'interface-hacking';
 
 const elements = findElementsByHierarchy(hierarchy);
-elements.forEach(el => console.log(el.textContent));
+elements.forEach((el) => console.log(el.textContent));
 ```
 
 ### Aguardar elemento aparecer
@@ -66,7 +66,7 @@ import { waitElementByHierarchy } from 'interface-hacking';
 try {
   const element = await waitElementByHierarchy(hierarchy, {
     limitTime: 5000, // 5 segundos
-    from: document.body
+    from: document.body,
   });
 
   if (element) {
@@ -87,11 +87,100 @@ const hierarchyWithRegex: TagWithAttributes[] = [
       {
         attribute: 'class',
         value: '^btn-.*',
-        isRegex: true
-      }
-    ]
-  }
+        isRegex: true,
+      },
+    ],
+  },
 ];
+```
+
+### Exemplo: Manipulação de Dropdowns do Monaco/Copilot
+
+```typescript
+import {
+  triggerMonacoDropdown,
+  getMonacoDropdownItems,
+  selectMonacoDropdownItem,
+  type DropdownType,
+  type DropdownItem,
+} from 'interface-hacking';
+
+// Abre o dropdown do agente Copilot e captura automaticamente os itens
+async function openAndListCopilotAgents() {
+  const success = await triggerMonacoDropdown('agent');
+
+  if (success) {
+    // A função automaticamente detecta e lista os itens no console
+    // Aguarda um momento para os elementos carregarem
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    // Obtém os itens programaticamente
+    const items = getMonacoDropdownItems();
+
+    console.log('Itens disponíveis:');
+    items.forEach((item) => {
+      console.log(
+        `- ${item.title}: ${item.description} (${item.isSelected ? 'Selecionado' : 'Disponível'})`,
+      );
+    });
+
+    return items;
+  }
+
+  return [];
+}
+
+// Seleciona um modo específico
+async function switchToEditMode() {
+  // Primeiro abre o dropdown
+  await triggerMonacoDropdown('agent');
+
+  // Aguarda um momento para carregar
+  await new Promise((resolve) => setTimeout(resolve, 500));
+
+  // Seleciona o modo "Edit"
+  const success = await selectMonacoDropdownItem('Edit');
+
+  if (success) {
+    console.log('✅ Modo Edit ativado com sucesso!');
+  } else {
+    console.log('❌ Falha ao ativar modo Edit');
+  }
+}
+
+// Exemplo de uso
+openAndListCopilotAgents().then((items) => {
+  if (items.length > 0) {
+    console.log(`Encontrados ${items.length} itens no dropdown`);
+  }
+});
+```
+
+**Output esperado no console:**
+
+```
+🎯 Acionando dropdown do tipo: "agent"
+✅ Dropdown aberto com sucesso via click direto
+🎯 Monaco dropdown list-row detectado! Listando itens do dropdown:
+  📋 Item 1 (data-index: 0):
+    Título: "Ask"
+    Descrição: ""
+    Aria-label: "Ask"
+    Role: "menuitemcheckbox"
+    Selecionado: ❌
+  📋 Item 2 (data-index: 1):
+    Título: "Agent"
+    Descrição: "⇧⌘I"
+    Aria-label: "Agent"
+    Role: "menuitemcheckbox"
+    Selecionado: ✅
+  📋 Item 3 (data-index: 2):
+    Título: "Edit"
+    Descrição: ""
+    Aria-label: "Edit"
+    Role: "menuitemcheckbox"
+    Selecionado: ❌
+🎯 Total de itens do dropdown Copilot: 3
 ```
 
 ## 🛠️ Desenvolvimento
@@ -133,6 +222,7 @@ O projeto está configurado com:
 Busca o primeiro elemento que corresponde à hierarquia especificada.
 
 **Parâmetros:**
+
 - `hierarchy`: Array de `TagWithAttributes` definindo a hierarquia
 - `from`: Elemento base para iniciar a busca (padrão: `document.body`)
 
@@ -143,6 +233,7 @@ Busca o primeiro elemento que corresponde à hierarquia especificada.
 Busca todos os elementos que correspondem à hierarquia especificada.
 
 **Parâmetros:**
+
 - `hierarchy`: Array de `TagWithAttributes` definindo a hierarquia
 - `from`: Elemento base para iniciar a busca (padrão: `document.body`)
 
@@ -153,6 +244,7 @@ Busca todos os elementos que correspondem à hierarquia especificada.
 Aguarda um elemento aparecer no DOM.
 
 **Parâmetros:**
+
 - `hierarchy`: Array de `TagWithAttributes` definindo a hierarquia
 - `config`: Configuração opcional:
   - `limitTime`: Tempo limite em ms (padrão: 10000)
