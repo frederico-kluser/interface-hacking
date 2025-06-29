@@ -1,4 +1,3 @@
-import findElementByHierarchy from '../core/findElementByHierarchy.js';
 import findElementsByHierarchy from '../core/findElementsByHierarchy.js';
 import allTextareasSelector from '../selectors/all-textareas.js';
 import interactiveViewLineSelector from '../selectors/interactive-view-line.js';
@@ -149,7 +148,8 @@ export const insertTextInCopilot = async (text: string): Promise<boolean> => {
   }
 
   // Método 2: Busca pelo native-edit-context (elemento de entrada real do Monaco)
-  const nativeContext = findElementByHierarchy(nativeEditContextSelector, editor.container);
+  const nativeContexts = findElementsByHierarchy(nativeEditContextSelector, editor.container);
+  const nativeContext = nativeContexts[0] || null;
   if (nativeContext) {
     // eslint-disable-next-line no-console
     console.log('✅ Native edit context encontrado');
@@ -215,7 +215,8 @@ export const insertTextInCopilot = async (text: string): Promise<boolean> => {
   }
 
   // Método 5: Manipulação do contentEditable com seleção adequada
-  const viewLine = findElementByHierarchy(interactiveViewLineSelector, document.body);
+  const viewLines = findElementsByHierarchy(interactiveViewLineSelector, document.body);
+  const viewLine = viewLines[0] || null;
   if (viewLine) {
     // eslint-disable-next-line no-console
     console.log('✅ View line encontrada - usando contentEditable');

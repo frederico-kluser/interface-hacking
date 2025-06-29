@@ -16,7 +16,7 @@ const findElementsByHierarchy = (
         const element = allElements[j] as HTMLElement;
         let match = true;
 
-        for (const { attribute, value, isRegex } of attributes) {
+        for (const { attribute, value, isRegex, contains } of attributes) {
           let attrValue: string | null;
 
           if (attribute === 'innerHTML') {
@@ -43,6 +43,11 @@ const findElementsByHierarchy = (
             }
 
             if (!regex.test(attrValue)) {
+              match = false;
+              break;
+            }
+          } else if (contains) {
+            if (!attrValue.includes(value)) {
               match = false;
               break;
             }

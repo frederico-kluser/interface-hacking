@@ -13,6 +13,8 @@ type TagAttribute = {
   value: string;
   /** Indica se o valor deve ser tratado como regex */
   isRegex?: boolean;
+  /** Indica se o valor deve ser tratado como substring (contido no valor do atributo) */
+  contains?: boolean;
 };
 
 export default TagAttribute;

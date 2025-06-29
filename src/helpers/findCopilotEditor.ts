@@ -1,4 +1,3 @@
-import findElementByHierarchy from '../core/findElementByHierarchy.js';
 import findElementsByHierarchy from '../core/findElementsByHierarchy.js';
 import monacoEditorsSelector from '../selectors/monaco-editors.js';
 import viewLinesSelector from '../selectors/view-lines.js';
@@ -43,7 +42,8 @@ export const findCopilotEditor = (): MonacoEditor | null => {
     }
 
     if (inputPart || parent?.classList.contains('interactive-input-editor')) {
-      const viewLines = findElementByHierarchy(viewLinesSelector, editor);
+      const viewLinesElements = findElementsByHierarchy(viewLinesSelector, editor);
+      const viewLines = viewLinesElements[0] || null;
       return {
         container: editor,
         viewLines,

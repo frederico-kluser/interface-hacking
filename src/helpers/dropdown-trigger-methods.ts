@@ -1,4 +1,4 @@
-import waitElementByHierarchy from '../core/waitElementByHierarchy.js';
+import waitElementsByHierarchy from '../core/waitElementsByHierarchy.js';
 import monacoListElementSelector from '../selectors/monaco-dropdown-row.js';
 import { listDropdownItems } from './dropdown-items.js';
 import { wait } from './wait.js';
@@ -25,13 +25,18 @@ export const tryDirectClick = async (button: HTMLElement): Promise<TriggerResult
   button.click();
   await wait(200);
 
+  // eslint-disable-next-line no-debugger
+  debugger; // Para depuração, remova em produção
+
   // Aguarda os elementos monaco-list-row aparecerem e lista todos
-  waitElementByHierarchy(monacoListElementSelector, {
+  waitElementsByHierarchy(monacoListElementSelector, {
     limitTime: 5000,
     from: document.body,
   })
-    .then(() => {
-      listDropdownItems();
+    .then((elements) => {
+      if (elements.length > 0) {
+        listDropdownItems();
+      }
     })
     .catch((error) => {
       // eslint-disable-next-line no-console
@@ -93,12 +98,14 @@ export const tryMouseEvents = async (button: HTMLElement): Promise<TriggerResult
     console.log('✅ Dropdown aberto com sucesso via eventos de mouse');
 
     // Aguarda os elementos monaco-list-row aparecerem e lista todos
-    waitElementByHierarchy(monacoListElementSelector, {
+    waitElementsByHierarchy(monacoListElementSelector, {
       limitTime: 5000,
       from: document.body,
     })
-      .then(() => {
-        listDropdownItems();
+      .then((elements) => {
+        if (elements.length > 0) {
+          listDropdownItems();
+        }
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
@@ -139,12 +146,14 @@ export const tryKeyboardEnter = async (button: HTMLElement): Promise<TriggerResu
     console.log('✅ Dropdown aberto com sucesso via Enter');
 
     // Aguarda os elementos monaco-list-row aparecerem e lista todos
-    waitElementByHierarchy(monacoListElementSelector, {
+    waitElementsByHierarchy(monacoListElementSelector, {
       limitTime: 5000,
       from: document.body,
     })
-      .then(() => {
-        listDropdownItems();
+      .then((elements) => {
+        if (elements.length > 0) {
+          listDropdownItems();
+        }
       })
       .catch((error) => {
         // eslint-disable-next-line no-console

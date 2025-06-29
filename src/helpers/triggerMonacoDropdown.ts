@@ -1,4 +1,3 @@
-import findElementByHierarchy from '../core/findElementByHierarchy.js';
 import findElementsByHierarchy from '../core/findElementsByHierarchy.js';
 import monacoDropdownButtonSelector from '../selectors/monaco-dropdown-button.js';
 import monacoDropdownSelector from '../selectors/monaco-dropdown.js';
@@ -115,7 +114,8 @@ export const findMonacoDropdowns = (): DropdownElement[] => {
     const dropdowns = findElementsByHierarchy(monacoDropdownSelector, document.body);
 
     for (const dropdown of dropdowns) {
-      const button = findElementByHierarchy(monacoDropdownButtonSelector, dropdown);
+      const buttons = findElementsByHierarchy(monacoDropdownButtonSelector, dropdown);
+      const button = buttons[0] || null;
 
       if (button) {
         // Identifica o tipo do dropdown baseado no aria-label
